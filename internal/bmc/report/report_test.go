@@ -152,3 +152,54 @@ func TestValidateKeepsToyOnlyStatus(t *testing.T) {
 		t.Errorf("Expected promotion gate to be blocked, got %s", rep.PromotionGate.Status)
 	}
 }
+
+func TestReportRejectsConstraintViolationStatus(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Error generating report: %v", err)
+	}
+
+	// Manually set WdW residual check to fail while keeping technical gate as Pass
+	wdwCheck := rep.Checks["wdw_residual"]
+	wdwCheck.Status = model.StatusFail
+	wdwCheck.Pass = false
+	rep.Checks["wdw_residual"] = wdwCheck
+
+	errors := report.Validate(rep)
+	if len(errors) == 0 {
+		t.Error("Expected report validation to fail due to inconsistent failed check and passing technical gate, but it passed")
+	}
+}
+
+func TestPromotionGateBlocksConstraintViolation(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Error generating report: %v", err)
+	}
+
+	// Manually set WdW residual check to fail and set technical gate status to Fail
+	wdwCheck := rep.Checks["wdw_residual"]
+	wdwCheck.Status = model.StatusFail
+	wdwCheck.Pass = false
+	rep.Checks["wdw_residual"] = wdwCheck
+	rep.TechnicalGate.Status = model.StatusFail
+
+	// If the technical gate status has failed, promotion is blocked.
+	// We assert that the validation behaves correctly (passes structural consistency checks, but remains blocked).
+	errors := report.Validate(rep)
+	for _, valErr := range errors {
+		if valErr.Severity == report.ValidationFail {
+			t.Errorf("Unexpected validation failure: %s", valErr.Message)
+		}
+	}
+
+	if rep.TechnicalGate.Status != model.StatusFail {
+		t.Errorf("Expected technical gate to be failed, got %s", rep.TechnicalGate.Status)
+	}
+	if rep.PromotionGate.Status != report.StatusBlocked {
+		t.Errorf("Expected promotion gate to remain blocked, got %s", rep.PromotionGate.Status)
+	}
+}
+

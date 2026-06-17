@@ -1,6 +1,7 @@
 package wdw
 
 import (
+	"errors"
 	"math"
 	"math/cmplx"
 
@@ -93,4 +94,52 @@ func ComponentResidualsSuperposition(k1, omega1, k2, omega2 float64) []Component
 		},
 	}
 }
+
+// NumericalResidualAt evaluates the WdW residual (-∂²Ψ/∂α² + ∂²Ψ/∂φ²) numerically
+// using central finite differences at a specific (alpha, phi) configuration.
+// It acts as a toy numerical WdW residual evaluator for failure detection.
+func NumericalResidualAt(
+	psi func(alpha, phi float64) complex128,
+	alpha float64,
+	phi float64,
+	h float64,
+) (complex128, error) {
+	if h <= 0 {
+		return 0, errors.New("finite difference step h must be strictly positive")
+	}
+
+	if math.IsNaN(alpha) || math.IsInf(alpha, 0) ||
+		math.IsNaN(phi) || math.IsInf(phi, 0) ||
+		math.IsNaN(h) || math.IsInf(h, 0) {
+		return 0, errors.New("numerical inputs (alpha, phi, h) must be finite")
+	}
+
+	psiVal := psi(alpha, phi)
+	psiPlusAlpha := psi(alpha+h, phi)
+	psiMinusAlpha := psi(alpha-h, phi)
+	psiPlusPhi := psi(alpha, phi+h)
+	psiMinusPhi := psi(alpha, phi-h)
+
+	isFinite := func(c complex128) bool {
+		r := real(c)
+		i := imag(c)
+		return !math.IsNaN(r) && !math.IsInf(r, 0) && !math.IsNaN(i) && !math.IsInf(i, 0)
+	}
+
+	if !isFinite(psiVal) || !isFinite(psiPlusAlpha) || !isFinite(psiMinusAlpha) || !isFinite(psiPlusPhi) || !isFinite(psiMinusPhi) {
+		return 0, errors.New("wavefunction evaluated to non-finite value")
+	}
+
+	d2PsiDAlpha2 := (psiPlusAlpha - 2*psiVal + psiMinusAlpha) / complex(h*h, 0.0)
+	d2PsiDPhi2 := (psiPlusPhi - 2*psiVal + psiMinusPhi) / complex(h*h, 0.0)
+
+	res := -d2PsiDAlpha2 + d2PsiDPhi2
+
+	if !isFinite(res) {
+		return 0, errors.New("numerical residual calculation produced non-finite values")
+	}
+
+	return res, nil
+}
+
 
