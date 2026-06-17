@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "bmc",
+ "options": {},
+ "name": "BMC.NullRun",
+ "isModule": false,
+ "importArts": {},
+ "dynlibs": []}

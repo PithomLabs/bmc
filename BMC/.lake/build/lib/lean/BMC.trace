@@ -1,10 +1,10 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["6763fc742f3454a8.olean"],
+ {"o": ["bea5028b16e51d3d.olean"],
   "m": false,
-  "i": "c14638c1911db639.ilean",
-  "c": "f417c6fb989e56ae.c"},
+  "i": "87f6120cc0b2002b.ilean",
+  "c": "0e21f2648764cbd0.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean /home/chaschel/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/chaschel/Documents/go/bmc/BMC/BMC.lean -o /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC.olean -i /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC.ilean -c /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC.c --setup /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC.setup.json --json",
@@ -30,7 +30,9 @@
         ["BMC.NullModelSpec:importAllArts", "b173a663df90d3ab"],
         ["BMC.PriorArtBoundary transitive imports (legacy)",
          "00000000000006bb"],
-        ["BMC.PriorArtBoundary:importAllArts", "e26e90ba8a53da08"]]]]],
+        ["BMC.PriorArtBoundary:importAllArts", "e26e90ba8a53da08"],
+        ["BMC.NullRun transitive imports (legacy)", "00000000000006bb"],
+        ["BMC.NullRun:importAllArts", "47ea2b183a87a93b"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -38,10 +40,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
-  ["/home/chaschel/Documents/go/bmc/BMC/BMC.lean", "54f364c2d0b5af3c"],
+  ["/home/chaschel/Documents/go/bmc/BMC/BMC.lean", "574438292466bd69"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: BMC", "c35ba4f1a96d6dca"],
   ["Package.id?: (some bmc)", "7e0655f117fcc781"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "334b7341cbeb37f2"}
+ "depHash": "822bb2310474f340"}

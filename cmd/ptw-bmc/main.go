@@ -11,6 +11,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/clockseg"
 	"github.com/PithomLabs/bmc/internal/bmc/friedmannspec"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
+	"github.com/PithomLabs/bmc/internal/bmc/nullrun"
 	"github.com/PithomLabs/bmc/internal/bmc/nullspec"
 	"github.com/PithomLabs/bmc/internal/bmc/priorart"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
@@ -42,6 +43,8 @@ func main() {
 		specNullModelsCmd()
 	case "prior-art-boundary":
 		priorArtBoundaryCmd()
+	case "run-nullmodels":
+		runNullModelsCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -61,6 +64,7 @@ func printUsage() {
 	fmt.Println("  spec-friedmann Run Friedmann-residual specification and gate design")
 	fmt.Println("  spec-nullmodels Run Null-Model specification and future comparison gate design")
 	fmt.Println("  prior-art-boundary Run prior-art boundary and gate verification")
+	fmt.Println("  run-nullmodels Run the null-model runner and generate comparison report")
 }
 
 func runCmd() {
@@ -260,6 +264,29 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-nullrun-v0.1" {
+		rep, err := nullrun.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading null model run report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		data, err := os.ReadFile(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading null model run report file: %v\n", err)
+			os.Exit(1)
+		}
+		errors := nullrun.ValidateReport(rep, string(data))
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Null Model Run Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Null Model Run Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -377,6 +404,44 @@ func summarizeCmd() {
 		fmt.Printf("Prior-Art Sources Seeded: %d\n", len(rep.PriorArtSources))
 		fmt.Printf("Boundary Claims Declared: %d\n", len(rep.BoundaryClaims))
 		fmt.Printf("Full BMC: %s\n", rep.FullBmcToyGate)
+		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-nullrun-v0.1" {
+		rep, err := nullrun.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading null model run report: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("BMC Sprint 9 Null-Model Runner Summary")
+		fmt.Printf("Schema Version: %s\n", rep.SchemaVersion)
+		fmt.Printf("Scope: %s\n", rep.Scope)
+		fmt.Printf("Residual Computed: %v\n", rep.ResidualComputed)
+		fmt.Printf("Null Diagnostics Computed: %v\n", rep.NullDiagnosticsComputed)
+		fmt.Printf("Target/Null Comparison Computed: %v\n", rep.TargetNullComparisonComputed)
+		fmt.Printf("Recovery Claim: %v\n", rep.RecoveryClaim)
+		fmt.Printf("Scientific Novelty Claim Made: %v\n", rep.ScientificNoveltyClaimMade)
+		fmt.Printf("Full BMC: %s\n", rep.FullBmcToyGate)
+		numWithDiag := 0
+		numBlocked := 0
+		numDeferred := 0
+		for _, run := range rep.NullModelRuns {
+			if run.RunStatus == "diagnostics_generated" {
+				numWithDiag++
+			} else if run.RunStatus == "blocked" {
+				numBlocked++
+			} else if run.RunStatus == "deferred" {
+				numDeferred++
+			}
+		}
+		totalAccounted := numWithDiag + numBlocked + numDeferred
+		fmt.Printf("Null Models Registered: %d\n", len(rep.NullModelRuns))
+		fmt.Printf("Null Models With Diagnostics: %d\n", numWithDiag)
+		fmt.Printf("Null Models Blocked: %d\n", numBlocked)
+		fmt.Printf("Null Models Deferred: %d\n", numDeferred)
+		fmt.Printf("Null Models Accounted For: %d/%d\n", totalAccounted, len(rep.NullModelRuns))
+		fmt.Printf("Interpretation Status: %s\n", rep.InterpretationStatus)
 		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
 		return
 	}
@@ -708,5 +773,51 @@ func priorArtBoundaryCmd() {
 	}
 
 	fmt.Printf("Successfully ran prior-art boundary profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
+func runNullModelsCmd() {
+	cmdFlags := flag.NewFlagSet("run-nullmodels", flag.ExitOnError)
+	profileOpt := cmdFlags.String("profile", "", "Profile to run (required)")
+	outOpt := cmdFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		cmdFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := cmdFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *profileOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --profile is required")
+		os.Exit(1)
+	}
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-nullrun" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-nullrun')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	runs, err := nullrun.RunNullModels(*profileOpt)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error running null models: %v\n", err)
+		os.Exit(1)
+	}
+
+	rep := nullrun.GenerateDefaultReport()
+	rep.NullModelRuns = runs
+
+	if err := nullrun.WriteReport(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing null run report: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran null models profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 

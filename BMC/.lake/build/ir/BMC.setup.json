@@ -12,6 +12,8 @@
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean"],
   "BMC.PriorArtBoundary":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/PriorArtBoundary.olean"],
+  "BMC.NullRun":
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/NullRun.olean"],
   "BMC.NullModelSpec":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/NullModelSpec.olean"],
   "BMC.FriedmannSpec":

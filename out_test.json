@@ -1,0 +1,261 @@
+{
+  "schema_version": "bmc0a-nullrun-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "artifact_kind": "null_model_runner_report",
+  "scope": "bmc0a_only",
+  "residual_computed": false,
+  "null_diagnostics_computed": true,
+  "target_null_comparison_computed": true,
+  "recovery_claim": false,
+  "scientific_novelty_claim_made": false,
+  "full_bmc_toy_gate": "blocked",
+  "source_artifacts": [
+    "Sprint 7 Null-Model scaffold"
+  ],
+  "null_model_runs": [
+    {
+      "null_model_id": "constant_phase_control",
+      "run_status": "diagnostics_generated",
+      "diagnostic_provenance": "deterministic_fixture",
+      "seed": {
+        "null_model_id": "constant_phase_control",
+        "seed": 42,
+        "rng_kind": "none"
+      },
+      "diagnostic_status": "finite",
+      "diagnostics": {
+        "node_contact_free": true,
+        "trajectory_finiteness": "finite",
+        "num_valid_trajectory_points": 100,
+        "num_clock_segments": 1,
+        "num_turning_points": 0,
+        "phi_clock_global_status": "monotonic",
+        "local_branch_status": "stable",
+        "min_amplitude_r": 0.0012,
+        "max_abs_q_away_from_nodes": 4.5,
+        "max_phase_gradient": 8.9,
+        "diagnostic_warnings": []
+      },
+      "notes": "Phase is held constant across coordinates; acts as simplest static control."
+    },
+    {
+      "null_model_id": "randomized_phase_control",
+      "run_status": "diagnostics_generated",
+      "diagnostic_provenance": "deterministic_fixture",
+      "seed": {
+        "null_model_id": "randomized_phase_control",
+        "seed": 12345,
+        "rng_kind": "xorshift64"
+      },
+      "diagnostic_status": "finite",
+      "diagnostics": {
+        "node_contact_free": true,
+        "trajectory_finiteness": "finite",
+        "num_valid_trajectory_points": 100,
+        "num_clock_segments": 2,
+        "num_turning_points": 1,
+        "phi_clock_global_status": "non_monotonic",
+        "local_branch_status": "fragile",
+        "min_amplitude_r": 0.0012,
+        "max_abs_q_away_from_nodes": 4.5,
+        "max_phase_gradient": 8.9,
+        "diagnostic_warnings": [
+          "Phase fluctuations degrade relational monotonicity."
+        ]
+      },
+      "notes": "Phase values randomized at coordinates with recorded seed."
+    },
+    {
+      "null_model_id": "matched_amplitude_randomized_phase_control",
+      "run_status": "diagnostics_generated",
+      "diagnostic_provenance": "deterministic_fixture",
+      "seed": {
+        "null_model_id": "matched_amplitude_randomized_phase_control",
+        "seed": 54321,
+        "rng_kind": "xorshift64"
+      },
+      "diagnostic_status": "finite",
+      "diagnostics": {
+        "node_contact_free": true,
+        "trajectory_finiteness": "finite",
+        "num_valid_trajectory_points": 100,
+        "num_clock_segments": 2,
+        "num_turning_points": 1,
+        "phi_clock_global_status": "non_monotonic",
+        "local_branch_status": "fragile",
+        "min_amplitude_r": 0.0012,
+        "max_abs_q_away_from_nodes": 4.5,
+        "max_phase_gradient": 8.9,
+        "diagnostic_warnings": [
+          "Phase fluctuations degrade relational monotonicity."
+        ]
+      },
+      "notes": "Amplitude is matched to target superposition wave while phase is randomized."
+    },
+    {
+      "null_model_id": "classical_frw_reference_trajectory",
+      "run_status": "diagnostics_generated",
+      "diagnostic_provenance": "deterministic_fixture",
+      "diagnostic_status": "finite",
+      "diagnostics": {
+        "node_contact_free": true,
+        "trajectory_finiteness": "finite",
+        "num_valid_trajectory_points": 100,
+        "num_clock_segments": 1,
+        "num_turning_points": 0,
+        "phi_clock_global_status": "monotonic",
+        "local_branch_status": "stable",
+        "diagnostic_warnings": []
+      },
+      "notes": "reference comparator only; no residual or recovery interpretation"
+    },
+    {
+      "null_model_id": "same_branch_segmentation_under_null_wavefunctions",
+      "run_status": "deferred",
+      "diagnostic_provenance": "deferred",
+      "diagnostic_status": "not_available",
+      "diagnostics": {
+        "node_contact_free": false,
+        "trajectory_finiteness": "not_available",
+        "num_valid_trajectory_points": 0,
+        "num_clock_segments": 0,
+        "num_turning_points": 0,
+        "phi_clock_global_status": "not_available",
+        "local_branch_status": "not_available",
+        "diagnostic_warnings": []
+      },
+      "notes": "Deferred until full relational clock segmentation is active on null sets."
+    },
+    {
+      "null_model_id": "node_neighborhood_stress_case",
+      "run_status": "blocked",
+      "diagnostic_provenance": "blocked",
+      "diagnostic_status": "node_blocked",
+      "diagnostics": {
+        "node_contact_free": false,
+        "trajectory_finiteness": "node_blocked",
+        "num_valid_trajectory_points": 0,
+        "num_clock_segments": 0,
+        "num_turning_points": 0,
+        "phi_clock_global_status": "not_available",
+        "local_branch_status": "not_available",
+        "diagnostic_warnings": []
+      },
+      "blocked_reason": "Blocked near nodes due to infinite quantum potential and division by zero risks.",
+      "notes": "Unable to generate trajectories inside node neighborhoods."
+    },
+    {
+      "null_model_id": "clock_choice_alternative_branch_diagnostic",
+      "run_status": "deferred",
+      "diagnostic_provenance": "deferred",
+      "diagnostic_status": "not_available",
+      "diagnostics": {
+        "node_contact_free": false,
+        "trajectory_finiteness": "not_available",
+        "num_valid_trajectory_points": 0,
+        "num_clock_segments": 0,
+        "num_turning_points": 0,
+        "phi_clock_global_status": "not_available",
+        "local_branch_status": "not_available",
+        "diagnostic_warnings": []
+      },
+      "notes": "Deferred until alternative relational clocks (e.g. scale factor a) are integrated in nullspec."
+    }
+  ],
+  "target_null_diagnostic_comparisons": [
+    {
+      "comparison_id": "bmc0a-superposition-vs-constant-phase-v0.1",
+      "target_artifact": "Sprint 2 superposition control",
+      "null_model_ids": [
+        "constant_phase_control"
+      ],
+      "metrics_compared": [
+        "node_contact_free",
+        "phi_clock_global_status",
+        "num_clock_segments"
+      ],
+      "comparison_computed": true,
+      "interpretation_status": "diagnostic_comparison_only",
+      "reason": "Comparison shows stable clock metrics for target under static phase fields."
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms analysis is strictly restricted to minisuperspace toy system."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claims are asserted."
+    },
+    {
+      "name": "no_residual_computation_gate",
+      "status": "pass",
+      "reason": "Confirms that no actual numerical residual was computed."
+    },
+    {
+      "name": "null_diagnostics_computed_gate",
+      "status": "pass",
+      "reason": "Confirms null model diagnostics are generated."
+    },
+    {
+      "name": "target_null_comparison_computed_gate",
+      "status": "pass",
+      "reason": "Confirms target/null comparison is generated."
+    },
+    {
+      "name": "no_winner_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no winner claims are made."
+    },
+    {
+      "name": "no_recovery_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no recovery claim is made."
+    },
+    {
+      "name": "no_scientific_novelty_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no scientific novelty claim is made."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness review status remains contested."
+    }
+  ],
+  "ebp_debt_vocabulary": "ptw_runtime_debt_status_v0.1",
+  "interpretation_status": "diagnostic_comparison_only",
+  "ebp_debt": {
+    "needLiteratureAudit": "partial",
+    "needMap": "active",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "partial",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "active",
+    "classical_target_debt": "active",
+    "unit_convention_debt": "active",
+    "sign_convention_debt": "active",
+    "normalization_debt": "active",
+    "containsFinalTruthClaim": "absent",
+    "promotion_status": "null_model_runner_candidate_only"
+  },
+  "warnings": [
+    "Sprint 9 computes null-model diagnostics only.",
+    "No recovery claim is made.",
+    "No residual was computed.",
+    "No scientific novelty claim is made.",
+    "Full BMC remains blocked.",
+    "Runtime EBP debt labels are not adversarial-review classifications."
+  ]
+}
