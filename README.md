@@ -1,5 +1,3 @@
-Good. We implement it in **Go + Lean**, with a strict split:
-
 **Go** = executable toy checks, numerical/finite tests, JSON reports.
 **Lean** = formal contracts, theorem obligations, promotion blockers, and faithfulness gates.
 

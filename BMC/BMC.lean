@@ -5,3 +5,4 @@ import BMC.ClockFragility
 import BMC.ClockReadiness
 import BMC.FriedmannSpec
 import BMC.NullModelSpec
+import BMC.PriorArtBoundary

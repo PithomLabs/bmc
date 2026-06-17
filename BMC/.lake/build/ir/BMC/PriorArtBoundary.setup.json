@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "bmc",
+ "options": {},
+ "name": "BMC.PriorArtBoundary",
+ "isModule": false,
+ "importArts": {},
+ "dynlibs": []}

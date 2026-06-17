@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: BMC
-// Imports: public import Init public meta import Init public import BMC.ToyReport public import BMC.Promotion public import BMC.Robustness public import BMC.ClockFragility public import BMC.ClockReadiness public import BMC.FriedmannSpec public import BMC.NullModelSpec
+// Imports: public import Init public meta import Init public import BMC.ToyReport public import BMC.Promotion public import BMC.Robustness public import BMC.ClockFragility public import BMC.ClockReadiness public import BMC.FriedmannSpec public import BMC.NullModelSpec public import BMC.PriorArtBoundary
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -22,6 +22,7 @@ lean_object* initialize_bmc_BMC_ClockFragility(uint8_t builtin);
 lean_object* initialize_bmc_BMC_ClockReadiness(uint8_t builtin);
 lean_object* initialize_bmc_BMC_FriedmannSpec(uint8_t builtin);
 lean_object* initialize_bmc_BMC_NullModelSpec(uint8_t builtin);
+lean_object* initialize_bmc_BMC_PriorArtBoundary(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_bmc_BMC(uint8_t builtin) {
 lean_object * res;
@@ -52,6 +53,9 @@ res = initialize_bmc_BMC_FriedmannSpec(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_bmc_BMC_NullModelSpec(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_bmc_BMC_PriorArtBoundary(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

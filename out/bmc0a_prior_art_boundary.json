@@ -1,0 +1,276 @@
+{
+  "schema_version": "bmc0a-prior-art-boundary-v0.1",
+  "ebp_debt_vocabulary": "ptw_runtime_debt_status_v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "artifact_kind": "prior_art_boundary_note",
+  "scope": "bmc0a_only",
+  "scientific_novelty_claim_made": false,
+  "scientific_novelty_claim_allowed": false,
+  "workflow_distinctiveness_status": "candidate_only",
+  "residual_computed": false,
+  "null_comparison_computed": false,
+  "recovery_claim": false,
+  "full_bmc_toy_gate": "blocked",
+  "prior_art_sources": [
+    {
+      "source_id": "bohmian_quantum_cosmology_review",
+      "title": "Bohmian Quantum Cosmology: A Review",
+      "authors": [
+        "Author A"
+      ],
+      "year": 2020,
+      "source_kind": "review",
+      "review_status": "seed_unreviewed",
+      "relevance_tags": [
+        "bohmian",
+        "cosmology"
+      ],
+      "boundary_use": "Seed source for future review of Bohmian quantum-cosmology background."
+    },
+    {
+      "source_id": "bohmian_quantum_gravity_cosmology_review",
+      "title": "Bohmian Quantum Gravity and Cosmology",
+      "authors": [
+        "Author B"
+      ],
+      "year": 2018,
+      "source_kind": "review",
+      "review_status": "seed_unreviewed",
+      "relevance_tags": [
+        "quantum-gravity",
+        "cosmology"
+      ],
+      "boundary_use": "Seed source for future human review of Bohmian minisuperspace prior art."
+    },
+    {
+      "source_id": "scalar_field_minisuperspace_classical_limit_paper",
+      "title": "On the Classical Limit of Scalar Field Minisuperspace",
+      "authors": [
+        "Author C"
+      ],
+      "year": 2015,
+      "source_kind": "paper",
+      "review_status": "seed_unreviewed",
+      "relevance_tags": [
+        "scalar-field",
+        "classical-limit"
+      ],
+      "boundary_use": "Seed source for checking overlap with scalar-field minisuperspace claims."
+    },
+    {
+      "source_id": "gaussian_superposition_bohmian_trajectory_paper",
+      "title": "Bohmian Trajectories for Gaussian Superpositions in Minisuperspace",
+      "authors": [
+        "Author D"
+      ],
+      "year": 2022,
+      "source_kind": "paper",
+      "review_status": "seed_unreviewed",
+      "relevance_tags": [
+        "gaussian",
+        "superposition",
+        "trajectory"
+      ],
+      "boundary_use": "Seed source for future human review of Bohmian minisuperspace prior art."
+    },
+    {
+      "source_id": "modern_friedmann_scalar_field_bohmian_example",
+      "title": "Bohmian Trajectories in a Modern Friedmann Scalar Field Model",
+      "authors": [
+        "Author E"
+      ],
+      "year": 2024,
+      "source_kind": "paper",
+      "review_status": "seed_unreviewed",
+      "relevance_tags": [
+        "friedmann",
+        "bohmian",
+        "scalar-field"
+      ],
+      "boundary_use": "Seed source for checking overlap with scalar-field minisuperspace claims."
+    }
+  ],
+  "boundary_claims": [
+    {
+      "claim_id": "bmc_uses_bohmian_minisuperspace_trajectories",
+      "claim_text": "BMC uses Bohmian minisuperspace trajectories for quantum cosmological evolution.",
+      "boundary_status": "established_prior_art",
+      "related_source_ids": [
+        "bohmian_quantum_cosmology_review",
+        "bohmian_quantum_gravity_cosmology_review"
+      ],
+      "reason": "Standard minisuperspace trajectory formulation is well-documented in literature.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_wheeler_dewitt_toy_equation",
+      "claim_text": "BMC uses the Wheeler-DeWitt toy equation to model wavefunction evolution.",
+      "boundary_status": "established_prior_art",
+      "related_source_ids": [
+        "bohmian_quantum_cosmology_review"
+      ],
+      "reason": "Wheeler-DeWitt equation is the standard prior art foundation for minisuperspace.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_scalar_field_clock_checks",
+      "claim_text": "BMC uses scalar field values as relational clocks to segment trajectories.",
+      "boundary_status": "likely_prior_art",
+      "related_source_ids": [
+        "scalar_field_minisuperspace_classical_limit_paper"
+      ],
+      "reason": "Relational clock checking using scalar fields is widely discussed, but requires human review for implementation specifics.",
+      "human_review_required": true
+    },
+    {
+      "claim_id": "bmc_uses_quantum_potential_diagnostics",
+      "claim_text": "BMC computes quantum potential values along trajectories.",
+      "boundary_status": "established_prior_art",
+      "related_source_ids": [
+        "bohmian_quantum_gravity_cosmology_review"
+      ],
+      "reason": "Quantum potential is a core element of Bohmian mechanics prior art.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_node_obstruction_detection",
+      "claim_text": "BMC implements detection of node proximity to flag potential mathematical failures.",
+      "boundary_status": "implementation_variant",
+      "related_source_ids": [
+        "gaussian_superposition_bohmian_trajectory_paper"
+      ],
+      "reason": "Node detection is specific to our numerical implementation of trajectory integration.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_local_branch_segmentation",
+      "claim_text": "BMC segments trajectories locally to handle non-monotonic clock behavior.",
+      "boundary_status": "implementation_variant",
+      "related_source_ids": [
+        "gaussian_superposition_bohmian_trajectory_paper"
+      ],
+      "reason": "Branch segmentation is workflow/implementation specific, needs confirmation.",
+      "human_review_required": true
+    },
+    {
+      "claim_id": "bmc_defines_null_model_scaffold",
+      "claim_text": "BMC implements a null-model validation scaffold to rule out trivial matching.",
+      "boundary_status": "workflow_distinctive_candidate",
+      "related_source_ids": [],
+      "reason": "Scaffolding structure is specific to the BMC workflow verification process.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_ebp_debt_gates",
+      "claim_text": "BMC uses EBP debt gates to track unresolved physical and mathematical assumptions.",
+      "boundary_status": "workflow_distinctive_candidate",
+      "related_source_ids": [],
+      "reason": "EBP debt tracking is unique to the workflow governance model.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_uses_lean_policy_contracts",
+      "claim_text": "BMC uses Lean policy contracts to formally prove safety constraints.",
+      "boundary_status": "workflow_distinctive_candidate",
+      "related_source_ids": [],
+      "reason": "Lean policy proving is unique to the BMC workflow verification pipeline.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_does_not_claim_recovery",
+      "claim_text": "BMC does not claim to recover the classical Friedmann equations from quantum trajectories.",
+      "boundary_status": "not_claimed",
+      "related_source_ids": [
+        "modern_friedmann_scalar_field_bohmian_example"
+      ],
+      "reason": "Classical dynamics recovery is explicitly deferred; no recovery claim is made.",
+      "human_review_required": false
+    },
+    {
+      "claim_id": "bmc_does_not_claim_scientific_novelty",
+      "claim_text": "BMC does not claim any scientific novelty or new physics.",
+      "boundary_status": "blocked",
+      "related_source_ids": [],
+      "reason": "Scientific novelty claims are strictly blocked under current EBP status.",
+      "human_review_required": false
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms analysis is strictly restricted to minisuperspace toy system."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claims are asserted."
+    },
+    {
+      "name": "no_scientific_novelty_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no scientific novelty claim is made."
+    },
+    {
+      "name": "prior_art_sources_seeded_gate",
+      "status": "pass",
+      "reason": "Confirms prior-art sources are seeded."
+    },
+    {
+      "name": "boundary_claims_declared_gate",
+      "status": "pass",
+      "reason": "Confirms boundary claims are declared."
+    },
+    {
+      "name": "no_residual_computation_gate",
+      "status": "pass",
+      "reason": "Confirms that no actual numerical residual was computed."
+    },
+    {
+      "name": "no_null_comparison_result_gate",
+      "status": "pass",
+      "reason": "Confirms that no null model comparison results are computed."
+    },
+    {
+      "name": "no_recovery_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no recovery claim is made."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness review status remains contested."
+    }
+  ],
+  "ebp_debt": {
+    "needLiteratureAudit": "partial",
+    "needMap": "active",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "active",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "active",
+    "classical_target_debt": "active",
+    "unit_convention_debt": "active",
+    "sign_convention_debt": "active",
+    "normalization_debt": "active",
+    "containsFinalTruthClaim": "absent",
+    "promotion_status": "prior_art_boundary_note_candidate_only"
+  },
+  "warnings": [
+    "This is a BMC-0A prior-art boundary note only.",
+    "No scientific novelty claim is made.",
+    "No recovery claim is made.",
+    "No residual was computed.",
+    "No null-model comparison was computed.",
+    "Full BMC remains blocked.",
+    "Runtime EBP debt labels are not adversarial-review classifications."
+  ]
+}

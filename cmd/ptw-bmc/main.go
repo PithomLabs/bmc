@@ -12,6 +12,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/friedmannspec"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/nullspec"
+	"github.com/PithomLabs/bmc/internal/bmc/priorart"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
 
@@ -39,6 +40,8 @@ func main() {
 		specFriedmannCmd()
 	case "spec-nullmodels":
 		specNullModelsCmd()
+	case "prior-art-boundary":
+		priorArtBoundaryCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -57,6 +60,7 @@ func printUsage() {
 	fmt.Println("  segment-clock Run local clock segmentation and clock-independent readiness diagnostics")
 	fmt.Println("  spec-friedmann Run Friedmann-residual specification and gate design")
 	fmt.Println("  spec-nullmodels Run Null-Model specification and future comparison gate design")
+	fmt.Println("  prior-art-boundary Run prior-art boundary and gate verification")
 }
 
 func runCmd() {
@@ -233,6 +237,29 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-prior-art-boundary-v0.1" {
+		rep, err := priorart.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading prior art boundary report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		data, err := os.ReadFile(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading prior art boundary report file: %v\n", err)
+			os.Exit(1)
+		}
+		errors := priorart.ValidateReport(rep, string(data))
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Prior-Art Boundary Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Prior-Art Boundary Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -329,6 +356,28 @@ func summarizeCmd() {
 			os.Exit(1)
 		}
 		nullspec.SummarizeNullModelSpecReport(rep)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-prior-art-boundary-v0.1" {
+		rep, err := priorart.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading prior art boundary report: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("BMC Sprint 8-Lite Prior-Art Boundary Summary")
+		fmt.Printf("Schema Version: %s\n", rep.SchemaVersion)
+		fmt.Printf("Scope: %s\n", rep.Scope)
+		fmt.Printf("Scientific Novelty Claim Made: %v\n", rep.ScientificNoveltyClaimMade)
+		fmt.Printf("Scientific Novelty Claim Allowed: %v\n", rep.ScientificNoveltyClaimAllowed)
+		fmt.Printf("Workflow Distinctiveness: %s\n", rep.WorkflowDistinctivenessStatus)
+		fmt.Printf("Residual Computed: %v\n", rep.ResidualComputed)
+		fmt.Printf("Null Comparison Computed: %v\n", rep.NullComparisonComputed)
+		fmt.Printf("Recovery Claim: %v\n", rep.RecoveryClaim)
+		fmt.Printf("Prior-Art Sources Seeded: %d\n", len(rep.PriorArtSources))
+		fmt.Printf("Boundary Claims Declared: %d\n", len(rep.BoundaryClaims))
+		fmt.Printf("Full BMC: %s\n", rep.FullBmcToyGate)
+		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
 		return
 	}
 
@@ -621,5 +670,43 @@ func specNullModelsCmd() {
 	}
 
 	fmt.Printf("Successfully ran Null Model spec profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
+func priorArtBoundaryCmd() {
+	cmdFlags := flag.NewFlagSet("prior-art-boundary", flag.ExitOnError)
+	profileOpt := cmdFlags.String("profile", "", "Profile to run (required)")
+	outOpt := cmdFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		cmdFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := cmdFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *profileOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --profile is required")
+		os.Exit(1)
+	}
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-prior-art-boundary" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-prior-art-boundary')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	rep := priorart.GenerateDefaultReport()
+	if err := priorart.WriteReport(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing prior-art boundary report: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran prior-art boundary profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 

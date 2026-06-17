@@ -1,0 +1,8 @@
+- [x] Update `internal/bmc/priorart/report.go` with `ebp_debt_vocabulary` and softened source metadata
+- [x] Update `internal/bmc/priorart/validate.go` with claim-specific boundary status checking, phrase-safe errors, and case-insensitive scanning
+- [x] Add new unit tests in `internal/bmc/priorart/priorart_test.go`
+- [x] Add warning note to `README_GOALS.md`
+- [x] Run `go test ./...` and ensure all tests pass
+- [x] Run `lake build` for Lean policy check
+- [x] Build CLI binary and run manual tests to verify output
+- [x] Prepare final walkthrough and summary
