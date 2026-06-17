@@ -1,0 +1,31 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["08e21be1cac06e6e.olean"],
+  "m": false,
+  "i": "89f349754c8f4703.ilean",
+  "c": "4501dcbd0531a5d3.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean /home/chaschel/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/chaschel/Documents/go/bmc/BMC/BMC/ToyReport.lean -o /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ToyReport.olean -i /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ToyReport.ilean -c /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/ToyReport.c --setup /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/ToyReport.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["BMC.ToyReport:deps",
+   [["deps",
+     [["bmc/BMC:extraDep", [["@bmc:extraDep", "00000000000006bb"]]],
+      ["imports", "00000000000006bb"]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
+   "fc45ac412f28501c"],
+  ["/home/chaschel/Documents/go/bmc/BMC/BMC/ToyReport.lean",
+   "d0edf374cacad9f2"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: BMC.ToyReport", "137469c4a39d9206"],
+  ["Package.id?: (some bmc)", "7e0655f117fcc781"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "cef495849c9e5c7a"}

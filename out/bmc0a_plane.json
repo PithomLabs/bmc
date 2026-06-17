@@ -1,0 +1,183 @@
+{
+  "schema_version": "bmc-report-v0.1",
+  "model_id": "bmc0a_plane",
+  "toy_analysis_only": true,
+  "physics_claim": "minisuperspace_only",
+  "final_truth_claim": false,
+  "promotion_recommendation": "blocked_or_candidate",
+  "parameters": {
+    "k": 1,
+    "omega": 1,
+    "alpha0": 0,
+    "phi0": 0,
+    "lambda_step": 0.1,
+    "steps": 100,
+    "tolerance": 1e-9
+  },
+  "equations": {
+    "guidance": "dalpha/dlambda=k, dphi/dlambda=-omega",
+    "quantum_potential": "Q=0 for constant amplitude",
+    "wavefunction": "Psi(alpha,phi)=exp(i(k alpha + omega phi))",
+    "wdw": "(-d_alpha_alpha + d_phi_phi) Psi = 0"
+  },
+  "checks": {
+    "classical_limit": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Plane-wave control has Q approximately zero."
+    },
+    "clock_monotonicity": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Relational clock phi is strictly monotonic.",
+      "variable": "phi"
+    },
+    "friedmann_residual": {
+      "status": "deferred",
+      "pass": false,
+      "reason": "Not implemented in BMC-0A plane-wave control; remains debt."
+    },
+    "quantum_potential": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Quantum potential is approximately zero, matching plane-wave control requirements.",
+      "max_abs_q": 0
+    },
+    "trajectory": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Bohmian trajectory is finite and successfully integrated.",
+      "finite": true,
+      "points": 101
+    },
+    "wdw_residual": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Analytic Wheeler-DeWitt residual satisfies tolerance.",
+      "max_abs_residual": 0
+    }
+  },
+  "technical_gate": {
+    "name": "bmc0a_plane_control_gate",
+    "status": "pass"
+  },
+  "promotion_gate": {
+    "name": "full_bmc_toy_gate",
+    "status": "blocked",
+    "reason": "Friedmann residual and faithfulness review remain unpaid debt."
+  },
+  "null_models": [
+    {
+      "name": "classical_frw",
+      "status": "placeholder_obligation",
+      "reason": "Classical-limit comparison begins with Q≈0 control."
+    },
+    {
+      "name": "standard_wdw",
+      "status": "placeholder_obligation",
+      "reason": "Ensemble comparison deferred."
+    },
+    {
+      "name": "lqc",
+      "status": "deferred",
+      "reason": "Not part of BMC-0A."
+    },
+    {
+      "name": "page_wootters",
+      "status": "deferred",
+      "reason": "Formal relational-time null model deferred."
+    }
+  ],
+  "obstructions": [
+    {
+      "name": "wdw_residual_obstruction",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "Wheeler-DeWitt residual 0.000000e+00 satisfies tolerance 1.000000e-09",
+      "consequence": "Residual is clean.",
+      "status": "pass"
+    },
+    {
+      "name": "nonfinite_q_obstruction",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "All quantum potential values along the trajectory are finite.",
+      "consequence": "Continue trajectory analysis.",
+      "status": "pass"
+    },
+    {
+      "name": "clock_nonmonotonicity_obstruction",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "Relational clock variable 'phi' is strictly monotonic.",
+      "consequence": "Relational clock is valid.",
+      "status": "pass"
+    },
+    {
+      "name": "full_qg_overclaim_blocker",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "No final-truth language detected.",
+      "consequence": "Continue as toy-only artifact.",
+      "status": "pass"
+    },
+    {
+      "name": "node_obstruction",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Node detection deferred to Sprint 2 (packet superposition states).",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "phase_unwrap_obstruction",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Phase unwrapping evaluation deferred to Sprint 2.",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "classical_limit_failure",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Classical limit comparison is active but requires massive scalar comparison (Sprint 3).",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "lapse_or_time_interpretation_debt",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Relational clock time interpretation remains active debt.",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "measure_problem_deferred",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Ensemble measure problem is deferred.",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    }
+  ],
+  "faithfulness": {
+    "status": "contested",
+    "reason": "No human faithfulness review yet. This only tests a plane-wave minisuperspace control."
+  },
+  "ebp_debt": {
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "partial",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "active"
+  },
+  "warnings": [
+    "Toy analysis only.",
+    "Does not test full quantum gravity.",
+    "Does not test black holes, fermions, gauge fields, Lorentz recovery, or inhomogeneous perturbations.",
+    "Passing this report cannot promote any final-truth claim."
+  ]
+}

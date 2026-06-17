@@ -1,0 +1,33 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["0b25986e1876e337.olean"],
+  "m": false,
+  "i": "ce0d79f1e50e788c.ilean",
+  "c": "21db8644ba9e766c.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean /home/chaschel/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/chaschel/Documents/go/bmc/BMC/BMC/Promotion.lean -o /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean -i /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.ilean -c /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/Promotion.c --setup /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/Promotion.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["BMC.Promotion:deps",
+   [["deps",
+     [["bmc/BMC:extraDep", [["@bmc:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["BMC.ToyReport transitive imports (legacy)", "00000000000006bb"],
+        ["BMC.ToyReport:importAllArts", "6b4a9946a2bb0af5"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
+   "fc45ac412f28501c"],
+  ["/home/chaschel/Documents/go/bmc/BMC/BMC/Promotion.lean",
+   "63b59cf9afc39f5d"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: BMC.Promotion", "36c6dffd9ef7dacd"],
+  ["Package.id?: (some bmc)", "7e0655f117fcc781"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "70b509205ebf2811"}

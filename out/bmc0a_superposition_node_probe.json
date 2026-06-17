@@ -1,0 +1,209 @@
+{
+  "schema_version": "bmc-report-v0.1",
+  "model_id": "bmc0a_superposition",
+  "toy_analysis_only": true,
+  "physics_claim": "minisuperspace_only",
+  "final_truth_claim": false,
+  "promotion_recommendation": "blocked_or_candidate",
+  "parameters": {
+    "superposition": {
+      "c1_real": 1,
+      "c1_imag": 0,
+      "k1": 1,
+      "omega1": 1,
+      "c2_real": -1,
+      "c2_imag": 0,
+      "k2": 2,
+      "omega2": -2,
+      "alpha0": 0,
+      "phi0": 0,
+      "lambda_step": 0.05,
+      "steps": 200,
+      "tolerance": 1e-9,
+      "node_threshold": 0.00001,
+      "max_phase_gradient": 100
+    }
+  },
+  "equations": {
+    "guidance": "dalpha/dlambda=dS/dalpha, dphi/dlambda=-dS/dphi",
+    "quantum_potential": "Q = -1/(2R)(d²R/dα² - d²R/dφ²)",
+    "wavefunction": "Psi(alpha,phi) = c1*exp(i(k1*alpha+omega1*phi)) + c2*exp(i(k2*alpha+omega2*phi))",
+    "wdw": "(-d_alpha_alpha + d_phi_phi) Psi = 0"
+  },
+  "checks": {
+    "classical_limit": {
+      "status": "fail",
+      "pass": false,
+      "reason": "Classical limit check failed due to node short-circuit."
+    },
+    "clock_monotonicity": {
+      "status": "fail",
+      "pass": false,
+      "reason": "Relational clock phi is undefined at a node."
+    },
+    "friedmann_residual": {
+      "status": "deferred",
+      "pass": false,
+      "reason": "Not implemented in BMC-0A; remains debt."
+    },
+    "node_contact_free": {
+      "status": "fail",
+      "pass": false,
+      "reason": "Node contact detected at initial point: amplitude 0.000000e+00 is below threshold 1.000000e-05."
+    },
+    "node_detection": {
+      "status": "pass",
+      "pass": true,
+      "reason": "Node detection logic executed successfully."
+    },
+    "phase_gradient_finite": {
+      "status": "contested",
+      "pass": false,
+      "reason": "Phase gradient is undefined at a node."
+    },
+    "q_finite_away_from_nodes": {
+      "status": "contested",
+      "pass": false,
+      "reason": "No away-from-node points to evaluate quantum potential."
+    },
+    "quantum_potential": {
+      "status": "contested",
+      "pass": false,
+      "reason": "Quantum potential is contested/undefined at a node."
+    },
+    "trajectory": {
+      "status": "fail",
+      "pass": false,
+      "reason": "Bohmian trajectory integration short-circuited: initial state starts on a node."
+    },
+    "wdw_residual": {
+      "status": "pass",
+      "pass": true,
+      "reason": "All component residuals satisfy tolerance; therefore by linearity the analytic superposition residual is zero.",
+      "max_abs_residual": 0
+    }
+  },
+  "technical_gate": {
+    "name": "node_detection_validation_gate",
+    "status": "pass"
+  },
+  "promotion_gate": {
+    "name": "full_bmc_toy_gate",
+    "status": "blocked",
+    "reason": "Friedmann residual and faithfulness review remain unpaid debt."
+  },
+  "null_models": [
+    {
+      "name": "classical_frw",
+      "status": "placeholder_obligation",
+      "reason": "Classical-limit comparison begins with Q≈0 control."
+    },
+    {
+      "name": "standard_wdw",
+      "status": "placeholder_obligation",
+      "reason": "Ensemble comparison deferred."
+    },
+    {
+      "name": "lqc",
+      "status": "deferred",
+      "reason": "Not part of BMC-0A."
+    },
+    {
+      "name": "page_wootters",
+      "status": "deferred",
+      "reason": "Formal relational-time null model deferred."
+    }
+  ],
+  "obstructions": [
+    {
+      "name": "wdw_residual_obstruction",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "Wheeler-DeWitt residual 0.000000e+00 satisfies tolerance 1.000000e-09",
+      "consequence": "Residual is clean.",
+      "status": "pass"
+    },
+    {
+      "name": "clock_nonmonotonicity_obstruction",
+      "applies": true,
+      "severity": "blocker",
+      "evidence": "Trajectory has insufficient finite points to determine monotonicity.",
+      "consequence": "Block promotion; relational clock is undefined.",
+      "status": "fail"
+    },
+    {
+      "name": "full_qg_overclaim_blocker",
+      "applies": false,
+      "severity": "blocker",
+      "evidence": "No final-truth language detected.",
+      "consequence": "Continue as toy-only artifact.",
+      "status": "pass"
+    },
+    {
+      "name": "node_obstruction",
+      "applies": true,
+      "severity": "blocker",
+      "evidence": "Trajectory is empty; initial state was below node threshold.",
+      "consequence": "Block safe promotion gate; trajectory came into contact with a node.",
+      "status": "fail"
+    },
+    {
+      "name": "phase_unwrap_obstruction",
+      "applies": true,
+      "severity": "blocker",
+      "evidence": "No valid non-node points to evaluate phase gradient.",
+      "consequence": "Block safe promotion gate; phase gradient is non-finite or exceeded bounds.",
+      "status": "fail"
+    },
+    {
+      "name": "nonfinite_q_obstruction",
+      "applies": true,
+      "severity": "blocker",
+      "evidence": "No valid non-node points to evaluate quantum potential.",
+      "consequence": "Block safe promotion gate; quantum potential is non-finite away from nodes.",
+      "status": "fail"
+    },
+    {
+      "name": "classical_limit_failure",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Classical limit comparison requires massive scalar comparison (Sprint 3).",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "lapse_or_time_interpretation_debt",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Relational clock time interpretation remains active debt.",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    },
+    {
+      "name": "measure_problem_deferred",
+      "applies": false,
+      "severity": "info",
+      "evidence": "Ensemble measure problem is deferred.",
+      "consequence": "Deferred to a future sprint.",
+      "status": "deferred"
+    }
+  ],
+  "faithfulness": {
+    "status": "contested",
+    "reason": "No human faithfulness review yet. This only tests a superposition minisuperspace control."
+  },
+  "ebp_debt": {
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "partial",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "active"
+  },
+  "warnings": [
+    "Toy analysis only.",
+    "Does not test full quantum gravity.",
+    "Does not test black holes, fermions, gauge fields, Lorentz recovery, or inhomogeneous perturbations.",
+    "Passing this report cannot promote any final-truth claim."
+  ]
+}
