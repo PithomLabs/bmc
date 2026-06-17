@@ -10,6 +10,8 @@
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Robustness.olean"],
   "BMC.Promotion":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean"],
+  "BMC.NullModelSpec":
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/NullModelSpec.olean"],
   "BMC.FriedmannSpec":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/FriedmannSpec.olean"],
   "BMC.ClockReadiness":

@@ -1,10 +1,10 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["7edddb0527c1db12.olean"],
+ {"o": ["7b502119286d2c22.olean"],
   "m": false,
-  "i": "33a0ea0f6264e540.ilean",
-  "c": "9496c03de5581757.c"},
+  "i": "4cb560f5d0b9f44c.ilean",
+  "c": "bb7f47fd55827cc1.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean /home/chaschel/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/chaschel/Documents/go/bmc/BMC/BMC.lean -o /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC.olean -i /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC.ilean -c /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC.c --setup /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC.setup.json --json",
@@ -25,7 +25,9 @@
         ["BMC.ClockReadiness transitive imports (legacy)", "53d5112a2ad810b7"],
         ["BMC.ClockReadiness:importAllArts", "614f894ece01c068"],
         ["BMC.FriedmannSpec transitive imports (legacy)", "53d5112a2ad810b7"],
-        ["BMC.FriedmannSpec:importAllArts", "299d046072022ab4"]]]]],
+        ["BMC.FriedmannSpec:importAllArts", "299d046072022ab4"],
+        ["BMC.NullModelSpec transitive imports (legacy)", "53d5112a2ad810b7"],
+        ["BMC.NullModelSpec:importAllArts", "b173a663df90d3ab"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -33,10 +35,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
-  ["/home/chaschel/Documents/go/bmc/BMC/BMC.lean", "859afefea299fb10"],
+  ["/home/chaschel/Documents/go/bmc/BMC/BMC.lean", "c554c9e3d026f066"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: BMC", "c35ba4f1a96d6dca"],
   ["Package.id?: (some bmc)", "7e0655f117fcc781"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "d127c3ab33fadf76"}
+ "depHash": "efd88aabc1860d05"}

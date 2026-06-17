@@ -1,0 +1,385 @@
+{
+  "schema_version": "bmc0a-nullmodel-spec-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "spec_kind": "null_model_scaffold",
+  "spec_scope": "null_model_specification_only",
+  "residual_computed": false,
+  "null_comparison_computed": false,
+  "friedmann_recovery_claim": false,
+  "source_artifacts": [
+    "Sprint 1: BMC-0A plane-wave control artifact",
+    "Sprint 2: BMC-0A two-plane-wave superposition control artifact",
+    "Sprint 2: BMC-0A node-obstruction detection artifact",
+    "Sprint 3: BMC-0A numerical robustness/convergence audit artifact",
+    "Sprint 4: BMC-0A clock-fragility diagnostic artifact",
+    "Sprint 5: BMC-0A clock-readiness/local segmentation artifact",
+    "Sprint 6: BMC-0A Friedmann-residual specification/gate-design artifact",
+    "Sprint 6.1: BMC-0A Friedmann-spec data-integrity/gate repair artifact"
+  ],
+  "null_models": [
+    {
+      "null_model_id": "constant_phase_control",
+      "name": "Constant Phase Control Null Model",
+      "purpose": "Verify if a phase-invariant state produces a fake residual match.",
+      "controls_for": [
+        "phase alignment artifacts"
+      ],
+      "required_inputs": [
+        "bmc0a_superposition_safe"
+      ],
+      "required_metrics": [
+        "branch_count_stability"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to isolate phase-independent wave behavior from cosmological evolution."
+    },
+    {
+      "null_model_id": "randomized_phase_control",
+      "name": "Randomized Phase Control Null Model",
+      "purpose": "Establish baseline residual behavior for random phase fluctuations.",
+      "controls_for": [
+        "random alignment artifacts"
+      ],
+      "required_inputs": [
+        "bmc0a_superposition_safe"
+      ],
+      "required_metrics": [
+        "local_relation_single_valuedness_rate"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to calibrate the background noise of random phase configurations."
+    },
+    {
+      "null_model_id": "matched_amplitude_randomized_phase_control",
+      "name": "Matched Amplitude Randomized Phase Null Model",
+      "purpose": "Disentangle the amplitude contribution from phase alignment.",
+      "controls_for": [
+        "amplitude-scaling false positives"
+      ],
+      "required_inputs": [
+        "bmc0a_superposition_safe"
+      ],
+      "required_metrics": [
+        "min_amplitude_distribution"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to ensure amplitude envelope does not mimic cosmic expansion on its own."
+    },
+    {
+      "null_model_id": "classical_frw_reference_trajectory",
+      "name": "Classical FRW Reference Null Model",
+      "purpose": "Verify convergence to classical limit reference curves.",
+      "controls_for": [
+        "classical limit divergence"
+      ],
+      "required_inputs": [
+        "bmc0a_superposition_safe",
+        "bmc0a_friedmann_spec"
+      ],
+      "required_metrics": [
+        "derivative_readiness_rate"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to check classical limit convergence behavior under noise."
+    },
+    {
+      "null_model_id": "same_branch_segmentation_under_null_wavefunctions",
+      "name": "Same Branch Segmentation under Null Wavefunctions",
+      "purpose": "Confirm if non-monotonic segmentation is robust under null perturbations.",
+      "controls_for": [
+        "segmentation sensitivity"
+      ],
+      "required_inputs": [
+        "bmc0a_clock_readiness"
+      ],
+      "required_metrics": [
+        "turning_point_stability"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to confirm turning points are physical and not segmenting on noise."
+    },
+    {
+      "null_model_id": "node_neighborhood_stress_case",
+      "name": "Node Neighborhood Stress Null Model",
+      "purpose": "Check robustness of exclusions near wavefunction nodes.",
+      "controls_for": [
+        "node proximity errors"
+      ],
+      "required_inputs": [
+        "bmc0a_clock_readiness"
+      ],
+      "required_metrics": [
+        "node_contact_rate"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to stress-test exclusionary boundary logic near node obstructions."
+    },
+    {
+      "null_model_id": "clock_choice_alternative_branch_diagnostic",
+      "name": "Clock Choice Alternative Branch Null Model",
+      "purpose": "Analyze alternative clock candidates (e.g. alpha clock) on segmented branches.",
+      "controls_for": [
+        "clock choice bias"
+      ],
+      "required_inputs": [
+        "bmc0a_clock_fragility"
+      ],
+      "required_metrics": [
+        "residual_formula_input_availability"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to rule out bias coming from using one relational clock over another."
+    }
+  ],
+  "input_requirements": [
+    {
+      "input_id": "bmc0a_superposition_safe",
+      "source_artifact": "Sprint 2: BMC-0A two-plane-wave superposition control artifact",
+      "required_for": [
+        "constant_phase_control",
+        "randomized_phase_control",
+        "matched_amplitude_randomized_phase_control",
+        "classical_frw_reference_trajectory"
+      ],
+      "availability_status": "available",
+      "reason": "Base quantum trajectory data is fully generated and validated."
+    },
+    {
+      "input_id": "bmc0a_superposition_robustness",
+      "source_artifact": "Sprint 3: BMC-0A numerical robustness/convergence audit artifact",
+      "required_for": [
+        "classical_frw_reference_trajectory"
+      ],
+      "availability_status": "available",
+      "reason": "Convergence metrics are available for classical comparisons."
+    },
+    {
+      "input_id": "bmc0a_clock_fragility",
+      "source_artifact": "Sprint 4: BMC-0A clock-fragility diagnostic artifact",
+      "required_for": [
+        "clock_choice_alternative_branch_diagnostic"
+      ],
+      "availability_status": "available",
+      "reason": "Clock monotonicity results are recorded."
+    },
+    {
+      "input_id": "bmc0a_clock_readiness",
+      "source_artifact": "Sprint 5: BMC-0A clock-readiness/local segmentation artifact",
+      "required_for": [
+        "same_branch_segmentation_under_null_wavefunctions",
+        "node_neighborhood_stress_case"
+      ],
+      "availability_status": "available",
+      "reason": "Local branch and turning point maps are recorded."
+    },
+    {
+      "input_id": "bmc0a_friedmann_spec",
+      "source_artifact": "Sprint 6: BMC-0A Friedmann-residual specification/gate-design artifact",
+      "required_for": [
+        "classical_frw_reference_trajectory"
+      ],
+      "availability_status": "available",
+      "reason": "Candidate target maps and specifications are defined."
+    }
+  ],
+  "metric_contracts": [
+    {
+      "metric_id": "branch_count_stability",
+      "description": "Evaluation of segment branch count consistency across perturbations",
+      "applies_to": [
+        "constant_phase_control"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Enforces stable segmentation before residual comparison."
+    },
+    {
+      "metric_id": "turning_point_stability",
+      "description": "Sensitivity of turning points to wavefunction phase shifts",
+      "applies_to": [
+        "same_branch_segmentation_under_null_wavefunctions"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Ensures clock turning points are physical."
+    },
+    {
+      "metric_id": "local_relation_single_valuedness_rate",
+      "description": "Proportion of branches that preserve a single-valued relation to target clock",
+      "applies_to": [
+        "randomized_phase_control"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Screens out random phase fluctuations that violate single-valuedness."
+    },
+    {
+      "metric_id": "derivative_readiness_rate",
+      "description": "Proportion of branch points where numerical derivative stencil is stable",
+      "applies_to": [
+        "classical_frw_reference_trajectory"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Validates derivative stencils for residual formulas."
+    },
+    {
+      "metric_id": "node_contact_rate",
+      "description": "Frequency of points entering excluded node-proximity zones",
+      "applies_to": [
+        "node_neighborhood_stress_case"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Ensures node proximity logic remains active."
+    },
+    {
+      "metric_id": "min_amplitude_distribution",
+      "description": "Verification of minimum amplitude distribution against noise limits",
+      "applies_to": [
+        "matched_amplitude_randomized_phase_control"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Prevents near-node mathematical blowups in metrics."
+    },
+    {
+      "metric_id": "max_abs_q_distribution",
+      "description": "Distribution of qpotential magnitudes away from nodes",
+      "applies_to": [
+        "constant_phase_control"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Tracks potential barriers relative to null models."
+    },
+    {
+      "metric_id": "phase_gradient_distribution",
+      "description": "Distribution of wavefunction phase gradients",
+      "applies_to": [
+        "randomized_phase_control"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Monitors field velocity baseline fluctuations."
+    },
+    {
+      "metric_id": "residual_formula_input_availability",
+      "description": "Availability rate of required variable mappings",
+      "applies_to": [
+        "clock_choice_alternative_branch_diagnostic"
+      ],
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Confirms alternative clocks are ready for testing."
+    }
+  ],
+  "future_comparison_contracts": [
+    {
+      "comparison_id": "bmc0a-superposition-vs-nulls-v0.1",
+      "baseline_artifact": "bmc0a_superposition_safe",
+      "null_model_ids": [
+        "constant_phase_control",
+        "randomized_phase_control",
+        "matched_amplitude_randomized_phase_control"
+      ],
+      "metrics": [
+        "branch_count_stability",
+        "local_relation_single_valuedness_rate",
+        "min_amplitude_distribution"
+      ],
+      "comparison_computed": false,
+      "status": "planned",
+      "reason": "Future comparison contract planned; no comparisons computed in Sprint 7."
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms analysis is strictly restricted to minisuperspace toy system."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claims are asserted."
+    },
+    {
+      "name": "no_residual_computation_gate",
+      "status": "pass",
+      "reason": "Confirms that no actual numerical residual was computed."
+    },
+    {
+      "name": "no_null_comparison_result_gate",
+      "status": "pass",
+      "reason": "Confirms that no null model comparison results are computed."
+    },
+    {
+      "name": "null_model_registry_complete_gate",
+      "status": "pass",
+      "reason": "Confirms that all 7 required null models are fully registered."
+    },
+    {
+      "name": "required_before_residual_promotion_gate",
+      "status": "pass",
+      "reason": "Confirms that all required null models are marked required_before_residual_promotion = true."
+    },
+    {
+      "name": "friedmann_recovery_claim_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms that no recovery claim is made."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    },
+    {
+      "name": "clock_choice_debt_active_gate",
+      "status": "pass",
+      "reason": "Confirms clock choice debt remains active."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness review status remains contested."
+    }
+  ],
+  "promotion_gate": {
+    "name": "full_bmc_toy_gate",
+    "status": "blocked",
+    "reason": "Sprint 7 defines null-model scaffolding only. No null-model comparison results or Friedmann residuals are computed."
+  },
+  "ebp_debt": {
+    "needMap": "active",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "active",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "active",
+    "classical_target_debt": "active",
+    "unit_convention_debt": "active",
+    "sign_convention_debt": "active",
+    "normalization_debt": "active",
+    "containsFinalTruthClaim": "absent",
+    "LeanVerification": "retired_for_policy_safety_contracts",
+    "promotion_status": "planned_candidate_only"
+  },
+  "warnings": [
+    "Sprint 7 is a null-model scaffold sprint only.",
+    "No Friedmann residual was computed.",
+    "No null-model comparison result was computed.",
+    "No recovery claim is made.",
+    "Null-model debt remains active.",
+    "Full BMC remains blocked."
+  ]
+}

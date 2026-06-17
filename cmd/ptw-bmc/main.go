@@ -11,6 +11,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/clockseg"
 	"github.com/PithomLabs/bmc/internal/bmc/friedmannspec"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
+	"github.com/PithomLabs/bmc/internal/bmc/nullspec"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
 
@@ -36,6 +37,8 @@ func main() {
 		segmentClockCmd()
 	case "spec-friedmann":
 		specFriedmannCmd()
+	case "spec-nullmodels":
+		specNullModelsCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -53,6 +56,7 @@ func printUsage() {
 	fmt.Println("  diagnose-clock Run a clock-monotonicity fragility investigation and diagnostic")
 	fmt.Println("  segment-clock Run local clock segmentation and clock-independent readiness diagnostics")
 	fmt.Println("  spec-friedmann Run Friedmann-residual specification and gate design")
+	fmt.Println("  spec-nullmodels Run Null-Model specification and future comparison gate design")
 }
 
 func runCmd() {
@@ -211,6 +215,24 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-nullmodel-spec-v0.1" {
+		rep, err := nullspec.ReadNullModelSpecReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading null model spec report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		errors := nullspec.ValidateNullModelSpecReport(rep)
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Null Model Spec Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Null Model Spec Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -297,6 +319,16 @@ func summarizeCmd() {
 			os.Exit(1)
 		}
 		friedmannspec.SummarizeFriedmannSpecReport(rep)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-nullmodel-spec-v0.1" {
+		rep, err := nullspec.ReadNullModelSpecReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading null model spec report: %v\n", err)
+			os.Exit(1)
+		}
+		nullspec.SummarizeNullModelSpecReport(rep)
 		return
 	}
 
@@ -549,3 +581,45 @@ func specFriedmannCmd() {
 
 	fmt.Printf("Successfully ran Friedmann spec profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
+
+func specNullModelsCmd() {
+	specFlags := flag.NewFlagSet("spec-nullmodels", flag.ExitOnError)
+	profileOpt := specFlags.String("profile", "bmc0a-nullmodel-spec", "Profile to specify (bmc0a-nullmodel-spec)")
+	outOpt := specFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		specFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := specFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		specFlags.Usage()
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-nullmodel-spec" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-nullmodel-spec')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	safeParams := model.DefaultSuperpositionSafeParams()
+	rep, err := nullspec.GenerateNullModelSpecReport(safeParams)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error generating null model spec report: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := nullspec.WriteJSON(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing report to %s: %v\n", *outOpt, err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran Null Model spec profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
