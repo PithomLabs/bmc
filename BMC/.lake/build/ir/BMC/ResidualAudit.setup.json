@@ -1,0 +1,7 @@
+{"plugins": [],
+ "package": "bmc",
+ "options": {},
+ "name": "BMC.ResidualAudit",
+ "isModule": false,
+ "importArts": {},
+ "dynlibs": []}

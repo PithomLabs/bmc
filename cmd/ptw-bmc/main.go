@@ -16,6 +16,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/nullspec"
 	"github.com/PithomLabs/bmc/internal/bmc/priorart"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
+	"github.com/PithomLabs/bmc/internal/bmc/residualaudit"
 	"github.com/PithomLabs/bmc/internal/bmc/residualrun"
 )
 
@@ -49,6 +50,8 @@ func main() {
 		runNullModelsCmd()
 	case "run-residuals":
 		runResidualsCmd()
+	case "audit-residuals":
+		auditResidualsCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -70,6 +73,7 @@ func printUsage() {
 	fmt.Println("  prior-art-boundary Run prior-art boundary and gate verification")
 	fmt.Println("  run-nullmodels Run the null-model runner and generate comparison report")
 	fmt.Println("  run-residuals Run the candidate local-branch residual runner")
+	fmt.Println("  audit-residuals Run the residual/null comparison audit")
 }
 
 func runCmd() {
@@ -315,6 +319,29 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-residual-audit-v0.1" {
+		rep, err := residualaudit.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual audit report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		data, err := os.ReadFile(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual audit report file: %v\n", err)
+			os.Exit(1)
+		}
+		errors := residualaudit.ValidateReport(rep, string(data))
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Residual/Null Comparison Audit Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Residual/Null Comparison Audit Report Validation PASSED: Schema and EBP 2.1 audit constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -508,6 +535,27 @@ func summarizeCmd() {
 		fmt.Printf("Blocked Candidate Residual Diagnostics: %d\n", numBlocked)
 		fmt.Printf("Total Candidate Residual Diagnostics: %d\n", len(rep.CandidateResidualDiagnostics))
 		fmt.Printf("Residual/Null Comparisons: %d\n", len(rep.ResidualNullComparisons))
+		fmt.Printf("Interpretation Status: %s\n", rep.InterpretationStatus)
+		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-residual-audit-v0.1" {
+		rep, err := residualaudit.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual audit report: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("BMC Sprint 11 Residual/Null Comparison Audit Summary")
+		fmt.Printf("Schema Version: %s\n", rep.SchemaVersion)
+		fmt.Printf("Scope: %s\n", rep.Scope)
+		fmt.Printf("Residual Audit Computed: %v\n", rep.ResidualAuditComputed)
+		fmt.Printf("Recovery Claim: %v\n", rep.RecoveryClaim)
+		fmt.Printf("Scientific Novelty Claim Made: %v\n", rep.ScientificNoveltyClaimMade)
+		fmt.Printf("BMC Beats Null Models Claim: %v\n", rep.BmcBeatsNullModelsClaim)
+		fmt.Printf("Full BMC: %s\n", rep.FullBmcToyGate)
+		fmt.Printf("Comparison Audits: %d\n", len(rep.ComparisonAudits))
+		fmt.Printf("Stability Audits: %d\n", len(rep.StabilityAudits))
 		fmt.Printf("Interpretation Status: %s\n", rep.InterpretationStatus)
 		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
 		return
@@ -961,3 +1009,52 @@ func runResidualsCmd() {
 	fmt.Printf("Successfully ran residual profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 
+func auditResidualsCmd() {
+	cmdFlags := flag.NewFlagSet("audit-residuals", flag.ExitOnError)
+	profileOpt := cmdFlags.String("profile", "", "Profile to run (required)")
+	outOpt := cmdFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		cmdFlags.Usage()
+		os.Exit(1)
+	}
+	if err := cmdFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+	if *profileOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --profile is required")
+		os.Exit(1)
+	}
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		os.Exit(1)
+	}
+	if *profileOpt != "bmc0a-residual-audit" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-residual-audit')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	root, err := findWorkspaceRoot()
+	var rep *residualaudit.ResidualAuditReport
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: could not locate workspace root: %v. Generating default blocked audit report.\n", err)
+		rep = residualaudit.GenerateBlockedDefaultReport()
+	} else {
+		clockPath := filepath.Join(root, "out", "bmc0a_clock_readiness.json")
+		nullrunPath := filepath.Join(root, "out", "bmc0a_nullrun.json")
+		residualPath := filepath.Join(root, "out", "bmc0a_local_residual.json")
+		friedmannPath := filepath.Join(root, "out", "bmc0a_friedmann_spec.json")
+		priorartPath := filepath.Join(root, "out", "bmc0a_prior_art_boundary.json")
+		rep, err = residualaudit.RunAuditFromFiles(clockPath, nullrunPath, residualPath, friedmannPath, priorartPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error running residual audit: %v\n", err)
+			os.Exit(1)
+		}
+	}
+	if err := residualaudit.WriteReport(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing residual audit report: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Successfully ran residual audit profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
