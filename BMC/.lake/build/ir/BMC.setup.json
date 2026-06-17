@@ -8,6 +8,8 @@
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ToyReport.olean"],
   "BMC.Robustness":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Robustness.olean"],
+  "BMC.ResidualRun":
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ResidualRun.olean"],
   "BMC.Promotion":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean"],
   "BMC.PriorArtBoundary":

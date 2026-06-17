@@ -7,3 +7,5 @@ import BMC.FriedmannSpec
 import BMC.NullModelSpec
 import BMC.PriorArtBoundary
 import BMC.NullRun
+import BMC.ResidualRun
+

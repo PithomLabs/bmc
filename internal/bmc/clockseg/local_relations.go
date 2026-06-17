@@ -72,6 +72,7 @@ func ExtractLocalRelationBranch(traj model.Trajectory, seg ClockSegment, epsilon
 		MaxAbsNoise:      maxAbsNoise,
 		ValidationPassed: validationPassed,
 		Reason:           reason,
+		Points:           points,
 	}
 }
 

@@ -1,0 +1,2050 @@
+{
+  "schema_version": "bmc0a-local-residual-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "artifact_kind": "candidate_local_branch_residual_runner",
+  "scope": "bmc0a_only",
+  "candidate_residual_computed": true,
+  "residual_recovery_claim": false,
+  "scientific_novelty_claim_made": false,
+  "bmc_beats_null_models_claim": false,
+  "full_bmc_toy_gate": "blocked",
+  "local_branch_only": true,
+  "global_cosmology_claim": false,
+  "source_artifacts": [
+    {
+      "artifact_id": "bmc0a_clock_readiness",
+      "artifact_kind": "clock_readiness_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_clock_readiness.json",
+      "status": "available",
+      "notes": "Successfully read and parsed clock readiness report"
+    },
+    {
+      "artifact_id": "bmc0a_friedmann_spec",
+      "artifact_kind": "friedmann_spec_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_friedmann_spec.json",
+      "status": "available",
+      "notes": "Successfully read and parsed Friedmann spec report"
+    },
+    {
+      "artifact_id": "bmc0a_nullrun",
+      "artifact_kind": "nullrun_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_nullrun.json",
+      "status": "available",
+      "notes": "Successfully read and parsed null model run report"
+    },
+    {
+      "artifact_id": "bmc0a_prior_art_boundary",
+      "artifact_kind": "prior_art_boundary_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_prior_art_boundary.json",
+      "status": "available",
+      "notes": "Successfully read and parsed prior art boundary report"
+    }
+  ],
+  "local_branch_eligibility": [
+    {
+      "branch_id": "branch_0",
+      "source_artifact": "bmc0a_clock_readiness",
+      "eligible": true,
+      "eligibility_status": "eligible_local_branch",
+      "reason": "Branch satisfies relational clock monotonicity and node distance constraints.",
+      "node_contact_free": true,
+      "trajectory_finite": true,
+      "local_clock_status": "monotonic",
+      "derivative_readiness_status": "ready"
+    }
+  ],
+  "convention_ledger": [
+    {
+      "convention_id": "clock_choice_debt",
+      "status": "unpaid",
+      "description": "Choice of relational clock parameter phi is local and uncalibrated.",
+      "human_review_required": true
+    },
+    {
+      "convention_id": "classical_target_debt",
+      "status": "unpaid",
+      "description": "Classical Friedmann target is a toy-model minisuperspace limit.",
+      "human_review_required": true
+    },
+    {
+      "convention_id": "unit_convention_debt",
+      "status": "unpaid",
+      "description": "Units of gravity and fields are not physically matched.",
+      "human_review_required": true
+    },
+    {
+      "convention_id": "sign_convention_debt",
+      "status": "unpaid",
+      "description": "Sign conventions for relational variables require physical calibration.",
+      "human_review_required": true
+    },
+    {
+      "convention_id": "normalization_debt",
+      "status": "unpaid",
+      "description": "Normalization factors for amplitude and metrics are uncalibrated.",
+      "human_review_required": true
+    },
+    {
+      "convention_id": "faithfulness_review_debt",
+      "status": "contested",
+      "description": "Physical faithfulness remains contested under adversarial EBP review.",
+      "human_review_required": true
+    }
+  ],
+  "candidate_residual_diagnostics": [
+    {
+      "branch_id": "branch_0",
+      "residual_id": "candidate_residual_branch_0",
+      "residual_computed": true,
+      "residual_status": "candidate_residual_diagnostics_generated",
+      "residual_provenance": "computed_from_bmc0a_local_branch",
+      "metrics": {
+        "num_evaluation_points": 201,
+        "num_finite_residual_points": 201,
+        "mean_abs_residual": 1.9423824383277974,
+        "max_abs_residual": 14.161142192549551,
+        "rms_residual": 2.7603683828436147,
+        "residual_finite": true,
+        "diagnostic_warnings": []
+      },
+      "notes": "Candidate local-branch residual diagnostic metrics computed on eligible branch_0 (samples=201, clock_range=4.181084).",
+      "residual_input_points": [
+        {
+          "branch_id": "branch_0",
+          "point_index": 0,
+          "alpha": 0,
+          "phi": 0,
+          "candidate_left_hand_side": 1.7776313508859969,
+          "candidate_right_hand_side": 2.7137174525512045e-8,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 1,
+          "alpha": 0.06666392110591,
+          "phi": -0.000008236682360864726,
+          "candidate_left_hand_side": 1.7767502077943764,
+          "candidate_right_hand_side": 0.0000013367598782322852,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 2,
+          "alpha": 0.13331131805047147,
+          "phi": -0.00006604584855084462,
+          "candidate_left_hand_side": 1.774974964229711,
+          "candidate_right_hand_side": 0.000009950296200063967,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 3,
+          "alpha": 0.1999254112333279,
+          "phi": -0.0002237662990325749,
+          "candidate_left_hand_side": 1.7722791946125065,
+          "candidate_right_hand_side": 0.00003832472466225156,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 4,
+          "alpha": 0.2664888996224686,
+          "phi": -0.0005333011301188823,
+          "candidate_left_hand_side": 1.7686219445033637,
+          "candidate_right_hand_side": 0.00010637052380880128,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 5,
+          "alpha": 0.33298367280997865,
+          "phi": -0.0010489815636453086,
+          "candidate_left_hand_side": 1.7639460371473896,
+          "candidate_right_hand_side": 0.0002430821916470175,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 6,
+          "alpha": 0.3993904879185839,
+          "phi": -0.0018285362308223738,
+          "candidate_left_hand_side": 1.758175609958237,
+          "candidate_right_hand_side": 0.0004890097529353956,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 7,
+          "alpha": 0.4656885951683055,
+          "phi": -0.002934214476216796,
+          "candidate_left_hand_side": 1.7512126691663683,
+          "candidate_right_hand_side": 0.0008998940356435871,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 8,
+          "alpha": 0.5318552912692589,
+          "phi": -0.004434126169987122,
+          "candidate_left_hand_side": 1.7429323494024178,
+          "candidate_right_hand_side": 0.0015519742008382636,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 9,
+          "alpha": 0.5978653728743141,
+          "phi": -0.006403881358353345,
+          "candidate_left_hand_side": 1.7331764083905352,
+          "candidate_right_hand_side": 0.0025497714982689102,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 10,
+          "alpha": 0.6636904518410448,
+          "phi": -0.008928644465195703,
+          "candidate_left_hand_side": 1.7217442587848983,
+          "candidate_right_hand_side": 0.004037638343498684,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 11,
+          "alpha": 0.7292980782800668,
+          "phi": -0.012105765152035711,
+          "candidate_left_hand_side": 1.7083804709053245,
+          "candidate_right_hand_side": 0.006217183459418965,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 12,
+          "alpha": 0.7946505929773859,
+          "phi": -0.01604822106790179,
+          "candidate_left_hand_side": 1.6927570987995229,
+          "candidate_right_hand_side": 0.009374117946316218,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 13,
+          "alpha": 0.8597035925008422,
+          "phi": -0.020889222500022057,
+          "candidate_left_hand_side": 1.6744482145647142,
+          "candidate_right_hand_side": 0.013920658675776559,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 14,
+          "alpha": 0.924403828485047,
+          "phi": -0.026788514549873587,
+          "candidate_left_hand_side": 1.6528923798310255,
+          "candidate_right_hand_side": 0.020464485108179657,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 15,
+          "alpha": 0.9886862595963355,
+          "phi": -0.033941221224304534,
+          "candidate_left_hand_side": 1.6273358629251862,
+          "candidate_right_hand_side": 0.029924761342770397,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 16,
+          "alpha": 1.052469797106519,
+          "phi": -0.042590608679895024,
+          "candidate_left_hand_side": 1.5967440277314622,
+          "candidate_right_hand_side": 0.043735307516926565,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 17,
+          "alpha": 1.115650965735539,
+          "phi": -0.053047102776499135,
+          "candidate_left_hand_side": 1.5596579496890013,
+          "candidate_right_hand_side": 0.06421764799080244,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 18,
+          "alpha": 1.1780940988585853,
+          "phi": -0.0657177033927685,
+          "candidate_left_hand_side": 1.5139523227347147,
+          "candidate_right_hand_side": 0.09530612579008321,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 19,
+          "alpha": 1.2396154838140363,
+          "phi": -0.08115354850974245,
+          "candidate_left_hand_side": 1.4564055575754409,
+          "candidate_right_hand_side": 0.14405906027497148,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 20,
+          "alpha": 1.2999562983091904,
+          "phi": -0.1001311050091295,
+          "candidate_left_hand_side": 1.3818892199059951,
+          "candidate_right_hand_side": 0.224094751167222,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 21,
+          "alpha": 1.3587331904502775,
+          "phi": -0.12380042857187747,
+          "candidate_left_hand_side": 1.2817278442020008,
+          "candidate_right_hand_side": 0.3643298251185735,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 22,
+          "alpha": 1.4153399003926952,
+          "phi": -0.15398029873058483,
+          "candidate_left_hand_side": 1.1401087892192494,
+          "candidate_right_hand_side": 0.634768641491026,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 23,
+          "alpha": 1.468727838853064,
+          "phi": -0.19381648333362592,
+          "candidate_left_hand_side": 0.9257531864542983,
+          "candidate_right_hand_side": 1.2399222040324778,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 24,
+          "alpha": 1.516835873173079,
+          "phi": -0.24949238036350052,
+          "candidate_left_hand_side": 0.5766912738731638,
+          "candidate_right_hand_side": 2.964575419085218,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 25,
+          "alpha": 1.5548059690997804,
+          "phi": -0.33558209256950683,
+          "candidate_left_hand_side": 0.1032467068510659,
+          "candidate_right_hand_side": 9.217534219749204,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 26,
+          "alpha": 1.5708719818947356,
+          "phi": -0.48738405418190844,
+          "candidate_left_hand_side": 0.019173518132347887,
+          "candidate_right_hand_side": 12.84931830047946,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 27,
+          "alpha": 1.5777954055659311,
+          "phi": -0.6666137831645711,
+          "candidate_left_hand_side": 0.4038613896775544,
+          "candidate_right_hand_side": 4.382730985965226,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 28,
+          "alpha": 1.6095704503997923,
+          "phi": -0.771288648652486,
+          "candidate_left_hand_side": 0.8193364646408332,
+          "candidate_right_hand_side": 1.6498986559256488,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 29,
+          "alpha": 1.6548290535775538,
+          "phi": -0.8355128391091522,
+          "candidate_left_hand_side": 1.0733732684108315,
+          "candidate_right_hand_side": 0.7954644305665142,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 30,
+          "alpha": 1.7066309181291996,
+          "phi": -0.8801072454446588,
+          "candidate_left_hand_side": 1.236464073803156,
+          "candidate_right_hand_side": 0.4410391908644919,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 31,
+          "alpha": 1.7622291211982548,
+          "phi": -0.9133126362293075,
+          "candidate_left_hand_side": 1.349240112245247,
+          "candidate_right_hand_side": 0.26553010910717717,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 32,
+          "alpha": 1.8203075189087041,
+          "phi": -0.9390774430938649,
+          "candidate_left_hand_side": 1.4317652221377062,
+          "candidate_right_hand_side": 0.16835284390376495,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 33,
+          "alpha": 1.8801357150652345,
+          "phi": -0.9595928546120239,
+          "candidate_left_hand_side": 1.4947201659630696,
+          "candidate_right_hand_side": 0.11038178003060035,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 34,
+          "alpha": 1.9412650894682797,
+          "phi": -0.9762047313896942,
+          "candidate_left_hand_side": 1.5442601012896808,
+          "candidate_right_hand_side": 0.07395796151163654,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 35,
+          "alpha": 2.0033992206139244,
+          "phi": -0.9898023379356673,
+          "candidate_left_hand_side": 1.5841731048712504,
+          "candidate_right_hand_side": 0.05021267170623617,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 36,
+          "alpha": 2.0663311899314194,
+          "phi": -1.0010064300124752,
+          "candidate_left_hand_side": 1.616917217710359,
+          "candidate_right_hand_side": 0.03432060282475784,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 37,
+          "alpha": 2.129910219841256,
+          "phi": -1.0102693403036254,
+          "candidate_left_hand_side": 1.644157215559124,
+          "candidate_right_hand_side": 0.023488376298520842,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 38,
+          "alpha": 2.19402256684944,
+          "phi": -1.0179322993108433,
+          "candidate_left_hand_side": 1.6670607348174655,
+          "candidate_right_hand_side": 0.016017133787265107,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 39,
+          "alpha": 2.2585799199321346,
+          "phi": -1.0242602400871277,
+          "candidate_left_hand_side": 1.686470656171852,
+          "candidate_right_hand_side": 0.010831490854946932,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 40,
+          "alpha": 2.323512012462944,
+          "phi": -1.0294639625179811,
+          "candidate_left_hand_side": 1.7030100955774359,
+          "candidate_right_hand_side": 0.007227912753999307,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 41,
+          "alpha": 2.388761726936983,
+          "phi": -1.0337148191240075,
+          "candidate_left_hand_side": 1.7171488502736203,
+          "candidate_right_hand_side": 0.00473333136124662,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 42,
+          "alpha": 2.454281740106121,
+          "phi": -1.0371547796474898,
+          "candidate_left_hand_side": 1.729246849527795,
+          "candidate_right_hand_side": 0.0030222591017529154,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 43,
+          "alpha": 2.520032155495071,
+          "phi": -1.0399035335023088,
+          "candidate_left_hand_side": 1.7395833734105846,
+          "candidate_right_hand_side": 0.0018664134228688254,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 44,
+          "alpha": 2.5859787887186596,
+          "phi": -1.0420636338604339,
+          "candidate_left_hand_side": 1.7483771756279785,
+          "candidate_right_hand_side": 0.0011031412748295575,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 45,
+          "alpha": 2.652091895884107,
+          "phi": -1.0437243123925628,
+          "candidate_left_hand_side": 1.7558006222865035,
+          "candidate_right_hand_side": 0.000615098918515175,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 46,
+          "alpha": 2.7183452094292897,
+          "phi": -1.044964371784805,
+          "candidate_left_hand_side": 1.7619897894511205,
+          "candidate_right_hand_side": 0.00031687906847427887,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 47,
+          "alpha": 2.7847151911501533,
+          "phi": -1.0458544266545662,
+          "candidate_left_hand_side": 1.7670517628752842,
+          "candidate_right_hand_side": 0.00014604779065140755,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 48,
+          "alpha": 2.8511804407712016,
+          "phi": -1.046458677824717,
+          "candidate_left_hand_side": 1.771069952692462,
+          "candidate_right_hand_side": 0.000057054389652339196,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 49,
+          "alpha": 2.9177212168542255,
+          "phi": -1.0468363496056734,
+          "candidate_left_hand_side": 1.7741079641278596,
+          "candidate_right_hand_side": 0.000017062465663775877,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 50,
+          "alpha": 2.9843190389681626,
+          "phi": -1.0470428832933842,
+          "candidate_left_hand_side": 1.776212387156272,
+          "candidate_right_hand_side": 0.000003102716071862288,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 51,
+          "alpha": 3.0509563480966886,
+          "phi": -1.0471309559348778,
+          "candidate_left_hand_side": 1.777414749269904,
+          "candidate_right_hand_side": 1.6681389885643306e-7,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 52,
+          "alpha": 3.1176162076313045,
+          "phi": -1.0471513773635042,
+          "candidate_left_hand_side": 1.7777327928137086,
+          "candidate_right_hand_side": 2.561267867529004e-9,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 53,
+          "alpha": 3.1842820308245594,
+          "phi": -1.0471539078120156,
+          "candidate_left_hand_side": 1.7771711781394262,
+          "candidate_right_hand_side": 4.657835756769008e-7,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 54,
+          "alpha": 3.250937322777626,
+          "phi": -1.0471880319814442,
+          "candidate_left_hand_side": 1.7757216665075202,
+          "candidate_right_hand_side": 0.000005353647137443572,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 55,
+          "alpha": 3.317565426204549,
+          "phi": -1.047303721729666,
+          "candidate_left_hand_side": 1.7733627963864147,
+          "candidate_right_hand_side": 0.000024700324300888194,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 56,
+          "alpha": 3.384149260511129,
+          "phi": -1.0475522188337782,
+          "candidate_left_hand_side": 1.7700590284880122,
+          "candidate_right_hand_side": 0.00007556893801830595,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 57,
+          "alpha": 3.450671043193345,
+          "phi": -1.0479868708153057,
+          "candidate_left_hand_side": 1.7657592940923708,
+          "candidate_right_hand_side": 0.00018343245234659036,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 58,
+          "alpha": 3.517111981139998,
+          "phi": -1.0486640570015695,
+          "candidate_left_hand_side": 1.7603948301056698,
+          "candidate_right_hand_side": 0.0003843111518281768,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 59,
+          "alpha": 3.5834519168896213,
+          "phi": -1.049644249778308,
+          "candidate_left_hand_side": 1.7538761191708636,
+          "candidate_right_hand_side": 0.0007279397657495002,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 60,
+          "alpha": 3.6496689109162843,
+          "phi": -1.0509932677227305,
+          "candidate_left_hand_side": 1.746088661556999,
+          "candidate_right_hand_side": 0.001282395904366664,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 61,
+          "alpha": 3.7157387349957576,
+          "phi": -1.0527837955110981,
+          "candidate_left_hand_side": 1.736887175821362,
+          "candidate_right_hand_side": 0.0021408700055243392,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 62,
+          "alpha": 3.7816342427299983,
+          "phi": -1.055097272334801,
+          "candidate_left_hand_side": 1.7260876207846376,
+          "candidate_right_hand_side": 0.0034316614858077364,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 63,
+          "alpha": 3.84732456965841,
+          "phi": -1.0580262915758645,
+          "candidate_left_hand_side": 1.713456128470611,
+          "candidate_right_hand_side": 0.005333161995951004,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 64,
+          "alpha": 3.9127740946465757,
+          "phi": -1.0616777166387512,
+          "candidate_left_hand_side": 1.6986934434025889,
+          "candidate_right_hand_side": 0.008096755127359263,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 65,
+          "alpha": 3.977941061804074,
+          "phi": -1.0661768151949509,
+          "candidate_left_hand_side": 1.6814126616004772,
+          "candidate_right_hand_side": 0.01208264535306904,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 66,
+          "alpha": 4.0427757103648645,
+          "phi": -1.071672869541723,
+          "candidate_left_hand_side": 1.661106705501082,
+          "candidate_right_hand_side": 0.017817482254818877,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 67,
+          "alpha": 4.107217674671927,
+          "phi": -1.0783469766458267,
+          "candidate_left_hand_side": 1.6370996030721903,
+          "candidate_right_hand_side": 0.026090069024588585,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 68,
+          "alpha": 4.171192271252761,
+          "phi": -1.086423186930451,
+          "candidate_left_hand_side": 1.608471342730477,
+          "candidate_right_hand_side": 0.03811642942468067,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 69,
+          "alpha": 4.234605033034804,
+          "phi": -1.0961849016139327,
+          "candidate_left_hand_side": 1.5739379452714928,
+          "candidate_right_hand_side": 0.05583745056957096,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 70,
+          "alpha": 4.297333374820465,
+          "phi": -1.1079998762827132,
+          "candidate_left_hand_side": 1.5316522293790076,
+          "candidate_right_hand_side": 0.08248490585942997,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 71,
+          "alpha": 4.35921334390132,
+          "phi": -1.1223599690626564,
+          "candidate_left_hand_side": 1.4788567614168138,
+          "candidate_right_hand_side": 0.12372972213405131,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 72,
+          "alpha": 4.420017471257463,
+          "phi": -1.1399475870177727,
+          "candidate_left_hand_side": 1.4112443113613835,
+          "candidate_right_hand_side": 0.19020577646973819,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 73,
+          "alpha": 4.479415373395531,
+          "phi": -1.1617538806316436,
+          "candidate_left_hand_side": 1.3216979377619602,
+          "candidate_right_hand_side": 0.30365205480601665,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 74,
+          "alpha": 4.536897934615477,
+          "phi": -1.1893061969955183,
+          "candidate_left_hand_side": 1.1976110770173645,
+          "candidate_right_hand_side": 0.5139993108923799,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 75,
+          "alpha": 4.591615643746465,
+          "phi": -1.2251530696238375,
+          "candidate_left_hand_side": 1.0147541080181934,
+          "candidate_right_hand_side": 0.9563859540358811,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 76,
+          "alpha": 4.641983145868821,
+          "phi": -1.2740505632721804,
+          "candidate_left_hand_side": 0.7237984066958959,
+          "candidate_right_hand_side": 2.0958634416220407,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 77,
+          "alpha": 4.6845213171593185,
+          "phi": -1.3464360494144663,
+          "candidate_left_hand_side": 0.2636260730573437,
+          "candidate_right_hand_side": 6.049947527522821,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 78,
+          "alpha": 4.710193582011555,
+          "phi": -1.4694192548484084,
+          "candidate_left_hand_side": 0.006190972445549672,
+          "candidate_right_hand_side": 14.167333164995101,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 79,
+          "alpha": 4.71412771865304,
+          "phi": -1.657616844929917,
+          "candidate_left_hand_side": 0.22099020005035502,
+          "candidate_right_hand_side": 6.706609056302248,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 80,
+          "alpha": 4.73763251603838,
+          "phi": -1.7871024527817376,
+          "candidate_left_hand_side": 0.6913570234579652,
+          "candidate_right_hand_side": 2.2667215983846507,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 81,
+          "alpha": 4.7792064568985495,
+          "phi": -1.8623806302036279,
+          "candidate_left_hand_side": 0.9951486685814299,
+          "candidate_right_hand_side": 1.0146247726051305,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 82,
+          "alpha": 4.8290850261588405,
+          "phi": -1.9127449224304913,
+          "candidate_left_hand_side": 1.184811194214451,
+          "candidate_right_hand_side": 0.5395328756747848,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 83,
+          "alpha": 4.883509542560331,
+          "phi": -1.949471373241684,
+          "candidate_left_hand_side": 1.3127231789669582,
+          "candidate_right_hand_side": 0.31671686191815585,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 84,
+          "alpha": 4.940796608704596,
+          "phi": -1.977610174829445,
+          "candidate_left_hand_side": 1.4046102806115939,
+          "candidate_right_hand_side": 0.19759121772127208,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 85,
+          "alpha": 5.000054736430073,
+          "phi": -1.999835791678099,
+          "candidate_left_hand_side": 1.4737584532746237,
+          "candidate_right_hand_side": 0.12819721956889557,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 86,
+          "alpha": 5.0607539632224015,
+          "phi": -2.017738111330095,
+          "candidate_left_hand_side": 1.5276181790848502,
+          "candidate_right_hand_side": 0.08531916454423832,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 87,
+          "alpha": 5.12255238915472,
+          "phi": -2.032342833558217,
+          "candidate_left_hand_side": 1.5706742241640224,
+          "candidate_right_hand_side": 0.057697830488947666,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 88,
+          "alpha": 5.185215660378061,
+          "phi": -2.0443530199107416,
+          "candidate_left_hand_side": 1.605785252034928,
+          "candidate_right_hand_side": 0.0393675335282956,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 89,
+          "alpha": 5.248575451492673,
+          "phi": -2.054273646595621,
+          "candidate_left_hand_side": 1.6348595498455518,
+          "candidate_right_hand_side": 0.02694561955788854,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 90,
+          "alpha": 5.3125062646786,
+          "phi": -2.0624812070672056,
+          "candidate_left_hand_side": 1.659219772474005,
+          "candidate_right_hand_side": 0.01840875042449154,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 91,
+          "alpha": 5.376911617182759,
+          "phi": -2.0692651495832672,
+          "candidate_left_hand_side": 1.6798114055075875,
+          "candidate_right_hand_side": 0.012493392060441129,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 92,
+          "alpha": 5.441715386469499,
+          "phi": -2.0748538417514855,
+          "candidate_left_hand_side": 1.697327780262164,
+          "candidate_right_hand_side": 0.008382137656316936,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 93,
+          "alpha": 5.50685615289618,
+          "phi": -2.0794315424997643,
+          "candidate_left_hand_side": 1.7122881579575917,
+          "candidate_right_hand_side": 0.005530470268161765,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 94,
+          "alpha": 5.572283367378335,
+          "phi": -2.0831498990816972,
+          "candidate_left_hand_side": 1.7250882197674569,
+          "candidate_right_hand_side": 0.0035666679273231717,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 95,
+          "alpha": 5.637954674274259,
+          "phi": -2.0861359784206144,
+          "candidate_left_hand_side": 1.7360336948763906,
+          "candidate_right_hand_side": 0.0022317176089802033,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 96,
+          "alpha": 5.703833989974949,
+          "phi": -2.088498031346027,
+          "candidate_left_hand_side": 1.7453633309810734,
+          "candidate_right_hand_side": 0.0013420506570398438,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 97,
+          "alpha": 5.769890089825399,
+          "phi": -2.090329731824435,
+          "candidate_left_hand_side": 1.753264924666528,
+          "candidate_right_hand_side": 0.0007657773553111523,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 98,
+          "alpha": 5.8360955451268035,
+          "phi": -2.091713365948139,
+          "candidate_left_hand_side": 1.7598867078087246,
+          "candidate_right_hand_side": 0.00040716580787773766,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 99,
+          "alpha": 5.902425905969496,
+          "phi": -2.092722283447092,
+          "candidate_left_hand_side": 1.7653455460136027,
+          "candidate_right_hand_side": 0.0001963024806768154,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 100,
+          "alpha": 5.968859059327093,
+          "phi": -2.0934228233829217,
+          "candidate_left_hand_side": 1.7697329003371636,
+          "candidate_right_hand_side": 0.00008209719471674121,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 101,
+          "alpha": 6.035374713505963,
+          "phi": -2.093875860894384,
+          "candidate_left_hand_side": 1.7731191629853669,
+          "candidate_right_hand_side": 0.000027503524505608946,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 102,
+          "alpha": 6.101953973846277,
+          "phi": -2.0941380799083094,
+          "candidate_left_hand_side": 1.7755568140226152,
+          "candidate_right_hand_side": 0.000006246830188777925,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 103,
+          "alpha": 6.168578984428314,
+          "phi": -2.094263048206177,
+          "candidate_left_hand_side": 1.7770826474799482,
+          "candidate_right_hand_side": 6.116788030224865e-7,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 104,
+          "alpha": 6.235232616127568,
+          "phi": -2.0943021531548096,
+          "candidate_left_hand_side": 1.777719280947175,
+          "candidate_right_hand_side": 4.330972921131719e-9,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 105,
+          "alpha": 6.301898185969638,
+          "phi": -2.0943054436611996,
+          "candidate_left_hand_side": 1.7774760579175712,
+          "candidate_right_hand_side": 1.1522580441875913e-7,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 106,
+          "alpha": 6.368559195148873,
+          "phi": -2.0943224161245166,
+          "candidate_left_hand_side": 1.7763494172613128,
+          "candidate_right_hand_side": 0.0000025831846292619976,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 107,
+          "alpha": 6.435199074674224,
+          "phi": -2.094402777567841,
+          "candidate_left_hand_side": 1.7743227470418543,
+          "candidate_right_hand_side": 0.00001512276742270741,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 108,
+          "alpha": 6.501800928008832,
+          "phi": -2.094597217580587,
+          "candidate_left_hand_side": 1.7713657337832611,
+          "candidate_right_hand_side": 0.00005212935014674154,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 109,
+          "alpha": 6.568347260247792,
+          "phi": -2.094958220870554,
+          "candidate_left_hand_side": 1.767433135572884,
+          "candidate_right_hand_side": 0.00013583208434830775,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 110,
+          "alpha": 6.6348196818896445,
+          "phi": -2.095540955982651,
+          "candidate_left_hand_side": 1.762462888009757,
+          "candidate_right_hand_side": 0.0002981326552428718,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 111,
+          "alpha": 6.701198573263518,
+          "phi": -2.096404281899155,
+          "candidate_left_hand_side": 1.7563733993832866,
+          "candidate_right_hand_side": 0.0005833599825322134,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 112,
+          "alpha": 6.767462692502049,
+          "phi": -2.0976119242122304,
+          "candidate_left_hand_side": 1.7490597817316147,
+          "candidate_right_hand_side": 0.00105230718133586,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 113,
+          "alpha": 6.833588704436302,
+          "phi": -2.0992338884391293,
+          "candidate_left_hand_side": 1.740388676642592,
+          "candidate_right_hand_side": 0.0017881274183965963,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 114,
+          "alpha": 6.8995506001914,
+          "phi": -2.1013482012225158,
+          "candidate_left_hand_side": 1.7301911497030718,
+          "candidate_right_hand_side": 0.002905003285747497,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 115,
+          "alpha": 6.965318965491578,
+          "phi": -2.1040431053422144,
+          "candidate_left_hand_side": 1.7182528778581807,
+          "candidate_right_hand_side": 0.004561063473475561,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 116,
+          "alpha": 7.030860038069356,
+          "phi": -2.1074198876395633,
+          "candidate_left_hand_side": 1.7043004093105312,
+          "candidate_right_hand_side": 0.006977977043061708,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 117,
+          "alpha": 7.09613446662508,
+          "phi": -2.1115966019711467,
+          "candidate_left_hand_side": 1.687981659068881,
+          "candidate_right_hand_side": 0.010471337043691555,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 118,
+          "alpha": 7.1610956407806645,
+          "phi": -2.1167130795299003,
+          "candidate_left_hand_side": 1.6688376176306121,
+          "candidate_right_hand_side": 0.015499019457724174,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 119,
+          "alpha": 7.225687389820898,
+          "phi": -2.1229378324281534,
+          "candidate_left_hand_side": 1.6462603954057449,
+          "candidate_right_hand_side": 0.022740525959481978,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 120,
+          "alpha": 7.289840729472972,
+          "phi": -2.130477813522208,
+          "candidate_left_hand_side": 1.619429202548662,
+          "candidate_right_hand_side": 0.033231879868868955,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 121,
+          "alpha": 7.353469127271217,
+          "phi": -2.139592620139585,
+          "candidate_left_hand_side": 1.5872095197610088,
+          "candidate_right_hand_side": 0.048604766365914605,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 122,
+          "alpha": 7.416461379170975,
+          "phi": -2.1506158644857285,
+          "candidate_left_hand_side": 1.547988098832081,
+          "candidate_right_hand_side": 0.07153212620551282,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 123,
+          "alpha": 7.478670464094964,
+          "phi": -2.1639886097354437,
+          "candidate_left_hand_side": 1.4993907317102801,
+          "candidate_right_hand_side": 0.10660986438199102,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 124,
+          "alpha": 7.539895269764527,
+          "phi": -2.180314192755813,
+          "candidate_left_hand_side": 1.4377731854771865,
+          "candidate_right_hand_side": 0.16223543063221302,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 125,
+          "alpha": 7.599848859846297,
+          "phi": -2.200453422546958,
+          "candidate_left_hand_side": 1.3572435153203488,
+          "candidate_right_hand_side": 0.25500092340230657,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 126,
+          "alpha": 7.658099257169414,
+          "phi": -2.2257022306080483,
+          "candidate_left_hand_side": 1.24764107116556,
+          "candidate_right_hand_side": 0.42128454855082187,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 127,
+          "alpha": 7.713948184445718,
+          "phi": -2.258155448805587,
+          "candidate_left_hand_side": 1.0900191420405274,
+          "candidate_right_hand_side": 0.7532166418686909,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 128,
+          "alpha": 7.766150175356997,
+          "phi": -2.301549476098196,
+          "candidate_left_hand_side": 0.8462107719109419,
+          "candidate_right_hand_side": 1.538365278643447,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 129,
+          "alpha": 7.812145033001927,
+          "phi": -2.3635649031837898,
+          "candidate_left_hand_side": 0.4468328134739846,
+          "candidate_right_hand_side": 3.9785622831241874,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 130,
+          "alpha": 7.845567810170872,
+          "phi": -2.463296571713953,
+          "candidate_left_hand_side": 0.032458009929103235,
+          "candidate_right_hand_side": 11.968256490935868,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 131,
+          "alpha": 7.85457586350235,
+          "phi": -2.6362724117244603,
+          "candidate_left_hand_side": 0.07339936813156946,
+          "candidate_right_hand_side": 10.158438049970231,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 132,
+          "alpha": 7.868122022379645,
+          "phi": -2.7956339350760064,
+          "candidate_left_hand_side": 0.5362348334586937,
+          "candidate_right_hand_side": 3.2513798178290814,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 133,
+          "alpha": 7.904736050888493,
+          "phi": -2.885791849562604,
+          "candidate_left_hand_side": 0.9013840839466902,
+          "candidate_right_hand_side": 1.3265568985476197,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 134,
+          "alpha": 7.952206675593322,
+          "phi": -2.9433799754773187,
+          "candidate_left_hand_side": 1.1246689488319106,
+          "candidate_right_hand_side": 0.669922109084798,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 135,
+          "alpha": 8.005231880657327,
+          "phi": -2.984304360295077,
+          "candidate_left_hand_side": 1.271154872043523,
+          "candidate_right_hand_side": 0.38147283392091985,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 136,
+          "alpha": 8.061604632764253,
+          "phi": -3.0151861038469288,
+          "candidate_left_hand_side": 1.3742080078528918,
+          "candidate_right_hand_side": 0.23348363476614062,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 137,
+          "alpha": 8.12021794200057,
+          "phi": -3.039346176009804,
+          "candidate_left_hand_side": 1.4505777107439195,
+          "candidate_right_hand_side": 0.14961582698038262,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 138,
+          "alpha": 8.180437907766583,
+          "phi": -3.058686278580653,
+          "candidate_left_hand_side": 1.5093854371921371,
+          "candidate_right_hand_side": 0.09877728729756682,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 139,
+          "alpha": 8.241866432028365,
+          "phi": -3.074400705654012,
+          "candidate_left_hand_side": 1.5559904268701916,
+          "candidate_right_hand_side": 0.06647096568440121,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 140,
+          "alpha": 8.304236104684035,
+          "phi": -3.087291687548771,
+          "candidate_left_hand_side": 1.5937428120675576,
+          "candidate_right_hand_side": 0.04523881663767356,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 141,
+          "alpha": 8.367357868206366,
+          "phi": -3.097926396834604,
+          "candidate_left_hand_side": 1.6248439950419806,
+          "candidate_right_hand_side": 0.030947472408465147,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 142,
+          "alpha": 8.431092552543898,
+          "phi": -3.1067223436864877,
+          "candidate_left_hand_side": 1.6508002874899426,
+          "candidate_right_hand_side": 0.021169028507849585,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 143,
+          "alpha": 8.495334289123203,
+          "phi": -3.113997133805084,
+          "candidate_left_hand_side": 1.6726771125534987,
+          "candidate_right_hand_side": 0.014409464406408765,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 144,
+          "alpha": 8.560000298597917,
+          "phi": -3.1199991052325418,
+          "candidate_left_hand_side": 1.6912489349631405,
+          "candidate_right_hand_side": 0.009713912835916152,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 145,
+          "alpha": 8.625024312142205,
+          "phi": -3.1249270644541456,
+          "candidate_left_hand_side": 1.707091596431139,
+          "candidate_right_hand_side": 0.0064526736094595895,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 146,
+          "alpha": 8.690352169837663,
+          "phi": -3.1289434912272425,
+          "candidate_left_hand_side": 1.7206413066986885,
+          "candidate_right_hand_side": 0.004199488834030798,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 147,
+          "alpha": 8.75593877873572,
+          "phi": -3.1321836643838927,
+          "candidate_left_hand_side": 1.7322335322847655,
+          "candidate_right_hand_side": 0.002659434227545778,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 148,
+          "alpha": 8.821745950310799,
+          "phi": -3.1347621495145197,
+          "candidate_left_hand_side": 1.7421293280229853,
+          "candidate_right_hand_side": 0.0016247018703642836,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 149,
+          "alpha": 8.887740823748494,
+          "phi": -3.136777529050962,
+          "candidate_left_hand_side": 1.7505335781204576,
+          "candidate_right_hand_side": 0.0009466732729099227,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 150,
+          "alpha": 8.953894689435248,
+          "phi": -3.138315931853311,
+          "candidate_left_hand_side": 1.7576078749655435,
+          "candidate_right_hand_side": 0.0005178294675201554,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 151,
+          "alpha": 9.02018209161254,
+          "phi": -3.1394537251863905,
+          "candidate_left_hand_side": 1.763479751037415,
+          "candidate_right_hand_side": 0.0002597818613779172,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 152,
+          "alpha": 9.086580129065416,
+          "phi": -3.1402596126806754,
+          "candidate_left_hand_side": 1.7682493696992154,
+          "candidate_right_hand_side": 0.00011521571260491324,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 153,
+          "alpha": 9.153067898047748,
+          "phi": -3.1407963055924157,
+          "candidate_left_hand_side": 1.7719944008241002,
+          "candidate_right_hand_side": 0.000042400882457305736,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 154,
+          "alpha": 9.219626038061275,
+          "phi": -3.1411218853923777,
+          "candidate_left_hand_side": 1.7747735662010558,
+          "candidate_right_hand_side": 0.000011432270043908496,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 155,
+          "alpha": 9.286236351943606,
+          "phi": -3.14129094359274,
+          "candidate_left_hand_side": 1.776629180422934,
+          "candidate_right_hand_side": 0.0000016702409314423166,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 156,
+          "alpha": 9.352881478930186,
+          "phi": -3.1413555624934473,
+          "candidate_left_hand_side": 1.7775889062861867,
+          "candidate_right_hand_side": 4.514897283326704e-8,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 157,
+          "alpha": 9.419544604162322,
+          "phi": -3.1413661866372755,
+          "candidate_left_hand_side": 1.7776668673436966,
+          "candidate_right_hand_side": 1.556839922501864e-8,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 158,
+          "alpha": 9.486209191225914,
+          "phi": -3.1413724253068502,
+          "candidate_left_hand_side": 1.7768642053803572,
+          "candidate_right_hand_side": 0.0000010565745495151342,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 159,
+          "alpha": 9.55285872620892,
+          "phi": -3.1414238202129576,
+          "candidate_left_hand_side": 1.775169125295016,
+          "candidate_right_hand_side": 0.000008618970584891705,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 160,
+          "alpha": 9.619476462685308,
+          "phi": -3.1415706106297505,
+          "candidate_left_hand_side": 1.772556430341456,
+          "candidate_right_hand_side": 0.00003455479018345279,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 161,
+          "alpha": 9.686045157098325,
+          "phi": -3.1418645272428547,
+          "candidate_left_hand_side": 1.7689865130581197,
+          "candidate_right_hand_side": 0.00009805806633599554,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 162,
+          "alpha": 9.752546783263744,
+          "phi": -3.142359648607613,
+          "candidate_left_hand_side": 1.764403722476198,
+          "candidate_right_hand_side": 0.00022723190748533126,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 163,
+          "alpha": 9.818962212993519,
+          "phi": -3.143113359274058,
+          "candidate_left_hand_side": 1.7587339762558347,
+          "candidate_right_hand_side": 0.00046147452361182113,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 164,
+          "alpha": 9.885270846976129,
+          "phi": -3.1441874571788273,
+          "candidate_left_hand_side": 1.7518814132189922,
+          "candidate_right_hand_side": 0.0008549940700220298,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 165,
+          "alpha": 9.951450175569333,
+          "phi": -3.1456494712605156,
+          "candidate_left_hand_side": 1.7437237842819082,
+          "candidate_right_hand_side": 0.0014819406590704414,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 166,
+          "alpha": 10.017475242481112,
+          "phi": -3.147574270379301,
+          "candidate_left_hand_side": 1.7341061276081533,
+          "candidate_right_hand_side": 0.0024439274451506644,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 167,
+          "alpha": 10.083317974190999,
+          "phi": -3.1500460751072024,
+          "candidate_left_hand_side": 1.7228320554187522,
+          "candidate_right_hand_side": 0.0038811755606691332,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 168,
+          "alpha": 10.14894632278021,
+          "phi": -3.153161029184179,
+          "candidate_left_hand_side": 1.7096516254795942,
+          "candidate_right_hand_side": 0.005989302060736911,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 169,
+          "alpha": 10.214323146377714,
+          "phi": -3.15703055824491,
+          "candidate_left_hand_side": 1.694244214575097,
+          "candidate_right_hand_side": 0.009045131653998263,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 170,
+          "alpha": 10.279404714708829,
+          "phi": -3.1617858530974923,
+          "candidate_left_hand_side": 1.67619388524751,
+          "candidate_right_hand_side": 0.013447370427580714,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 171,
+          "alpha": 10.344138668034104,
+          "phi": -3.1675839929775704,
+          "candidate_left_hand_side": 1.6549531623720202,
+          "candidate_right_hand_side": 0.019782566037690526,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 172,
+          "alpha": 10.408461159480952,
+          "phi": -3.1746165184908,
+          "candidate_left_hand_side": 1.6297883636830854,
+          "candidate_right_hand_side": 0.02893572953393411,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 173,
+          "alpha": 10.472292741861525,
+          "phi": -3.1831217712110216,
+          "candidate_left_hand_side": 1.5996945329531507,
+          "candidate_right_hand_side": 0.04228331093061318,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 174,
+          "alpha": 10.535532257454095,
+          "phi": -3.1934032242856865,
+          "candidate_left_hand_side": 1.5632582716850048,
+          "candidate_right_hand_side": 0.06204591856042536,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 175,
+          "alpha": 10.598047421048317,
+          "phi": -3.2058577333647733,
+          "candidate_left_hand_side": 1.518427076204252,
+          "candidate_right_hand_side": 0.09197014873102598,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 176,
+          "alpha": 10.659659657580606,
+          "phi": -3.2210210236352776,
+          "candidate_left_hand_side": 1.4621017086380856,
+          "candidate_right_hand_side": 0.138739908173917,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 177,
+          "alpha": 10.720118356471627,
+          "phi": -3.2396449268361316,
+          "candidate_left_hand_side": 1.389372030803659,
+          "candidate_right_hand_side": 0.21515794104827327,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 178,
+          "alpha": 10.779054169667079,
+          "phi": -3.262837487122152,
+          "candidate_left_hand_side": 1.2919810108716046,
+          "candidate_right_hand_side": 0.34814687037607805,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 179,
+          "alpha": 10.835886840967829,
+          "phi": -3.2923394730881888,
+          "candidate_left_hand_side": 1.1549859538683627,
+          "candidate_right_hand_side": 0.6020081059274989,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 180,
+          "alpha": 10.889621977374754,
+          "phi": -3.331134063752593,
+          "candidate_left_hand_side": 0.9490270208778518,
+          "candidate_right_hand_side": 1.160918891053107,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 181,
+          "alpha": 10.938330986317604,
+          "phi": -3.3850070368247454,
+          "candidate_left_hand_side": 0.6151991788789677,
+          "candidate_right_hand_side": 2.7124804794558766,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 182,
+          "alpha": 10.977548303247723,
+          "phi": -3.4673550859737046,
+          "candidate_left_hand_side": 0.13698620622461427,
+          "candidate_right_hand_side": 8.35008041579826,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 183,
+          "alpha": 10.996054127075954,
+          "phi": -3.6118376144658937,
+          "candidate_left_hand_side": 0.011805992447954713,
+          "candidate_right_hand_side": 13.498524720870856,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 184,
+          "alpha": 11.001486896270379,
+          "phi": -3.795539306897341,
+          "candidate_left_hand_side": 0.3593964880930532,
+          "candidate_right_hand_side": 4.846643689086202,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 185,
+          "alpha": 11.031461739393114,
+          "phi": -3.905614777474191,
+          "candidate_left_hand_side": 0.7905245510240055,
+          "candidate_right_hand_side": 1.7759735359050148,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 186,
+          "alpha": 11.075917463181622,
+          "phi": -3.9722476060181053,
+          "candidate_left_hand_side": 1.055602843479166,
+          "candidate_right_hand_side": 0.8422172615002752,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 187,
+          "alpha": 11.127288730527267,
+          "phi": -4.018133803874875,
+          "candidate_left_hand_side": 1.2246016692840502,
+          "candidate_right_hand_side": 0.4626017654988452,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 188,
+          "alpha": 11.182619591474936,
+          "phi": -4.05214122091509,
+          "candidate_left_hand_side": 1.3407849378960612,
+          "candidate_right_hand_side": 0.27692006622883075,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 189,
+          "alpha": 11.240515725583702,
+          "phi": -4.07845281846393,
+          "candidate_left_hand_side": 1.4254399900878612,
+          "candidate_right_hand_side": 0.17492992510210933,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 190,
+          "alpha": 11.300211621382488,
+          "phi": -4.099365130931834,
+          "candidate_left_hand_side": 1.4898157397205098,
+          "candidate_right_hand_side": 0.11441965680506687,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 191,
+          "alpha": 11.361240625546912,
+          "phi": -4.116278118308778,
+          "candidate_left_hand_side": 1.540353219142348,
+          "candidate_right_hand_side": 0.07654683105414337,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 192,
+          "alpha": 11.423296109171295,
+          "phi": -4.130111667297934,
+          "candidate_left_hand_side": 1.5809958696651538,
+          "candidate_right_hand_side": 0.05192485095382463,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 193,
+          "alpha": 11.486164938285274,
+          "phi": -4.141505179810963,
+          "candidate_left_hand_side": 1.614291848362687,
+          "candidate_right_hand_side": 0.035478147013614444,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 194,
+          "alpha": 11.549692330966753,
+          "phi": -4.150923001615077,
+          "candidate_left_hand_side": 1.641961096527966,
+          "candidate_right_hand_side": 0.024282709038296116,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 195,
+          "alpha": 11.613761845880788,
+          "phi": -4.158714456716387,
+          "candidate_left_hand_side": 1.6652065790979402,
+          "candidate_right_hand_side": 0.01656716281700429,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 196,
+          "alpha": 11.678283287648195,
+          "phi": -4.165150131276409,
+          "candidate_left_hand_side": 1.6848946786174257,
+          "candidate_right_hand_side": 0.011213795093683114,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 197,
+          "alpha": 11.743185034131196,
+          "phi": -4.170444891680262,
+          "candidate_left_hand_side": 1.701664663844708,
+          "candidate_right_hand_side": 0.007493311246497756,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 198,
+          "alpha": 11.808408968845468,
+          "phi": -4.174773087391669,
+          "candidate_left_hand_side": 1.7159977535172033,
+          "candidate_right_hand_side": 0.004916404016261344,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 199,
+          "alpha": 11.873907017547648,
+          "phi": -4.17827894107382,
+          "candidate_left_hand_side": 1.728262164042587,
+          "candidate_right_hand_side": 0.0031470351637088944,
+          "input_provenance": "derived_from_file_read"
+        },
+        {
+          "branch_id": "branch_0",
+          "point_index": 200,
+          "alpha": 11.93963871013278,
+          "phi": -4.1810838631599525,
+          "candidate_left_hand_side": 1.728262164042587,
+          "candidate_right_hand_side": 0.0031470351637088944,
+          "input_provenance": "derived_from_file_read"
+        }
+      ]
+    }
+  ],
+  "residual_null_comparisons": [
+    {
+      "comparison_id": "bmc0a-residual-vs-null-v0.1",
+      "target_residual_ids": [
+        "candidate_residual_branch_0"
+      ],
+      "null_model_ids": [
+        "constant_phase_control"
+      ],
+      "metrics_compared": [
+        "mean_abs_residual",
+        "max_abs_residual"
+      ],
+      "comparison_computed": true,
+      "interpretation_status": "diagnostic_comparison_only",
+      "reason": "Comparison shows candidate local-branch residual metrics relative to constant phase null control."
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms analysis is strictly restricted to minisuperspace toy system."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claims are asserted."
+    },
+    {
+      "name": "candidate_residual_diagnostics_gate",
+      "status": "pass",
+      "reason": "Confirms candidate local-branch residual diagnostics are generated."
+    },
+    {
+      "name": "no_recovery_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no recovery claim is made."
+    },
+    {
+      "name": "no_scientific_novelty_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no scientific novelty claim is made."
+    },
+    {
+      "name": "no_bmc_beats_null_models_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no BMC-beats-null-models claim is made."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    },
+    {
+      "name": "convention_debts_visible_gate",
+      "status": "pass",
+      "reason": "Confirms all convention debts are declared and visible."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness review status remains contested."
+    },
+    {
+      "name": "no_full_bmc_promotion_gate",
+      "status": "pass",
+      "reason": "Confirms no full BMC promotion was performed."
+    }
+  ],
+  "ebp_debt_vocabulary": "ptw_adversarial_review_debt_status_v0.1",
+  "interpretation_status": "diagnostic_comparison_only",
+  "ebp_debt": {
+    "needLiteratureAudit": "partial",
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "partial",
+    "needNullModel": "partial",
+    "needObstruction": "partial",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "unpaid",
+    "classical_target_debt": "unpaid",
+    "unit_convention_debt": "unpaid",
+    "sign_convention_debt": "unpaid",
+    "normalization_debt": "unpaid",
+    "containsFinalTruthClaim": "absent",
+    "promotion_status": "candidate_residual_runner_candidate_only"
+  },
+  "warnings": [
+    "Sprint 10 computes candidate local-branch residual diagnostics only.",
+    "No recovery claim is made.",
+    "No scientific novelty claim is made.",
+    "No BMC-beats-null-models claim is made.",
+    "Full BMC remains blocked.",
+    "Convention debts remain unpaid or contested."
+  ],
+  "calculation_ledger": [
+    {
+      "calculation_id": "calc_branch_0",
+      "branch_id": "branch_0",
+      "formula_id": "candidate_local_branch_velocity_constraint_residual_v0.1",
+      "formula_description": "LHS = (dalpha/dlambda)^2, RHS = (dphi/dlambda)^2, residual = LHS - RHS. Derives velocity balance diagnostics.",
+      "formula_source": "relational_derivative_residual_spec_v0.1",
+      "convention_profile": "toy_minisuperspace_limit_v0.1",
+      "input_provenance": "derived_from_file_read",
+      "input_fields": [
+        "alpha",
+        "phi",
+        "lambda"
+      ],
+      "num_input_points": 201,
+      "calculation_status": "computed_from_local_branch",
+      "notes": "Honestly computed from clock readiness branch data (samples=201, clock_range=4.181084)"
+    }
+  ],
+  "source_branch_registry": {
+    "source_artifact_id": "bmc0a_clock_readiness",
+    "branch_ids": [
+      "branch_0"
+    ]
+  }
+}

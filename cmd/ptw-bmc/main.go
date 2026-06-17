@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/PithomLabs/bmc/internal/bmc/audit"
 	"github.com/PithomLabs/bmc/internal/bmc/clockdiag"
@@ -15,6 +16,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/nullspec"
 	"github.com/PithomLabs/bmc/internal/bmc/priorart"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
+	"github.com/PithomLabs/bmc/internal/bmc/residualrun"
 )
 
 func main() {
@@ -45,6 +47,8 @@ func main() {
 		priorArtBoundaryCmd()
 	case "run-nullmodels":
 		runNullModelsCmd()
+	case "run-residuals":
+		runResidualsCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -65,6 +69,7 @@ func printUsage() {
 	fmt.Println("  spec-nullmodels Run Null-Model specification and future comparison gate design")
 	fmt.Println("  prior-art-boundary Run prior-art boundary and gate verification")
 	fmt.Println("  run-nullmodels Run the null-model runner and generate comparison report")
+	fmt.Println("  run-residuals Run the candidate local-branch residual runner")
 }
 
 func runCmd() {
@@ -287,6 +292,29 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-local-residual-v0.1" {
+		rep, err := residualrun.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual run report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		data, err := os.ReadFile(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual run report file: %v\n", err)
+			os.Exit(1)
+		}
+		errors := residualrun.ValidateReport(rep, string(data))
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Candidate Local-Branch Residual Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Candidate Local-Branch Residual Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -441,6 +469,45 @@ func summarizeCmd() {
 		fmt.Printf("Null Models Blocked: %d\n", numBlocked)
 		fmt.Printf("Null Models Deferred: %d\n", numDeferred)
 		fmt.Printf("Null Models Accounted For: %d/%d\n", totalAccounted, len(rep.NullModelRuns))
+		fmt.Printf("Interpretation Status: %s\n", rep.InterpretationStatus)
+		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-local-residual-v0.1" {
+		rep, err := residualrun.ReadReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading residual run report: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("BMC Sprint 10 Candidate Local-Branch Residual Summary")
+		fmt.Printf("Schema Version: %s\n", rep.SchemaVersion)
+		fmt.Printf("Scope: %s\n", rep.Scope)
+		fmt.Printf("Candidate Residual Computed: %v\n", rep.CandidateResidualComputed)
+		fmt.Printf("Recovery Claim: %v\n", rep.ResidualRecoveryClaim)
+		fmt.Printf("Scientific Novelty Claim Made: %v\n", rep.ScientificNoveltyClaimMade)
+		fmt.Printf("BMC Beats Null Models Claim: %v\n", rep.BmcBeatsNullModelsClaim)
+		fmt.Printf("Full BMC: %s\n", rep.FullBmcToyGate)
+		eligibleCount := 0
+		for _, b := range rep.LocalBranchEligibility {
+			if b.Eligible {
+				eligibleCount++
+			}
+		}
+		fmt.Printf("Eligible Local Branches: %d\n", eligibleCount)
+		numComputed := 0
+		numBlocked := 0
+		for _, rd := range rep.CandidateResidualDiagnostics {
+			if rd.ResidualComputed {
+				numComputed++
+			} else {
+				numBlocked++
+			}
+		}
+		fmt.Printf("Computed Candidate Residual Diagnostics: %d\n", numComputed)
+		fmt.Printf("Blocked Candidate Residual Diagnostics: %d\n", numBlocked)
+		fmt.Printf("Total Candidate Residual Diagnostics: %d\n", len(rep.CandidateResidualDiagnostics))
+		fmt.Printf("Residual/Null Comparisons: %d\n", len(rep.ResidualNullComparisons))
 		fmt.Printf("Interpretation Status: %s\n", rep.InterpretationStatus)
 		fmt.Printf("Promotion Status: %s\n", rep.EbpDebt.PromotionStatus)
 		return
@@ -819,5 +886,78 @@ func runNullModelsCmd() {
 	}
 
 	fmt.Printf("Successfully ran null models profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
+func findWorkspaceRoot() (string, error) {
+	dir, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	for {
+		if _, err := os.Stat(filepath.Join(dir, "go.mod")); err == nil {
+			return dir, nil
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			break
+		}
+		dir = parent
+	}
+	return "", fmt.Errorf("could not find workspace root (go.mod)")
+}
+
+func runResidualsCmd() {
+	cmdFlags := flag.NewFlagSet("run-residuals", flag.ExitOnError)
+	profileOpt := cmdFlags.String("profile", "", "Profile to run (required)")
+	outOpt := cmdFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		cmdFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := cmdFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *profileOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --profile is required")
+		os.Exit(1)
+	}
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-local-residual" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-local-residual')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	root, err := findWorkspaceRoot()
+	var rep *residualrun.ResidualRunReport
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: could not locate workspace root: %v. Generating default blocked report.\n", err)
+		rep = residualrun.GenerateBlockedDefaultReport()
+	} else {
+		clockPath := filepath.Join(root, "out", "bmc0a_clock_readiness.json")
+		friedmannPath := filepath.Join(root, "out", "bmc0a_friedmann_spec.json")
+		nullrunPath := filepath.Join(root, "out", "bmc0a_nullrun.json")
+		priorartPath := filepath.Join(root, "out", "bmc0a_prior_art_boundary.json")
+
+		rep, err = residualrun.RunResidualsFromFiles(clockPath, friedmannPath, nullrunPath, priorartPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error running residuals: %v\n", err)
+			os.Exit(1)
+		}
+	}
+
+	if err := residualrun.WriteReport(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing residual run report: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran residual profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 

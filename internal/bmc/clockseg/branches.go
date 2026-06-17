@@ -1,5 +1,7 @@
 package clockseg
 
+import "github.com/PithomLabs/bmc/internal/bmc/model"
+
 // ClockTurningPoint represents a point in the trajectory where phi monotonicity
 // changes or near-zero dphi/dlambda velocity is encountered.
 type ClockTurningPoint struct {
@@ -23,14 +25,15 @@ type ClockSegment struct {
 // LocalRelationBranch represents the alpha(phi) relational branch analysis
 // extracted from a single ClockSegment.
 type LocalRelationBranch struct {
-	Segment          ClockSegment `json:"segment"`
-	Samples          int          `json:"samples"`
-	LambdaRange      float64      `json:"lambda_range"`
-	ClockRange       float64      `json:"clock_range"`
-	SingleValued     bool         `json:"single_valued"`
-	MaxAbsNoise      float64      `json:"max_abs_noise"`
-	ValidationPassed bool         `json:"validation_passed"`
-	Reason           string       `json:"reason"`
+	Segment          ClockSegment            `json:"segment"`
+	Samples          int                     `json:"samples"`
+	LambdaRange      float64                 `json:"lambda_range"`
+	ClockRange       float64                 `json:"clock_range"`
+	SingleValued     bool                    `json:"single_valued"`
+	MaxAbsNoise      float64                 `json:"max_abs_noise"`
+	ValidationPassed bool                    `json:"validation_passed"`
+	Reason           string                  `json:"reason"`
+	Points           []model.TrajectoryPoint `json:"points,omitempty"`
 }
 
 // ClockIndependentDiagnostic contains physical metrics along the trajectory
