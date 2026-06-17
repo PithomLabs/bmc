@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/PithomLabs/bmc/internal/bmc/audit"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
@@ -24,6 +25,8 @@ func main() {
 		validateCmd()
 	case "summarize":
 		summarizeCmd()
+	case "audit":
+		auditCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -37,6 +40,7 @@ func printUsage() {
 	fmt.Println("  run        Run the simulation and generate a JSON report")
 	fmt.Println("  validate   Validate a generated JSON report schema and constraints")
 	fmt.Println("  summarize  Print a human-readable summary of the report")
+	fmt.Println("  audit      Run a numerical robustness and convergence audit")
 }
 
 func runCmd() {
@@ -112,6 +116,35 @@ func validateCmd() {
 		os.Exit(1)
 	}
 
+	data, err := os.ReadFile(*reportOpt)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading file: %v\n", err)
+		os.Exit(1)
+	}
+
+	var helper struct {
+		SchemaVersion string `json:"schema_version"`
+	}
+	_ = json.Unmarshal(data, &helper)
+
+	if helper.SchemaVersion == "bmc0a-superposition-robustness-v0.1" {
+		rep, err := audit.ReadRobustnessReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading robustness report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		errors := audit.ValidateRobustnessReport(rep)
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Robustness Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Robustness Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -121,8 +154,8 @@ func validateCmd() {
 	errors := report.Validate(rep)
 	if len(errors) > 0 {
 		fmt.Fprintln(os.Stderr, "Report Validation FAILED:")
-		for _, err := range errors {
-			fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", err.Severity, err.Field, err.Message)
+		for _, valErr := range errors {
+			fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
 		}
 		os.Exit(1)
 	}
@@ -148,6 +181,27 @@ func summarizeCmd() {
 		fmt.Fprintln(os.Stderr, "Error: --report is required")
 		summarizeFlags.Usage()
 		os.Exit(1)
+	}
+
+	data, err := os.ReadFile(*reportOpt)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading file: %v\n", err)
+		os.Exit(1)
+	}
+
+	var helper struct {
+		SchemaVersion string `json:"schema_version"`
+	}
+	_ = json.Unmarshal(data, &helper)
+
+	if helper.SchemaVersion == "bmc0a-superposition-robustness-v0.1" {
+		rep, err := audit.ReadRobustnessReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading robustness report: %v\n", err)
+			os.Exit(1)
+		}
+		audit.SummarizeRobustnessReport(rep)
+		return
 	}
 
 	rep, err := readReport(*reportOpt)
@@ -217,6 +271,49 @@ func summarizeCmd() {
 		fmt.Printf("  * %s\n", warning)
 	}
 	fmt.Println("================================================================================")
+}
+
+func auditCmd() {
+	auditFlags := flag.NewFlagSet("audit", flag.ExitOnError)
+	profileOpt := auditFlags.String("profile", "bmc0a-superposition-robustness", "Audit profile to run (bmc0a-superposition-robustness)")
+	outOpt := auditFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		auditFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := auditFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		auditFlags.Usage()
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-superposition-robustness" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-superposition-robustness')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	safeParams := model.DefaultSuperpositionSafeParams()
+	nodeProbeParams := model.DefaultSuperpositionNodeProbeParams()
+
+	rep, err := audit.GenerateAuditReport(safeParams, nodeProbeParams)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error generating audit report: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := audit.WriteJSON(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing report to %s: %v\n", *outOpt, err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran audit profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 
 func readReport(path string) (*report.Report, error) {

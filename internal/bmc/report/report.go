@@ -295,10 +295,12 @@ func GenerateSuperposition(params model.SuperpositionParams, finalTruthClaim boo
 		// Short-circuit trajectory integration!
 		traj = model.Trajectory{Points: []model.TrajectoryPoint{}} // Empty trajectory
 
+		zeroCount := 0
 		trajectoryCheck = model.CheckResult{
-			Status: model.StatusFail,
-			Pass:   false,
-			Reason: "Bohmian trajectory integration short-circuited: initial state starts on a node.",
+			Status:      model.StatusFail,
+			Pass:        false,
+			Reason:      "Bohmian trajectory integration short-circuited: initial state starts on a node.",
+			PointsCount: &zeroCount,
 		}
 
 		clockCheck = model.CheckResult{

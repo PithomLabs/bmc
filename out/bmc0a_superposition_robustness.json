@@ -1,0 +1,288 @@
+{
+  "schema_version": "bmc0a-superposition-robustness-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "source_artifacts": [
+    "bmc0a_superposition_safe",
+    "bmc0a_superposition_node_probe"
+  ],
+  "audit_kind": "numerical_robustness_convergence",
+  "step_size_sweep": [
+    {
+      "step_size": 0.1,
+      "steps": 100,
+      "endpoint_drift_alpha": -0.00006676262305482794,
+      "endpoint_drift_phi": -0.00020028804028626723,
+      "max_abs_q": 7.529178323159136,
+      "min_amplitude_r": 0.5067617514536421,
+      "max_phase_gradient": 3.8809173429251813,
+      "clock_monotonic": true,
+      "technical_gate_status": "pass"
+    },
+    {
+      "step_size": 0.05,
+      "steps": 200,
+      "endpoint_drift_alpha": 0.00008829006899624403,
+      "endpoint_drift_phi": 0.0002648703105885275,
+      "max_abs_q": 7.89042982321384,
+      "min_amplitude_r": 0.5015334881861239,
+      "max_phase_gradient": 3.972534239461488,
+      "clock_monotonic": true,
+      "technical_gate_status": "pass"
+    },
+    {
+      "step_size": 0.025,
+      "steps": 400,
+      "endpoint_drift_alpha": 0.00000803172252084039,
+      "endpoint_drift_phi": 0.000024095140291002792,
+      "max_abs_q": 7.97908899502378,
+      "min_amplitude_r": 0.5002908465980823,
+      "max_phase_gradient": 3.9947697053643916,
+      "clock_monotonic": true,
+      "technical_gate_status": "pass"
+    },
+    {
+      "step_size": 0.0125,
+      "steps": 800,
+      "endpoint_drift_alpha": 0,
+      "endpoint_drift_phi": 0,
+      "max_abs_q": 7.998798325450457,
+      "min_amplitude_r": 0.5000166848851698,
+      "max_phase_gradient": 3.9996996889181924,
+      "clock_monotonic": true,
+      "technical_gate_status": "pass"
+    }
+  ],
+  "node_threshold_sweep": [
+    {
+      "threshold": 0.0001,
+      "profile": "node-probe",
+      "node_contact_free": "fail",
+      "q_finite_away_from_nodes": "contested",
+      "phase_gradient_finite": "contested",
+      "technical_gate_name": "node_detection_validation_gate",
+      "technical_gate_status": "pass"
+    },
+    {
+      "threshold": 0.00001,
+      "profile": "node-probe",
+      "node_contact_free": "fail",
+      "q_finite_away_from_nodes": "contested",
+      "phase_gradient_finite": "contested",
+      "technical_gate_name": "node_detection_validation_gate",
+      "technical_gate_status": "pass"
+    },
+    {
+      "threshold": 0.000001,
+      "profile": "node-probe",
+      "node_contact_free": "fail",
+      "q_finite_away_from_nodes": "contested",
+      "phase_gradient_finite": "contested",
+      "technical_gate_name": "node_detection_validation_gate",
+      "technical_gate_status": "pass"
+    },
+    {
+      "threshold": 0.0001,
+      "profile": "safe",
+      "node_contact_free": "pass",
+      "q_finite_away_from_nodes": "pass",
+      "phase_gradient_finite": "pass",
+      "technical_gate_name": "bmc0a_superposition_safe_gate",
+      "technical_gate_status": "pass"
+    },
+    {
+      "threshold": 0.00001,
+      "profile": "safe",
+      "node_contact_free": "pass",
+      "q_finite_away_from_nodes": "pass",
+      "phase_gradient_finite": "pass",
+      "technical_gate_name": "bmc0a_superposition_safe_gate",
+      "technical_gate_status": "pass"
+    },
+    {
+      "threshold": 0.000001,
+      "profile": "safe",
+      "node_contact_free": "pass",
+      "q_finite_away_from_nodes": "pass",
+      "phase_gradient_finite": "pass",
+      "technical_gate_name": "bmc0a_superposition_safe_gate",
+      "technical_gate_status": "pass"
+    }
+  ],
+  "phase_gradient_bound_sweep": [
+    {
+      "bound": 25,
+      "max_observed_phase_gradient": 3.972534239461488,
+      "is_binding": false,
+      "phase_gradient_finite": "pass"
+    },
+    {
+      "bound": 50,
+      "max_observed_phase_gradient": 3.972534239461488,
+      "is_binding": false,
+      "phase_gradient_finite": "pass"
+    },
+    {
+      "bound": 100,
+      "max_observed_phase_gradient": 3.972534239461488,
+      "is_binding": false,
+      "phase_gradient_finite": "pass"
+    },
+    {
+      "bound": 200,
+      "max_observed_phase_gradient": 3.972534239461488,
+      "is_binding": false,
+      "phase_gradient_finite": "pass"
+    }
+  ],
+  "parameter_perturbation_sweep": [
+    {
+      "c2_real": 0.45,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "pass",
+      "safe_gate_status": "pass"
+    },
+    {
+      "c2_real": 0.45,
+      "k2": 2,
+      "omega2": -2,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "pass",
+      "safe_gate_status": "pass"
+    },
+    {
+      "c2_real": 0.45,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "pass",
+      "safe_gate_status": "pass"
+    },
+    {
+      "c2_real": 0.5,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "pass",
+      "safe_gate_status": "pass"
+    },
+    {
+      "c2_real": 0.5,
+      "k2": 2,
+      "omega2": -2,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "pass",
+      "safe_gate_status": "pass"
+    },
+    {
+      "c2_real": 0.5,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "fail",
+      "safe_gate_status": "fail"
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "fail",
+      "safe_gate_status": "fail"
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2,
+      "omega2": -2,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "fail",
+      "safe_gate_status": "fail"
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "node_contact": false,
+      "q_finite_away_from_nodes": "pass",
+      "clock_monotonic": "fail",
+      "safe_gate_status": "fail"
+    }
+  ],
+  "node_probe_offset_sweep": [
+    {
+      "offset_alpha": 0,
+      "offset_phi": 0,
+      "initial_amplitude": 0,
+      "short_circuit_triggered": true,
+      "integrated": false,
+      "node_contact_free": "fail",
+      "phase_gradient_finite": "contested",
+      "q_finite_away_from_nodes": "contested"
+    },
+    {
+      "offset_alpha": 1e-8,
+      "offset_phi": 0,
+      "initial_amplitude": 1.0000000000000002e-8,
+      "short_circuit_triggered": true,
+      "integrated": false,
+      "node_contact_free": "fail",
+      "phase_gradient_finite": "contested",
+      "q_finite_away_from_nodes": "contested"
+    },
+    {
+      "offset_alpha": 0.000001,
+      "offset_phi": 0,
+      "initial_amplitude": 9.999999999999582e-7,
+      "short_circuit_triggered": true,
+      "integrated": false,
+      "node_contact_free": "fail",
+      "phase_gradient_finite": "contested",
+      "q_finite_away_from_nodes": "contested"
+    },
+    {
+      "offset_alpha": 0.0001,
+      "offset_phi": 0,
+      "initial_amplitude": 0.00009999999995833334,
+      "short_circuit_triggered": false,
+      "integrated": true,
+      "node_contact_free": "pass",
+      "phase_gradient_finite": "pass",
+      "q_finite_away_from_nodes": "pass"
+    }
+  ],
+  "technical_gate": {
+    "name": "bmc0a_superposition_robustness_audit_gate",
+    "status": "pass",
+    "reason": "All planning sweeps executed successfully and EBP boundaries are respected."
+  },
+  "robustness_outcome": "mixed",
+  "promotion_gate": {
+    "name": "full_bmc_toy_gate",
+    "status": "blocked",
+    "reason": "Friedmann residual and faithfulness review remain unpaid debt."
+  },
+  "ebp_debt": {
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "partial",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested"
+  },
+  "warnings": [
+    "Toy audit analysis only.",
+    "Does not test full quantum gravity.",
+    "Does not prove Bohmian mechanics, problem of time, or spacetime emergence.",
+    "Passing this audit cannot promote any final-truth claim."
+  ]
+}

@@ -74,7 +74,8 @@
     "trajectory": {
       "status": "fail",
       "pass": false,
-      "reason": "Bohmian trajectory integration short-circuited: initial state starts on a node."
+      "reason": "Bohmian trajectory integration short-circuited: initial state starts on a node.",
+      "points": 0
     },
     "wdw_residual": {
       "status": "pass",

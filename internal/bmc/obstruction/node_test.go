@@ -3,6 +3,7 @@ package obstruction_test
 import (
 	"testing"
 
+	"github.com/PithomLabs/bmc/internal/bmc/guidance"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/obstruction"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
@@ -27,6 +28,29 @@ func TestNodeObstructionDetection(t *testing.T) {
 	contact, _ := obstruction.DetectNodeContact(traj, sw, 1e-5)
 	if !contact {
 		t.Error("Expected DetectNodeContact to return true for trajectory containing the node (0, 0)")
+	}
+}
+
+func TestSafeSuperpositionAmplitudeStaysAboveNodeThreshold(t *testing.T) {
+	params := model.DefaultSuperpositionSafeParams()
+	sw := wave.NewSuperpositionWave(
+		params.C1Real, params.C1Imag, params.K1, params.Omega1,
+		params.C2Real, params.C2Imag, params.K2, params.Omega2,
+	)
+	stepper := guidance.NewRK4Stepper()
+	initialState := model.MiniState{Alpha: params.Alpha0, Phi: params.Phi0}
+	traj := guidance.Integrate(sw, initialState, stepper, params.LambdaStep, params.Steps, params.NodeThresh)
+
+	if len(traj.Points) == 0 {
+		t.Fatal("Expected trajectory to have points, but got 0")
+	}
+
+	for i, p := range traj.Points {
+		rVal := wave.AmplitudeField(p.State.Alpha, p.State.Phi, sw)
+		if rVal < params.NodeThresh {
+			t.Errorf("Point %d at (alpha=%f, phi=%f) has amplitude R=%e, which is below node threshold %e",
+				i, p.State.Alpha, p.State.Phi, rVal, params.NodeThresh)
+		}
 	}
 }
 
@@ -83,36 +107,9 @@ func TestNodeProbeShortCircuitAndValidationGate(t *testing.T) {
 		t.Fatalf("Error generating node-probe report: %v", err)
 	}
 
-	// 1. Technical gate name must be node_detection_validation_gate and status must be pass
-	if rep.TechnicalGate.Name != "node_detection_validation_gate" {
-		t.Errorf("Expected technical gate name 'node_detection_validation_gate', got '%s'", rep.TechnicalGate.Name)
-	}
-	if rep.TechnicalGate.Status != model.StatusPass {
-		t.Errorf("Expected technical gate status 'pass', got '%s'", rep.TechnicalGate.Status)
-	}
+	// Assertions required by Sprint 2:
 
-	// 2. Trajectory should be empty (short-circuited)
-	// Wait! Let's check checks map to see if checks are set as expected
-	tCheck, exists := rep.Checks["trajectory"]
-	if !exists {
-		t.Fatal("Expected check 'trajectory' to exist")
-	}
-	if tCheck.Status != model.StatusFail {
-		t.Errorf("Expected trajectory check status to be 'fail', got '%s'", tCheck.Status)
-	}
-	if tCheck.Pass {
-		t.Error("Expected trajectory check Pass to be false")
-	}
-
-	// 3. Node checks
-	ncCheck, exists := rep.Checks["node_contact_free"]
-	if !exists {
-		t.Fatal("Expected check 'node_contact_free' to exist")
-	}
-	if ncCheck.Status != model.StatusFail {
-		t.Errorf("Expected node_contact_free check status to be 'fail', got '%s'", ncCheck.Status)
-	}
-
+	// 1. node_detection = pass
 	ndCheck, exists := rep.Checks["node_detection"]
 	if !exists {
 		t.Fatal("Expected check 'node_detection' to exist")
@@ -121,24 +118,68 @@ func TestNodeProbeShortCircuitAndValidationGate(t *testing.T) {
 		t.Errorf("Expected node_detection check status to be 'pass', got '%s'", ndCheck.Status)
 	}
 
-	// 4. Phase and Q checks must be contested
-	pgCheck, exists := rep.Checks["phase_gradient_finite"]
+	// 2. node_contact_free = fail
+	ncCheck, exists := rep.Checks["node_contact_free"]
 	if !exists {
-		t.Fatal("Expected check 'phase_gradient_finite' to exist")
+		t.Fatal("Expected check 'node_contact_free' to exist")
 	}
-	if pgCheck.Status != model.StatusContested {
-		t.Errorf("Expected phase_gradient_finite status to be 'contested', got '%s'", pgCheck.Status)
+	if ncCheck.Status != model.StatusFail {
+		t.Errorf("Expected node_contact_free check status to be 'fail', got '%s'", ncCheck.Status)
 	}
 
-	qCheck, exists := rep.Checks["q_finite_away_from_nodes"]
-	if !exists {
-		t.Fatal("Expected check 'q_finite_away_from_nodes' to exist")
+	// 3. node obstruction severity = blocker
+	foundNodeObs := false
+	for _, obs := range rep.Obstructions {
+		if obs.Name == "node_obstruction" {
+			foundNodeObs = true
+			if !obs.Applies {
+				t.Error("Expected node_obstruction Applies to be true")
+			}
+			if obs.Severity != model.SeverityBlocker {
+				t.Errorf("Expected node_obstruction Severity to be 'blocker', got '%s'", obs.Severity)
+			}
+		}
 	}
-	if qCheck.Status != model.StatusContested {
-		t.Errorf("Expected q_finite_away_from_nodes status to be 'contested', got '%s'", qCheck.Status)
+	if !foundNodeObs {
+		t.Error("Expected to find node_obstruction in report obstructions, but none was found")
 	}
 
-	// 5. Validation of report should pass because node-probe setup successfully satisfies the node_detection_validation_gate
+	// 4. trajectory is empty or explicitly short-circuited/blocked
+	tCheck, exists := rep.Checks["trajectory"]
+	if !exists {
+		t.Fatal("Expected check 'trajectory' to exist")
+	}
+	if tCheck.Status != model.StatusFail {
+		t.Errorf("Expected trajectory check status to be 'fail', got '%s'", tCheck.Status)
+	}
+	if tCheck.PointsCount == nil || *tCheck.PointsCount != 0 {
+		t.Errorf("Expected trajectory points count to be 0 for short-circuit, got %v", tCheck.PointsCount)
+	}
+
+	// 5. safe superposition gate does not pass
+	if rep.TechnicalGate.Name == "bmc0a_superposition_safe_gate" {
+		t.Errorf("Expected technical gate to NOT be bmc0a_superposition_safe_gate, but it is")
+	}
+
+	// 6. technical gate = node_detection_validation_gate
+	if rep.TechnicalGate.Name != "node_detection_validation_gate" {
+		t.Errorf("Expected technical gate name 'node_detection_validation_gate', got '%s'", rep.TechnicalGate.Name)
+	}
+
+	// 7. technical gate status = pass
+	if rep.TechnicalGate.Status != model.StatusPass {
+		t.Errorf("Expected technical gate status 'pass', got '%s'", rep.TechnicalGate.Status)
+	}
+
+	// 8. full BMC toy gate remains blocked
+	if rep.PromotionGate.Name != "full_bmc_toy_gate" {
+		t.Errorf("Expected promotion gate name 'full_bmc_toy_gate', got '%s'", rep.PromotionGate.Name)
+	}
+	if rep.PromotionGate.Status != "blocked" {
+		t.Errorf("Expected promotion gate status 'blocked', got '%s'", rep.PromotionGate.Status)
+	}
+
+	// 9. Validation of report should pass because node-probe setup successfully satisfies the node_detection_validation_gate
 	errors := report.Validate(rep)
 	if len(errors) > 0 {
 		t.Errorf("Expected validation of node-probe report to pass, but got errors: %v", errors)
