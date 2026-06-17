@@ -1,0 +1,9 @@
+{"plugins": [],
+ "package": "bmc",
+ "options": {},
+ "name": "BMC.FriedmannSpec",
+ "isModule": false,
+ "importArts":
+ {"BMC.ToyReport":
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ToyReport.olean"]},
+ "dynlibs": []}

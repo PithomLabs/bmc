@@ -9,6 +9,7 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/audit"
 	"github.com/PithomLabs/bmc/internal/bmc/clockdiag"
 	"github.com/PithomLabs/bmc/internal/bmc/clockseg"
+	"github.com/PithomLabs/bmc/internal/bmc/friedmannspec"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
@@ -33,6 +34,8 @@ func main() {
 		diagnoseClockCmd()
 	case "segment-clock":
 		segmentClockCmd()
+	case "spec-friedmann":
+		specFriedmannCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -49,6 +52,7 @@ func printUsage() {
 	fmt.Println("  audit      Run a numerical robustness and convergence audit")
 	fmt.Println("  diagnose-clock Run a clock-monotonicity fragility investigation and diagnostic")
 	fmt.Println("  segment-clock Run local clock segmentation and clock-independent readiness diagnostics")
+	fmt.Println("  spec-friedmann Run Friedmann-residual specification and gate design")
 }
 
 func runCmd() {
@@ -189,6 +193,24 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-friedmann-spec-v0.1" {
+		rep, err := friedmannspec.ReadFriedmannSpecReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading Friedmann spec report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		errors := friedmannspec.ValidateFriedmannSpecReport(rep)
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Friedmann Spec Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Friedmann Spec Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -265,6 +287,16 @@ func summarizeCmd() {
 			os.Exit(1)
 		}
 		clockseg.SummarizeClockReadinessReport(rep)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-friedmann-spec-v0.1" {
+		rep, err := friedmannspec.ReadFriedmannSpecReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading Friedmann spec report: %v\n", err)
+			os.Exit(1)
+		}
+		friedmannspec.SummarizeFriedmannSpecReport(rep)
 		return
 	}
 
@@ -475,4 +507,45 @@ func segmentClockCmd() {
 	}
 
 	fmt.Printf("Successfully ran clock readiness profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
+func specFriedmannCmd() {
+	specFlags := flag.NewFlagSet("spec-friedmann", flag.ExitOnError)
+	profileOpt := specFlags.String("profile", "bmc0a-friedmann-spec", "Profile to specify (bmc0a-friedmann-spec)")
+	outOpt := specFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		specFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := specFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		specFlags.Usage()
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-friedmann-spec" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-friedmann-spec')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	safeParams := model.DefaultSuperpositionSafeParams()
+	rep, err := friedmannspec.GenerateFriedmannSpecReport(safeParams)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error generating Friedmann spec report: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := friedmannspec.WriteJSON(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing report to %s: %v\n", *outOpt, err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran Friedmann spec profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }

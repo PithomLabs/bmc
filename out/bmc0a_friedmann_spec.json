@@ -1,0 +1,226 @@
+{
+  "schema_version": "bmc0a-friedmann-spec-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "spec_kind": "friedmann_residual_specification",
+  "spec_scope": "candidate_specification_only",
+  "source_artifacts": [
+    "Sprint 1: BMC-0A plane-wave control artifact",
+    "Sprint 2: BMC-0A two-plane-wave superposition control artifact",
+    "Sprint 2: BMC-0A node-obstruction detection artifact",
+    "Sprint 3: BMC-0A numerical robustness/convergence audit artifact",
+    "Sprint 4: BMC-0A clock-fragility diagnostic artifact",
+    "Sprint 5: BMC-0A clock-readiness/local segmentation artifact"
+  ],
+  "residual_computed": false,
+  "friedmann_recovery_claim": false,
+  "candidate_maps": [
+    {
+      "map_id": "bmc0a-map-v0.1",
+      "alpha_meaning": "log of scale factor ln(a)",
+      "phi_meaning": "homogeneous massless scalar field",
+      "clock_variable": "phi",
+      "clock_scope": "local relational monotonic branches",
+      "candidate_scale_factor": "a = exp(alpha)",
+      "candidate_hubble_definition": "H = dalpha/dt_candidate",
+      "candidate_energy_density_definition": "rho_phi = (dphi/dlambda)^2 / (2 * a^6)",
+      "unit_convention_status": "contested",
+      "sign_convention_status": "contested",
+      "normalization_status": "contested",
+      "clock_choice_debt": "active",
+      "classical_target_debt": "active",
+      "status": "candidate_only",
+      "reason": "Debts are active; target relations and physical normalization are not yet confirmed."
+    }
+  ],
+  "branch_requirements": [
+    {
+      "branch_id": "branch-0",
+      "source_config_id": "bmc0a_superposition_safe",
+      "phi_local_monotonic": true,
+      "alpha_phi_single_valued": true,
+      "min_branch_samples": 3,
+      "actual_samples": 201,
+      "clock_range": 4.1810838631599525,
+      "lambda_range": 10,
+      "derivative_ready": false,
+      "derivative_method": "finite_difference_stencil_3pt",
+      "derivative_debt": "active",
+      "node_contact_free": true,
+      "q_finite_away_from_nodes": true,
+      "branch_residual_readiness": "candidate_only",
+      "reason": "Branch is numerically well-formed but actual derivative calculation is deferred."
+    }
+  ],
+  "derivative_readiness_checks": [
+    {
+      "branch_id": "branch-0",
+      "method": "finite_difference_3pt",
+      "excludes_endpoints": true,
+      "excludes_turning_point_neighborhoods": true,
+      "excludes_near_node_points": true,
+      "min_samples_required": 5,
+      "samples_available": 199,
+      "step_sensitivity_status": "contested",
+      "status": "candidate_only",
+      "reason": "Excluded boundary and near-node points; step sensitivity requires multi-grid sweep verification."
+    }
+  ],
+  "residual_formula_candidates": [
+    {
+      "formula_id": "flat-frw-massless-scalar-v0.1",
+      "description": "Candidate Hubble-squared and scalar kinetic density relation",
+      "classical_target": "H^2 = (8 * pi * G / 3) * rho_phi",
+      "required_variables": [
+        "alpha",
+        "phi",
+        "lambda"
+      ],
+      "required_derivatives": [
+        "dalpha/dphi",
+        "d2alpha/dphi2"
+      ],
+      "convention_debt": [
+        "G_gravitational_constant_normalization",
+        "time_parameter_gauge"
+      ],
+      "null_models_required": [
+        "constant-phase control",
+        "randomized phase control"
+      ],
+      "status": "candidate_only",
+      "reason": "Formula registered for specification purposes only; no numerical evaluation was executed."
+    }
+  ],
+  "null_model_requirements": [
+    {
+      "null_model_id": "constant-phase control",
+      "purpose": "Verify if a phase-invariant state produces a fake residual match.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "randomized phase control",
+      "purpose": "Establish baseline residual behavior for random phase fluctuations.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "matched amplitude / randomized phase control",
+      "purpose": "Disentangle the amplitude contribution from phase alignment.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "classical FRW reference trajectory",
+      "purpose": "Verify convergence to classical limit reference curves.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "same branch segmentation under null wavefunctions",
+      "purpose": "Confirm if non-monotonic segmentation is robust under null perturbations.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "node-neighborhood stress case",
+      "purpose": "Check robustness of exclusions near wavefunction nodes.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    },
+    {
+      "null_model_id": "clock-choice alternative branch diagnostic",
+      "purpose": "Analyze alternative clock candidates (e.g. alpha clock) on segmented branches.",
+      "required_before_residual_promotion": true,
+      "status": "planned",
+      "reason": "Required to protect against false positive residual matching."
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms analysis is strictly restricted to minisuperspace toy system."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claims are asserted."
+    },
+    {
+      "name": "local_branch_only_gate",
+      "status": "pass",
+      "reason": "Confirms clock is only evaluated on local monotonic branches."
+    },
+    {
+      "name": "clock_choice_debt_active_gate",
+      "status": "pass",
+      "reason": "Confirms clock choice debt remains active."
+    },
+    {
+      "name": "classical_target_candidate_only_gate",
+      "status": "pass",
+      "reason": "Confirms the classical target is marked as candidate only."
+    },
+    {
+      "name": "unit_convention_debt_gate",
+      "status": "pass",
+      "reason": "Confirms unit convention debt remains active."
+    },
+    {
+      "name": "null_model_debt_gate",
+      "status": "pass",
+      "reason": "Confirms null model debt remains active."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness review status remains contested."
+    },
+    {
+      "name": "no_residual_computation_gate",
+      "status": "pass",
+      "reason": "Confirms that no actual numerical residual was computed."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    }
+  ],
+  "promotion_gate": {
+    "name": "full_bmc_toy_gate",
+    "status": "blocked",
+    "reason": "Sprint 6 defines residual specifications only. No residual recovery is computed."
+  },
+  "ebp_debt": {
+    "needMap": "active",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "active",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "active",
+    "classical_target_debt": "active",
+    "unit_convention_debt": "active",
+    "sign_convention_debt": "active",
+    "normalization_debt": "active",
+    "containsFinalTruthClaim": "absent",
+    "LeanVerification": "planned",
+    "promotion_status": "planned_candidate_only"
+  },
+  "warnings": [
+    "Sprint 6 is a specification sprint only.",
+    "No Friedmann residual was computed.",
+    "No Friedmann recovery is claimed.",
+    "Local branch readiness is not Friedmann recovery readiness.",
+    "Full BMC remains blocked."
+  ]
+}
