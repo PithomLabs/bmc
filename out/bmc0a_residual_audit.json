@@ -1,0 +1,327 @@
+{
+  "schema_version": "bmc0a-residual-audit-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "artifact_kind": "residual_null_comparison_audit",
+  "scope": "bmc0a_only",
+  "residual_audit_computed": true,
+  "recovery_claim": false,
+  "scientific_novelty_claim_made": false,
+  "bmc_beats_null_models_claim": false,
+  "full_bmc_toy_gate": "blocked",
+  "local_branch_only": true,
+  "global_cosmology_claim": false,
+  "source_artifacts": [
+    {
+      "artifact_id": "bmc0a_clock_readiness",
+      "artifact_kind": "clock_readiness_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_clock_readiness.json",
+      "status": "available",
+      "notes": "Successfully read source artifact."
+    },
+    {
+      "artifact_id": "bmc0a_nullrun",
+      "artifact_kind": "nullrun_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_nullrun.json",
+      "status": "available",
+      "notes": "Successfully read source artifact."
+    },
+    {
+      "artifact_id": "bmc0a_local_residual",
+      "artifact_kind": "local_residual_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_local_residual.json",
+      "status": "available",
+      "notes": "Successfully read source artifact."
+    },
+    {
+      "artifact_id": "bmc0a_friedmann_spec",
+      "artifact_kind": "friedmann_spec_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_friedmann_spec.json",
+      "status": "available",
+      "notes": "Successfully read source artifact."
+    },
+    {
+      "artifact_id": "bmc0a_prior_art_boundary",
+      "artifact_kind": "prior_art_boundary_report",
+      "provenance": "file_read",
+      "path": "/home/chaschel/Documents/go/bmc/out/bmc0a_prior_art_boundary.json",
+      "status": "available",
+      "notes": "Successfully read source artifact."
+    }
+  ],
+  "comparison_audits": [
+    {
+      "audit_id": "audit_bmc0a_residual_vs_null_v0_1",
+      "source_comparison_id": "bmc0a-residual-vs-null-v0.1",
+      "audit_computed": true,
+      "audit_status": "comparison_audited",
+      "audit_provenance": "derived_from_file_read",
+      "target_residual_ids": [
+        "candidate_residual_branch_0"
+      ],
+      "null_model_ids": [
+        "constant_phase_control"
+      ],
+      "metrics_audited": [
+        "mean_abs_residual",
+        "max_abs_residual"
+      ],
+      "findings": [
+        "Comparison targets computed residual diagnostics and generated null diagnostics."
+      ],
+      "interpretation_status": "comparison_integrity_structurally_honest",
+      "notes": "Comparison audit checks structure only and remains unpromoted."
+    }
+  ],
+  "stability_audits": [
+    {
+      "stability_id": "stability_branch_0_mean_abs_residual_alpha_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "alpha_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "mean_abs_residual",
+      "baseline_value": 1.9423824383277974,
+      "perturbed_value": 1.9423824515942545,
+      "absolute_delta": 1.3266457044025515e-8,
+      "relative_delta": 6.829992272503578e-9,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_mean_abs_residual_phi_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "phi_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "mean_abs_residual",
+      "baseline_value": 1.9423824383277974,
+      "perturbed_value": 1.9423824383261532,
+      "absolute_delta": 1.6442402994698568e-12,
+      "relative_delta": 8.465069839106391e-13,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_mean_abs_residual_lambda_spacing_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "lambda_spacing_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "mean_abs_residual",
+      "baseline_value": 1.9423824383277974,
+      "perturbed_value": 1.9423785535687457,
+      "absolute_delta": 0.000003884759051775433,
+      "relative_delta": 0.000001999997001167202,
+      "stability_status": "sensitive_to_small_perturbation",
+      "notes": "Lambda-spacing perturbation is an interval-level proxy rescaling under the fixed Sprint 11.1 schema; it is not a full lambda_start/lambda_end trajectory recomputation."
+    },
+    {
+      "stability_id": "stability_branch_0_mean_abs_residual_branch_subset_resampling",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "branch_subset_resampling",
+      "perturbation_magnitude": 0,
+      "baseline_metric": "mean_abs_residual",
+      "baseline_value": 1.9423824383277974,
+      "perturbed_value": 1.968627772929086,
+      "absolute_delta": 0.026245334601288528,
+      "relative_delta": 0.013511929516765612,
+      "stability_status": "sensitive_to_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_max_abs_residual_alpha_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "alpha_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "max_abs_residual",
+      "baseline_value": 14.161142192549551,
+      "perturbed_value": 14.161142192549551,
+      "absolute_delta": 0,
+      "relative_delta": 0,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_max_abs_residual_phi_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "phi_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "max_abs_residual",
+      "baseline_value": 14.161142192549551,
+      "perturbed_value": 14.161142192549551,
+      "absolute_delta": 0,
+      "relative_delta": 0,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_max_abs_residual_lambda_spacing_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "lambda_spacing_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "max_abs_residual",
+      "baseline_value": 14.161142192549551,
+      "perturbed_value": 14.161113870307652,
+      "absolute_delta": 0.000028322241899303435,
+      "relative_delta": 0.000001999996999832705,
+      "stability_status": "sensitive_to_small_perturbation",
+      "notes": "Lambda-spacing perturbation is an interval-level proxy rescaling under the fixed Sprint 11.1 schema; it is not a full lambda_start/lambda_end trajectory recomputation."
+    },
+    {
+      "stability_id": "stability_branch_0_max_abs_residual_branch_subset_resampling",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "branch_subset_resampling",
+      "perturbation_magnitude": 0,
+      "baseline_metric": "max_abs_residual",
+      "baseline_value": 14.161142192549551,
+      "perturbed_value": 14.161142192549551,
+      "absolute_delta": 0,
+      "relative_delta": 0,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_rms_residual_alpha_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "alpha_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "rms_residual",
+      "baseline_value": 2.7603683828436147,
+      "perturbed_value": 2.760368391386999,
+      "absolute_delta": 8.543384222292616e-9,
+      "relative_delta": 3.095015967938157e-9,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_rms_residual_phi_point_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "phi_point_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "rms_residual",
+      "baseline_value": 2.7603683828436147,
+      "perturbed_value": 2.7603683828425565,
+      "absolute_delta": 1.0582645870726992e-12,
+      "relative_delta": 3.833780279654268e-13,
+      "stability_status": "stable_under_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    },
+    {
+      "stability_id": "stability_branch_0_rms_residual_lambda_spacing_perturbation",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "lambda_spacing_perturbation",
+      "perturbation_magnitude": 0.000001,
+      "baseline_metric": "rms_residual",
+      "baseline_value": 2.7603683828436147,
+      "perturbed_value": 2.7603628621151306,
+      "absolute_delta": 0.000005520728484142978,
+      "relative_delta": 0.000001999996999840926,
+      "stability_status": "sensitive_to_small_perturbation",
+      "notes": "Lambda-spacing perturbation is an interval-level proxy rescaling under the fixed Sprint 11.1 schema; it is not a full lambda_start/lambda_end trajectory recomputation."
+    },
+    {
+      "stability_id": "stability_branch_0_rms_residual_branch_subset_resampling",
+      "branch_id": "branch_0",
+      "stability_computed": true,
+      "perturbation_kind": "branch_subset_resampling",
+      "perturbation_magnitude": 0,
+      "baseline_metric": "rms_residual",
+      "baseline_value": 2.7603683828436147,
+      "perturbed_value": 2.877383052692472,
+      "absolute_delta": 0.11701466984885744,
+      "relative_delta": 0.04239096150214338,
+      "stability_status": "sensitive_to_small_perturbation",
+      "notes": "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+    }
+  ],
+  "gates": [
+    {
+      "name": "toy_analysis_only_gate",
+      "status": "pass",
+      "reason": "Confirms Sprint 11 is toy-analysis only."
+    },
+    {
+      "name": "no_final_truth_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no final truth claim is made."
+    },
+    {
+      "name": "residual_audit_scope_gate",
+      "status": "pass",
+      "reason": "Confirms only residual/null comparison audit scope."
+    },
+    {
+      "name": "comparison_integrity_gate",
+      "status": "pass",
+      "reason": "Confirms comparison integrity is audited structurally."
+    },
+    {
+      "name": "stability_audit_gate",
+      "status": "pass",
+      "reason": "Confirms deterministic stability audit is reported or blocked."
+    },
+    {
+      "name": "no_recovery_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no recovery claim is made."
+    },
+    {
+      "name": "no_scientific_novelty_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no scientific novelty claim is made."
+    },
+    {
+      "name": "no_bmc_beats_null_models_claim_gate",
+      "status": "pass",
+      "reason": "Confirms no superiority claim is made."
+    },
+    {
+      "name": "full_bmc_blocked_gate",
+      "status": "pass",
+      "reason": "Confirms the full BMC promotion gate is blocked."
+    },
+    {
+      "name": "faithfulness_contested_gate",
+      "status": "pass",
+      "reason": "Confirms faithfulness remains contested."
+    }
+  ],
+  "ebp_debt_vocabulary": "ptw_adversarial_review_debt_status_v0.1",
+  "ebp_debt": {
+    "needLiteratureAudit": "partial",
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "partial",
+    "needNullModel": "partial",
+    "needObstruction": "partial",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "unpaid",
+    "classical_target_debt": "unpaid",
+    "unit_convention_debt": "unpaid",
+    "sign_convention_debt": "unpaid",
+    "normalization_debt": "unpaid",
+    "containsFinalTruthClaim": "absent",
+    "promotion_status": "residual_audit_candidate_only"
+  },
+  "interpretation_status": "comparison_stability_mixed",
+  "warnings": [
+    "Sprint 11 audits residual/null comparison integrity only.",
+    "No recovery claim is made.",
+    "No BMC-beats-null-models claim is made.",
+    "Full BMC remains blocked.",
+    "Convention debts remain unpaid or contested."
+  ]
+}

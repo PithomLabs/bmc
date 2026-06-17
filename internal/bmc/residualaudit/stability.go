@@ -102,6 +102,10 @@ func computeStabilityAudit(diag residualrun.CandidateResidualDiagnostic, kind st
 			status = StabilitySensitive
 		}
 	}
+	notes := "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records."
+	if kind == PerturbLambdaSpacing {
+		notes = "Lambda-spacing perturbation is an interval-level proxy rescaling under the fixed Sprint 11.1 schema; it is not a full lambda_start/lambda_end trajectory recomputation."
+	}
 	return ResidualStabilityAudit{
 		StabilityID:           id,
 		BranchID:              diag.BranchID,
@@ -114,7 +118,7 @@ func computeStabilityAudit(diag residualrun.CandidateResidualDiagnostic, kind st
 		AbsoluteDelta:         &absDelta,
 		RelativeDelta:         relDelta,
 		StabilityStatus:       status,
-		Notes:                 "Deterministic candidate-only interval proxy stability diagnostic recomputed from copied residual input records.",
+		Notes:                 notes,
 	}
 }
 
