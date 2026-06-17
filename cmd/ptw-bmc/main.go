@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/PithomLabs/bmc/internal/bmc/audit"
+	"github.com/PithomLabs/bmc/internal/bmc/clockdiag"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
@@ -27,6 +28,8 @@ func main() {
 		summarizeCmd()
 	case "audit":
 		auditCmd()
+	case "diagnose-clock":
+		diagnoseClockCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -41,6 +44,7 @@ func printUsage() {
 	fmt.Println("  validate   Validate a generated JSON report schema and constraints")
 	fmt.Println("  summarize  Print a human-readable summary of the report")
 	fmt.Println("  audit      Run a numerical robustness and convergence audit")
+	fmt.Println("  diagnose-clock Run a clock-monotonicity fragility investigation and diagnostic")
 }
 
 func runCmd() {
@@ -145,6 +149,24 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-clock-fragility-v0.1" {
+		rep, err := clockdiag.ReadClockFragilityReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading clock fragility report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		errors := clockdiag.ValidateClockFragilityReport(rep)
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Clock Fragility Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Clock Fragility Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -201,6 +223,16 @@ func summarizeCmd() {
 			os.Exit(1)
 		}
 		audit.SummarizeRobustnessReport(rep)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-clock-fragility-v0.1" {
+		rep, err := clockdiag.ReadClockFragilityReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading clock fragility report: %v\n", err)
+			os.Exit(1)
+		}
+		clockdiag.SummarizeClockFragilityReport(rep)
 		return
 	}
 
@@ -314,6 +346,48 @@ func auditCmd() {
 	}
 
 	fmt.Printf("Successfully ran audit profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
+}
+
+func diagnoseClockCmd() {
+	diagFlags := flag.NewFlagSet("diagnose-clock", flag.ExitOnError)
+	profileOpt := diagFlags.String("profile", "bmc0a-clock-fragility", "Diagnostic profile to run (bmc0a-clock-fragility)")
+	outOpt := diagFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		diagFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := diagFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		diagFlags.Usage()
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-clock-fragility" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-clock-fragility')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	safeParams := model.DefaultSuperpositionSafeParams()
+
+	rep, err := clockdiag.GenerateClockFragilityReport(safeParams)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error generating clock fragility report: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := clockdiag.WriteJSON(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing report to %s: %v\n", *outOpt, err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran clock fragility diagnostic profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }
 
 func readReport(path string) (*report.Report, error) {

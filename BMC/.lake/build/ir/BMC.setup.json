@@ -9,5 +9,7 @@
   "BMC.Robustness":
   ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Robustness.olean"],
   "BMC.Promotion":
-  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean"]},
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/Promotion.olean"],
+  "BMC.ClockFragility":
+  ["/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ClockFragility.olean"]},
  "dynlibs": []}

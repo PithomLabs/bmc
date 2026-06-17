@@ -1,0 +1,33 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["c9fae2f301fd1984.olean"],
+  "m": false,
+  "i": "6d8349f14cf9e26d.ilean",
+  "c": "31bd73a9353b75d1.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean /home/chaschel/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/chaschel/Documents/go/bmc/BMC/BMC/ClockFragility.lean -o /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ClockFragility.olean -i /home/chaschel/Documents/go/bmc/BMC/.lake/build/lib/lean/BMC/ClockFragility.ilean -c /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/ClockFragility.c --setup /home/chaschel/Documents/go/bmc/BMC/.lake/build/ir/BMC/ClockFragility.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["BMC.ClockFragility:deps",
+   [["deps",
+     [["bmc/BMC:extraDep", [["@bmc:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["BMC.ToyReport transitive imports (legacy)", "00000000000006bb"],
+        ["BMC.ToyReport:importAllArts", "6b4a9946a2bb0af5"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
+   "fc45ac412f28501c"],
+  ["/home/chaschel/Documents/go/bmc/BMC/BMC/ClockFragility.lean",
+   "0680d27353ca8758"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: BMC.ClockFragility", "1287d3dcc24f8248"],
+  ["Package.id?: (some bmc)", "7e0655f117fcc781"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "e1ab31e4e956b952"}
