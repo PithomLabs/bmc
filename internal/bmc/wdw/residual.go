@@ -9,6 +9,20 @@ import (
 	"github.com/PithomLabs/bmc/internal/bmc/wave"
 )
 
+const (
+	WDWNumericalResidualStep      = 1e-4
+	WDWNumericalResidualTolerance = 1e-6
+
+	NumericalResidualPass              = "numerical_residual_pass"
+	NumericalResidualViolationDetected = "numerical_residual_violation_detected"
+	NumericalResidualNotComputed       = "numerical_residual_not_computed"
+	NumericalResidualError             = "numerical_residual_error"
+
+	NumericalAuthorityDiagnostic = "diagnostic_authority"
+	NumericalAuthorityOracleOnly = "oracle_control_only"
+	NumericalAuthorityNone       = "not_authoritative"
+)
+
 // AnalyticResidualPlaneWave returns the exact analytic WdW residual for a plane wave: k² - ω².
 // For Sprint 1, this is the primary pass/fail authority.
 func AnalyticResidualPlaneWave(k, omega float64) float64 {

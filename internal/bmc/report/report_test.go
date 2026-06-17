@@ -2,11 +2,13 @@ package report_test
 
 import (
 	"encoding/json"
+	"math"
 	"os"
 	"testing"
 
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
+	"github.com/PithomLabs/bmc/internal/bmc/wdw"
 )
 
 func TestReportDeterministicJSON(t *testing.T) {
@@ -202,4 +204,151 @@ func TestPromotionGateBlocksConstraintViolation(t *testing.T) {
 		t.Errorf("Expected promotion gate to remain blocked, got %s", rep.PromotionGate.Status)
 	}
 }
+
+func TestReportNumericalWDWResidualAcceptsConstraintShellPlaneWave(t *testing.T) {
+	// Valid plane wave: k² = ω² = 4.0
+	params := model.DefaultPlaneWaveParams()
+	params.K = 2.0
+	params.Omega = 2.0
+
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error generating report: %v", err)
+	}
+
+	wdwCheck := rep.Checks["wdw_residual"]
+	if wdwCheck.Status != model.StatusPass || !wdwCheck.Pass {
+		t.Errorf("Expected WdW residual check to pass, got Status=%s, Pass=%t", wdwCheck.Status, wdwCheck.Pass)
+	}
+
+	if wdwCheck.NumericalResidualStatus == nil || *wdwCheck.NumericalResidualStatus != wdw.NumericalResidualPass {
+		t.Errorf("Expected numerical residual status to be '%s', got %v", wdw.NumericalResidualPass, wdwCheck.NumericalResidualStatus)
+	}
+
+	if wdwCheck.NumericalResidualAuthority == nil || *wdwCheck.NumericalResidualAuthority != wdw.NumericalAuthorityDiagnostic {
+		t.Errorf("Expected authority to be '%s', got %v", wdw.NumericalAuthorityDiagnostic, wdwCheck.NumericalResidualAuthority)
+	}
+
+	if wdwCheck.NumericalResidualMagnitude == nil || *wdwCheck.NumericalResidualMagnitude > wdw.WDWNumericalResidualTolerance {
+		t.Errorf("Expected numerical residual magnitude to satisfy tolerance, got %v", wdwCheck.NumericalResidualMagnitude)
+	}
+
+	errors := report.Validate(rep)
+	for _, valErr := range errors {
+		if valErr.Severity == report.ValidationFail {
+			t.Errorf("Unexpected validation error: %s", valErr.Message)
+		}
+	}
+}
+
+func TestReportNumericalWDWResidualBlocksWrongPlaneWaveConstraint(t *testing.T) {
+	// Violated plane wave: k² = 4.0, ω² = 9.0 (k² != ω²)
+	params := model.DefaultPlaneWaveParams()
+	params.K = 2.0
+	params.Omega = 3.0
+	params.Tolerance = 10.0 // Allow parameter validation to pass
+
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error generating report: %v", err)
+	}
+
+	wdwCheck := rep.Checks["wdw_residual"]
+	if wdwCheck.Status != model.StatusFail || wdwCheck.Pass {
+		t.Errorf("Expected WdW residual check to fail, got Status=%s, Pass=%t", wdwCheck.Status, wdwCheck.Pass)
+	}
+
+	if wdwCheck.NumericalResidualStatus == nil || *wdwCheck.NumericalResidualStatus != wdw.NumericalResidualViolationDetected {
+		t.Errorf("Expected numerical residual status to be '%s', got %v", wdw.NumericalResidualViolationDetected, wdwCheck.NumericalResidualStatus)
+	}
+
+	if wdwCheck.NumericalResidualMagnitude == nil || *wdwCheck.NumericalResidualMagnitude <= wdw.WDWNumericalResidualTolerance {
+		t.Errorf("Expected numerical residual magnitude to exceed tolerance, got %v", wdwCheck.NumericalResidualMagnitude)
+	}
+
+	if rep.TechnicalGate.Status != model.StatusFail {
+		t.Errorf("Expected Technical Gate status to be 'fail', got '%s'", rep.TechnicalGate.Status)
+	}
+
+	// Structural validation should pass since report.Generate consistently sets TechnicalGate.Status to fail
+	errors := report.Validate(rep)
+	for _, valErr := range errors {
+		if valErr.Severity == report.ValidationFail {
+			t.Errorf("Unexpected validation failure: %s", valErr.Message)
+		}
+	}
+}
+
+func TestReportValidationRejectsNumericalResidualViolationClaimedAsPass(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error generating report: %v", err)
+	}
+
+	// Mutate report: claim pass while numerical residual violation status is present
+	wdwCheck := rep.Checks["wdw_residual"]
+	wdwCheck.Status = model.StatusPass
+	wdwCheck.Pass = true
+	numStatus := wdw.NumericalResidualViolationDetected
+	wdwCheck.NumericalResidualStatus = &numStatus
+	rep.Checks["wdw_residual"] = wdwCheck
+
+	errors := report.Validate(rep)
+	foundMismatch := false
+	for _, valErr := range errors {
+		if valErr.Field == "checks.wdw_residual" {
+			foundMismatch = true
+		}
+	}
+
+	if !foundMismatch {
+		t.Error("Expected report validation to reject report when pass is claimed with a numerical residual violation detected")
+	}
+}
+
+func TestPromotionGateBlocksNumericalWDWViolation(t *testing.T) {
+	// Wrong plane wave parameters
+	params := model.DefaultPlaneWaveParams()
+	params.K = 2.0
+	params.Omega = 5.0
+	params.Tolerance = 30.0 // Allow parameter validation to pass
+
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error generating report: %v", err)
+	}
+
+	if rep.Checks["wdw_residual"].Status != model.StatusFail {
+		t.Errorf("Expected failed status, got %s", rep.Checks["wdw_residual"].Status)
+	}
+
+	if rep.PromotionGate.Status != report.StatusBlocked {
+		t.Errorf("Expected promotion gate to remain blocked, got %s", rep.PromotionGate.Status)
+	}
+}
+
+func TestAnalyticResidualRemainsOracleControlOnly(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+	params.K = 2.0
+	params.Omega = 3.0 // k² - ω² = -5.0
+	params.Tolerance = 10.0 // Allow parameter validation to pass
+
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+
+	wdwCheck := rep.Checks["wdw_residual"]
+	if wdwCheck.AnalyticResidualMagnitude == nil || math.Abs(*wdwCheck.AnalyticResidualMagnitude-5.0) > 1e-9 {
+		t.Errorf("Expected analytic residual magnitude to be oracle control of 5.0, got %v", wdwCheck.AnalyticResidualMagnitude)
+	}
+
+	// Ensure numerical residual acts as diagnostic authority
+	if wdwCheck.NumericalResidualAuthority == nil || *wdwCheck.NumericalResidualAuthority != wdw.NumericalAuthorityDiagnostic {
+		t.Errorf("Expected numerical authority to be diagnostic authority, got %v", wdwCheck.NumericalResidualAuthority)
+	}
+}
+
+
 

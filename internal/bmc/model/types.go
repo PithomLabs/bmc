@@ -32,14 +32,19 @@ const (
 
 // CheckResult represents the outcome of a particular check or validation.
 type CheckResult struct {
-	Status         CheckStatus `json:"status"`
-	Pass           bool        `json:"pass"`
-	Reason         string      `json:"reason,omitempty"`
-	MaxAbsResidual *float64    `json:"max_abs_residual,omitempty"`
-	MaxAbsQ        *float64    `json:"max_abs_q,omitempty"`
-	Finite         *bool       `json:"finite,omitempty"`
-	PointsCount    *int        `json:"points,omitempty"`
-	Variable       *string     `json:"variable,omitempty"`
+	Status                     CheckStatus `json:"status"`
+	Pass                       bool        `json:"pass"`
+	Reason                     string      `json:"reason,omitempty"`
+	MaxAbsResidual             *float64    `json:"max_abs_residual,omitempty"`
+	MaxAbsQ                    *float64    `json:"max_abs_q,omitempty"`
+	Finite                     *bool       `json:"finite,omitempty"`
+	PointsCount                *int        `json:"points,omitempty"`
+	Variable                   *string     `json:"variable,omitempty"`
+	AnalyticResidualMagnitude  *float64    `json:"analytic_residual_magnitude,omitempty"`
+	NumericalResidualMagnitude *float64    `json:"numerical_residual_magnitude,omitempty"`
+	NumericalResidualTolerance *float64    `json:"numerical_residual_tolerance,omitempty"`
+	NumericalResidualStatus    *string     `json:"numerical_residual_status,omitempty"`
+	NumericalResidualAuthority *string     `json:"numerical_residual_authority,omitempty"`
 }
 
 // ObstructionSeverity defines how critical an obstruction is.

@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/PithomLabs/bmc/internal/bmc/model"
+	"github.com/PithomLabs/bmc/internal/bmc/wdw"
 )
 
 type ValidationSeverity string
@@ -82,6 +83,45 @@ func Validate(r *Report) []ValidationError {
 				Message:  fmt.Sprintf("inconsistent check status: status is '%s' but pass boolean is true", check.Status),
 				Severity: ValidationFail,
 			})
+		}
+
+		// Validation checks for Numerical Residual fields (EBP 2.1 failure-detection constraints)
+		if check.NumericalResidualStatus != nil {
+			statusVal := *check.NumericalResidualStatus
+			// Reject unknown status values
+			if statusVal != wdw.NumericalResidualPass &&
+				statusVal != wdw.NumericalResidualViolationDetected &&
+				statusVal != wdw.NumericalResidualNotComputed &&
+				statusVal != wdw.NumericalResidualError {
+				errors = append(errors, ValidationError{
+					Field:    fmt.Sprintf("checks.%s.numerical_residual_status", checkName),
+					Message:  fmt.Sprintf("unknown numerical residual status: %s", statusVal),
+					Severity: ValidationFail,
+				})
+			}
+
+			// Reject reports that claim pass while numerical residual violation or error is present
+			if (statusVal == wdw.NumericalResidualViolationDetected || statusVal == wdw.NumericalResidualError) && check.Status == model.StatusPass {
+				errors = append(errors, ValidationError{
+					Field:    fmt.Sprintf("checks.%s", checkName),
+					Message:  fmt.Sprintf("check cannot pass when numerical residual status is '%s'", statusVal),
+					Severity: ValidationFail,
+				})
+			}
+		}
+
+		if check.NumericalResidualAuthority != nil {
+			authVal := *check.NumericalResidualAuthority
+			// Reject unknown authority values
+			if authVal != wdw.NumericalAuthorityDiagnostic &&
+				authVal != wdw.NumericalAuthorityOracleOnly &&
+				authVal != wdw.NumericalAuthorityNone {
+				errors = append(errors, ValidationError{
+					Field:    fmt.Sprintf("checks.%s.numerical_residual_authority", checkName),
+					Message:  fmt.Sprintf("unknown numerical residual authority: %s", authVal),
+					Severity: ValidationFail,
+				})
+			}
 		}
 	}
 

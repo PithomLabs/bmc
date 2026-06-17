@@ -3,6 +3,7 @@ package report
 import (
 	"fmt"
 	"math"
+	"math/cmplx"
 
 	"github.com/PithomLabs/bmc/internal/bmc/guidance"
 	"github.com/PithomLabs/bmc/internal/bmc/invariant"
@@ -83,9 +84,61 @@ func Generate(params model.PlaneWaveParams, finalTruthClaim bool) (*Report, erro
 	// 1. Initialize Wavefunction
 	planeWave := wave.NewPlaneWave(params.K, params.Omega)
 
-	// 2. Wheeler-DeWitt residual check (Analytic residual is primary authority)
+	// 2. Wheeler-DeWitt residual check (Analytic residual is oracle/control, numerical residual is primary authority)
 	analyticRes := wdw.AnalyticResidualPlaneWave(params.K, params.Omega)
-	wdwCheck := wdw.CheckResidual(analyticRes, params.Tolerance)
+
+	var numStatus string
+	var wdwPass bool
+	var wdwStatus model.CheckStatus
+	var reason string
+
+	analyticResVal := math.Abs(analyticRes)
+
+	numRes, err := wdw.NumericalResidualAt(planeWave.Psi, params.Alpha0, params.Phi0, wdw.WDWNumericalResidualStep)
+	var numResVal float64
+	numAuth := wdw.NumericalAuthorityDiagnostic
+
+	if err != nil {
+		numStatus = wdw.NumericalResidualError
+		wdwPass = false
+		wdwStatus = model.StatusFail
+		reason = fmt.Sprintf("Wheeler-DeWitt numerical evaluation error: %v", err)
+	} else {
+		numResVal = cmplx.Abs(numRes)
+		diff := math.Abs(analyticResVal - numResVal)
+		disagrees := diff > 1e-4 // threshold of 1e-4 allows safe finite-difference approximation tolerance
+		numPass := numResVal <= wdw.WDWNumericalResidualTolerance
+
+		if disagrees {
+			// Disagreement! Analytic and numerical computed values are different beyond numerical tolerance. Mark error.
+			numStatus = wdw.NumericalResidualError
+			wdwPass = false
+			wdwStatus = model.StatusFail
+			reason = fmt.Sprintf("Analytic and numerical residuals disagree beyond tolerance: analytic=%e, numerical=%e", analyticResVal, numResVal)
+		} else if numPass {
+			numStatus = wdw.NumericalResidualPass
+			wdwPass = true
+			wdwStatus = model.StatusPass
+			reason = fmt.Sprintf("Numerical Wheeler-DeWitt residual %e satisfies tolerance %e (analytic oracle: %e).", numResVal, wdw.WDWNumericalResidualTolerance, analyticResVal)
+		} else {
+			numStatus = wdw.NumericalResidualViolationDetected
+			wdwPass = false
+			wdwStatus = model.StatusFail
+			reason = fmt.Sprintf("Wheeler-DeWitt constraint violated: numerical residual %e exceeds tolerance %e.", numResVal, wdw.WDWNumericalResidualTolerance)
+		}
+	}
+
+	wdwCheck := model.CheckResult{
+		Status:                     wdwStatus,
+		Pass:                       wdwPass,
+		Reason:                     reason,
+		MaxAbsResidual:             &numResVal, // Numerical is the diagnostic authority
+		AnalyticResidualMagnitude:  &analyticResVal,
+		NumericalResidualMagnitude: &numResVal,
+		NumericalResidualTolerance: float64Ptr(wdw.WDWNumericalResidualTolerance),
+		NumericalResidualStatus:    &numStatus,
+		NumericalResidualAuthority: &numAuth,
+	}
 
 	// 3. Integrate Trajectory
 	stepper := guidance.NewEulerStepper()
@@ -258,17 +311,24 @@ func GenerateSuperposition(params model.SuperpositionParams, finalTruthClaim boo
 	}
 
 	var wdwStatus model.CheckStatus = model.StatusPass
-	var wdwReason string = "All component residuals satisfy tolerance; therefore by linearity the analytic superposition residual is zero."
+	var wdwReason string = "All component residuals satisfy tolerance; therefore by linearity the analytic superposition residual is zero. BMC-POST-0002 integrates numerical WdW residual authority for plane-wave report path only. Superposition numerical residual sampling remains follow-up remediation."
 	if !allCompPass {
 		wdwStatus = model.StatusFail
-		wdwReason = "Component Wheeler-DeWitt constraint violated; superposition residual is non-zero."
+		wdwReason = "Component Wheeler-DeWitt constraint violated; superposition residual is non-zero. BMC-POST-0002 integrates numerical WdW residual authority for plane-wave report path only. Superposition numerical residual sampling remains follow-up remediation."
 	}
 	analyticResVal := 0.0
+	numStatus := wdw.NumericalResidualNotComputed
+	numAuth := wdw.NumericalAuthorityNone
 	wdwCheck := model.CheckResult{
-		Status:         wdwStatus,
-		Pass:           allCompPass,
-		Reason:         wdwReason,
-		MaxAbsResidual: &analyticResVal,
+		Status:                     wdwStatus,
+		Pass:                       allCompPass,
+		Reason:                     wdwReason,
+		MaxAbsResidual:             &analyticResVal,
+		AnalyticResidualMagnitude:  &analyticResVal,
+		NumericalResidualMagnitude: nil,
+		NumericalResidualTolerance: float64Ptr(wdw.WDWNumericalResidualTolerance),
+		NumericalResidualStatus:    &numStatus,
+		NumericalResidualAuthority: &numAuth,
 	}
 
 	// EBP Initial Node Short-Circuit
@@ -588,3 +648,8 @@ func GenerateSuperposition(params model.SuperpositionParams, finalTruthClaim boo
 
 	return report, nil
 }
+
+func float64Ptr(v float64) *float64 {
+	return &v
+}
+
