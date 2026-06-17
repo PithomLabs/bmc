@@ -8,6 +8,7 @@ import (
 
 	"github.com/PithomLabs/bmc/internal/bmc/audit"
 	"github.com/PithomLabs/bmc/internal/bmc/clockdiag"
+	"github.com/PithomLabs/bmc/internal/bmc/clockseg"
 	"github.com/PithomLabs/bmc/internal/bmc/model"
 	"github.com/PithomLabs/bmc/internal/bmc/report"
 )
@@ -30,6 +31,8 @@ func main() {
 		auditCmd()
 	case "diagnose-clock":
 		diagnoseClockCmd()
+	case "segment-clock":
+		segmentClockCmd()
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Unknown subcommand '%s'\n", subcommand)
 		printUsage()
@@ -45,6 +48,7 @@ func printUsage() {
 	fmt.Println("  summarize  Print a human-readable summary of the report")
 	fmt.Println("  audit      Run a numerical robustness and convergence audit")
 	fmt.Println("  diagnose-clock Run a clock-monotonicity fragility investigation and diagnostic")
+	fmt.Println("  segment-clock Run local clock segmentation and clock-independent readiness diagnostics")
 }
 
 func runCmd() {
@@ -167,6 +171,24 @@ func validateCmd() {
 		return
 	}
 
+	if helper.SchemaVersion == "bmc0a-clock-readiness-v0.1" {
+		rep, err := clockseg.ReadClockReadinessReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading clock readiness report (strict decoding): %v\n", err)
+			os.Exit(1)
+		}
+		errors := clockseg.ValidateClockReadinessReport(rep)
+		if len(errors) > 0 {
+			fmt.Fprintln(os.Stderr, "Clock Readiness Report Validation FAILED:")
+			for _, valErr := range errors {
+				fmt.Fprintf(os.Stderr, "  - [%s] Field '%s': %s\n", valErr.Severity, valErr.Field, valErr.Message)
+			}
+			os.Exit(1)
+		}
+		fmt.Println("Clock Readiness Report Validation PASSED: Schema and EBP 2.1 promotion constraints satisfied.")
+		return
+	}
+
 	rep, err := readReport(*reportOpt)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading report: %v\n", err)
@@ -233,6 +255,16 @@ func summarizeCmd() {
 			os.Exit(1)
 		}
 		clockdiag.SummarizeClockFragilityReport(rep)
+		return
+	}
+
+	if helper.SchemaVersion == "bmc0a-clock-readiness-v0.1" {
+		rep, err := clockseg.ReadClockReadinessReport(*reportOpt)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading clock readiness report: %v\n", err)
+			os.Exit(1)
+		}
+		clockseg.SummarizeClockReadinessReport(rep)
 		return
 	}
 
@@ -402,4 +434,45 @@ func readReport(path string) (*report.Report, error) {
 	}
 
 	return &rep, nil
+}
+
+func segmentClockCmd() {
+	segFlags := flag.NewFlagSet("segment-clock", flag.ExitOnError)
+	profileOpt := segFlags.String("profile", "bmc0a-clock-readiness", "Profile to segment (bmc0a-clock-readiness)")
+	outOpt := segFlags.String("out", "", "Output path for the generated JSON report (required)")
+
+	if len(os.Args) < 3 {
+		segFlags.Usage()
+		os.Exit(1)
+	}
+
+	if err := segFlags.Parse(os.Args[2:]); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *outOpt == "" {
+		fmt.Fprintln(os.Stderr, "Error: --out is required")
+		segFlags.Usage()
+		os.Exit(1)
+	}
+
+	if *profileOpt != "bmc0a-clock-readiness" {
+		fmt.Fprintf(os.Stderr, "Error: profile '%s' is not supported (use 'bmc0a-clock-readiness')\n", *profileOpt)
+		os.Exit(1)
+	}
+
+	safeParams := model.DefaultSuperpositionSafeParams()
+	rep, err := clockseg.GenerateClockReadinessReport(safeParams)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error generating clock readiness report: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := clockseg.WriteJSON(rep, *outOpt); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing report to %s: %v\n", *outOpt, err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Successfully ran clock readiness profile '%s' and generated report: %s\n", *profileOpt, *outOpt)
 }

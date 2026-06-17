@@ -1,0 +1,1817 @@
+{
+  "schema_version": "bmc0a-clock-readiness-v0.1",
+  "toy_analysis_only": true,
+  "final_truth_claim": false,
+  "single_valuedness_epsilon": 1e-9,
+  "min_branch_samples": 3,
+  "readiness_scope": "All 12 step-refinement branch-audit runs are present, covering 4 fragile configurations across 3 step sizes.",
+  "null_models": [
+    "No new null models planned. Existing null-model debt remains partial/deferred."
+  ],
+  "friedmann_readiness": "local_only_candidate",
+  "source_artifacts": [
+    "Sprint 1: BMC-0A plane-wave control artifact",
+    "Sprint 2: BMC-0A two-plane-wave superposition control artifact",
+    "Sprint 2: BMC-0A node-obstruction detection artifact",
+    "Sprint 3: BMC-0A numerical robustness/convergence audit artifact",
+    "Sprint 4: BMC-0A clock-fragility diagnostic artifact"
+  ],
+  "clock_turning_points": null,
+  "clock_segments": [
+    {
+      "start_index": 0,
+      "end_index": 200,
+      "start_lambda": 0,
+      "end_lambda": 10,
+      "direction": -1
+    }
+  ],
+  "local_relation_branches": [
+    {
+      "segment": {
+        "start_index": 0,
+        "end_index": 200,
+        "start_lambda": 0,
+        "end_lambda": 10,
+        "direction": -1
+      },
+      "samples": 201,
+      "lambda_range": 10,
+      "clock_range": 4.1810838631599525,
+      "single_valued": true,
+      "max_abs_noise": 0,
+      "validation_passed": true,
+      "reason": "local relational branch satisfies all validation rules"
+    }
+  ],
+  "clock_independent_diagnostics": {
+    "path_length_in_configuration_space": 14.246828493971888,
+    "total_lambda_interval": 10,
+    "num_valid_trajectory_points": 201,
+    "num_clock_segments": 1,
+    "num_turning_points": 0,
+    "min_amplitude_r": 0.5015334881861239,
+    "max_abs_q_away_from_nodes": 7.89042982321384,
+    "max_phase_gradient": 3.972534239461488,
+    "node_contact_free": true,
+    "trajectory_finiteness": true
+  },
+  "step_refinement_branch_audit": [
+    {
+      "c2_real": 0.5,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.05,
+      "steps": 200,
+      "num_segments": 9,
+      "num_turning_points": 8,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 7,
+            "start_lambda": 0,
+            "end_lambda": 0.35000000000000003,
+            "direction": 1
+          },
+          "samples": 8,
+          "lambda_range": 0.35000000000000003,
+          "clock_range": 0.00831015808067498,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 7,
+            "end_index": 42,
+            "start_lambda": 0.35000000000000003,
+            "end_lambda": 2.1,
+            "direction": -1
+          },
+          "samples": 36,
+          "lambda_range": 1.75,
+          "clock_range": 0.9638937914465802,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 42,
+            "end_index": 57,
+            "start_lambda": 2.1,
+            "end_lambda": 2.85,
+            "direction": 1
+          },
+          "samples": 16,
+          "lambda_range": 0.75,
+          "clock_range": 0.016619664165864023,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 57,
+            "end_index": 92,
+            "start_lambda": 2.85,
+            "end_lambda": 4.6000000000000005,
+            "direction": -1
+          },
+          "samples": 36,
+          "lambda_range": 1.7500000000000004,
+          "clock_range": 0.9639366889286498,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 92,
+            "end_index": 107,
+            "start_lambda": 4.6000000000000005,
+            "end_lambda": 5.3500000000000005,
+            "direction": 1
+          },
+          "samples": 16,
+          "lambda_range": 0.75,
+          "clock_range": 0.016658837768101842,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 107,
+            "end_index": 142,
+            "start_lambda": 5.3500000000000005,
+            "end_lambda": 7.1000000000000005,
+            "direction": -1
+          },
+          "samples": 36,
+          "lambda_range": 1.75,
+          "clock_range": 0.9640132739403764,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 142,
+            "end_index": 157,
+            "start_lambda": 7.1000000000000005,
+            "end_lambda": 7.8500000000000005,
+            "direction": 1
+          },
+          "samples": 16,
+          "lambda_range": 0.75,
+          "clock_range": 0.016682095567325916,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 157,
+            "end_index": 192,
+            "start_lambda": 7.8500000000000005,
+            "end_lambda": 9.600000000000001,
+            "direction": -1
+          },
+          "samples": 36,
+          "lambda_range": 1.7500000000000009,
+          "clock_range": 0.9641014048567622,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 192,
+            "end_index": 200,
+            "start_lambda": 9.600000000000001,
+            "end_lambda": 10,
+            "direction": 1
+          },
+          "samples": 9,
+          "lambda_range": 0.3999999999999986,
+          "clock_range": 0.009201513058247901,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.5,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.025,
+      "steps": 400,
+      "num_segments": 9,
+      "num_turning_points": 8,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 15,
+            "start_lambda": 0,
+            "end_lambda": 0.375,
+            "direction": 1
+          },
+          "samples": 16,
+          "lambda_range": 0.375,
+          "clock_range": 0.008344449104617796,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 15,
+            "end_index": 85,
+            "start_lambda": 0.375,
+            "end_lambda": 2.125,
+            "direction": -1
+          },
+          "samples": 71,
+          "lambda_range": 1.75,
+          "clock_range": 0.9641479544457399,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 85,
+            "end_index": 115,
+            "start_lambda": 2.125,
+            "end_lambda": 2.875,
+            "direction": 1
+          },
+          "samples": 31,
+          "lambda_range": 0.75,
+          "clock_range": 0.016680064458464927,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 115,
+            "end_index": 185,
+            "start_lambda": 2.875,
+            "end_lambda": 4.625,
+            "direction": -1
+          },
+          "samples": 71,
+          "lambda_range": 1.75,
+          "clock_range": 0.9641310542154412,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 185,
+            "end_index": 214,
+            "start_lambda": 4.625,
+            "end_lambda": 5.3500000000000005,
+            "direction": 1
+          },
+          "samples": 30,
+          "lambda_range": 0.7250000000000005,
+          "clock_range": 0.016684240252349047,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 214,
+            "end_index": 284,
+            "start_lambda": 5.3500000000000005,
+            "end_lambda": 7.1000000000000005,
+            "direction": -1
+          },
+          "samples": 71,
+          "lambda_range": 1.75,
+          "clock_range": 0.9641374378984917,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 284,
+            "end_index": 314,
+            "start_lambda": 7.1000000000000005,
+            "end_lambda": 7.8500000000000005,
+            "direction": 1
+          },
+          "samples": 31,
+          "lambda_range": 0.75,
+          "clock_range": 0.01668387020164852,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 314,
+            "end_index": 384,
+            "start_lambda": 7.8500000000000005,
+            "end_lambda": 9.600000000000001,
+            "direction": -1
+          },
+          "samples": 71,
+          "lambda_range": 1.7500000000000009,
+          "clock_range": 0.9641499532859008,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 384,
+            "end_index": 400,
+            "start_lambda": 9.600000000000001,
+            "end_lambda": 10,
+            "direction": 1
+          },
+          "samples": 17,
+          "lambda_range": 0.3999999999999986,
+          "clock_range": 0.009232328428712133,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.5,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.0125,
+      "steps": 800,
+      "num_segments": 9,
+      "num_turning_points": 8,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 30,
+            "start_lambda": 0,
+            "end_lambda": 0.375,
+            "direction": 1
+          },
+          "samples": 31,
+          "lambda_range": 0.375,
+          "clock_range": 0.008344449094920405,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 30,
+            "end_index": 170,
+            "start_lambda": 0.375,
+            "end_lambda": 2.125,
+            "direction": -1
+          },
+          "samples": 141,
+          "lambda_range": 1.75,
+          "clock_range": 0.9641554263128647,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 170,
+            "end_index": 229,
+            "start_lambda": 2.125,
+            "end_lambda": 2.8625000000000003,
+            "direction": 1
+          },
+          "samples": 60,
+          "lambda_range": 0.7375000000000003,
+          "clock_range": 0.01669420872469085,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 229,
+            "end_index": 369,
+            "start_lambda": 2.8625000000000003,
+            "end_lambda": 4.6125,
+            "direction": -1
+          },
+          "samples": 141,
+          "lambda_range": 1.7499999999999996,
+          "clock_range": 0.9641563938843135,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 369,
+            "end_index": 429,
+            "start_lambda": 4.6125,
+            "end_lambda": 5.362500000000001,
+            "direction": 1
+          },
+          "samples": 61,
+          "lambda_range": 0.7500000000000009,
+          "clock_range": 0.016688756501911817,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 429,
+            "end_index": 569,
+            "start_lambda": 5.362500000000001,
+            "end_lambda": 7.112500000000001,
+            "direction": -1
+          },
+          "samples": 141,
+          "lambda_range": 1.75,
+          "clock_range": 0.9641541787441501,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 569,
+            "end_index": 628,
+            "start_lambda": 7.112500000000001,
+            "end_lambda": 7.8500000000000005,
+            "direction": 1
+          },
+          "samples": 60,
+          "lambda_range": 0.7374999999999998,
+          "clock_range": 0.016693931684426566,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 628,
+            "end_index": 768,
+            "start_lambda": 7.8500000000000005,
+            "end_lambda": 9.600000000000001,
+            "direction": -1
+          },
+          "samples": 141,
+          "lambda_range": 1.7500000000000009,
+          "clock_range": 0.9641570817528842,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 768,
+            "end_index": 800,
+            "start_lambda": 9.600000000000001,
+            "end_lambda": 10,
+            "direction": 1
+          },
+          "samples": 33,
+          "lambda_range": 0.3999999999999986,
+          "clock_range": 0.009234048850919052,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "step_size": 0.05,
+      "steps": 200,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 10,
+            "start_lambda": 0,
+            "end_lambda": 0.5,
+            "direction": 1
+          },
+          "samples": 11,
+          "lambda_range": 0.5,
+          "clock_range": 0.009342898465379905,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 10,
+            "end_index": 52,
+            "start_lambda": 0.5,
+            "end_lambda": 2.6,
+            "direction": -1
+          },
+          "samples": 43,
+          "lambda_range": 2.1,
+          "clock_range": 1.02653982190709,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 52,
+            "end_index": 71,
+            "start_lambda": 2.6,
+            "end_lambda": 3.5500000000000003,
+            "direction": 1
+          },
+          "samples": 20,
+          "lambda_range": 0.9500000000000002,
+          "clock_range": 0.01873769618459198,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 71,
+            "end_index": 114,
+            "start_lambda": 3.5500000000000003,
+            "end_lambda": 5.7,
+            "direction": -1
+          },
+          "samples": 44,
+          "lambda_range": 2.15,
+          "clock_range": 1.0266769990704792,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 114,
+            "end_index": 133,
+            "start_lambda": 5.7,
+            "end_lambda": 6.65,
+            "direction": 1
+          },
+          "samples": 20,
+          "lambda_range": 0.9500000000000002,
+          "clock_range": 0.018760683430274927,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 133,
+            "end_index": 176,
+            "start_lambda": 6.65,
+            "end_lambda": 8.8,
+            "direction": -1
+          },
+          "samples": 44,
+          "lambda_range": 2.1500000000000004,
+          "clock_range": 1.0268841432537,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 176,
+            "end_index": 195,
+            "start_lambda": 8.8,
+            "end_lambda": 9.75,
+            "direction": 1
+          },
+          "samples": 20,
+          "lambda_range": 0.9499999999999993,
+          "clock_range": 0.018744239486223613,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 195,
+            "end_index": 200,
+            "start_lambda": 9.75,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 6,
+          "lambda_range": 0.25,
+          "clock_range": 0.005774685485433917,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "step_size": 0.025,
+      "steps": 400,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 19,
+            "start_lambda": 0,
+            "end_lambda": 0.47500000000000003,
+            "direction": 1
+          },
+          "samples": 20,
+          "lambda_range": 0.47500000000000003,
+          "clock_range": 0.009380443004142595,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 19,
+            "end_index": 104,
+            "start_lambda": 0.47500000000000003,
+            "end_lambda": 2.6,
+            "direction": -1
+          },
+          "samples": 86,
+          "lambda_range": 2.125,
+          "clock_range": 1.0268236331504128,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 104,
+            "end_index": 143,
+            "start_lambda": 2.6,
+            "end_lambda": 3.575,
+            "direction": 1
+          },
+          "samples": 40,
+          "lambda_range": 0.9750000000000001,
+          "clock_range": 0.0187447747573819,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 143,
+            "end_index": 228,
+            "start_lambda": 3.575,
+            "end_lambda": 5.7,
+            "direction": -1
+          },
+          "samples": 86,
+          "lambda_range": 2.125,
+          "clock_range": 1.0268274976187803,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 228,
+            "end_index": 266,
+            "start_lambda": 5.7,
+            "end_lambda": 6.65,
+            "direction": 1
+          },
+          "samples": 39,
+          "lambda_range": 0.9500000000000002,
+          "clock_range": 0.018760867756542954,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 266,
+            "end_index": 351,
+            "start_lambda": 6.65,
+            "end_lambda": 8.775,
+            "direction": -1
+          },
+          "samples": 86,
+          "lambda_range": 2.125,
+          "clock_range": 1.0268228660101615,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 351,
+            "end_index": 390,
+            "start_lambda": 8.775,
+            "end_lambda": 9.75,
+            "direction": 1
+          },
+          "samples": 40,
+          "lambda_range": 0.9749999999999996,
+          "clock_range": 0.018744736559474617,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 390,
+            "end_index": 400,
+            "start_lambda": 9.75,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 11,
+          "lambda_range": 0.25,
+          "clock_range": 0.00581034902631572,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 1.9,
+      "omega2": -1.9,
+      "step_size": 0.0125,
+      "steps": 800,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 38,
+            "start_lambda": 0,
+            "end_lambda": 0.47500000000000003,
+            "direction": 1
+          },
+          "samples": 39,
+          "lambda_range": 0.47500000000000003,
+          "clock_range": 0.009380443001735303,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 38,
+            "end_index": 209,
+            "start_lambda": 0.47500000000000003,
+            "end_lambda": 2.6125000000000003,
+            "direction": -1
+          },
+          "samples": 172,
+          "lambda_range": 2.1375,
+          "clock_range": 1.0268433981066685,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 209,
+            "end_index": 285,
+            "start_lambda": 2.6125000000000003,
+            "end_lambda": 3.5625,
+            "direction": 1
+          },
+          "samples": 77,
+          "lambda_range": 0.9499999999999997,
+          "clock_range": 0.018760882426443026,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 285,
+            "end_index": 456,
+            "start_lambda": 3.5625,
+            "end_lambda": 5.7,
+            "direction": -1
+          },
+          "samples": 172,
+          "lambda_range": 2.1375,
+          "clock_range": 1.0268433908901544,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 456,
+            "end_index": 532,
+            "start_lambda": 5.7,
+            "end_lambda": 6.65,
+            "direction": 1
+          },
+          "samples": 77,
+          "lambda_range": 0.9500000000000002,
+          "clock_range": 0.018760871765707066,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 532,
+            "end_index": 703,
+            "start_lambda": 6.65,
+            "end_lambda": 8.7875,
+            "direction": -1
+          },
+          "samples": 172,
+          "lambda_range": 2.1374999999999993,
+          "clock_range": 1.026843376864297,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 703,
+            "end_index": 779,
+            "start_lambda": 8.7875,
+            "end_lambda": 9.7375,
+            "direction": 1
+          },
+          "samples": 77,
+          "lambda_range": 0.9500000000000011,
+          "clock_range": 0.018760853983510906,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 779,
+            "end_index": 800,
+            "start_lambda": 9.7375,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 22,
+          "lambda_range": 0.2624999999999993,
+          "clock_range": 0.0058209691181878576,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2,
+      "omega2": -2,
+      "step_size": 0.05,
+      "steps": 200,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 13,
+            "start_lambda": 0,
+            "end_lambda": 0.65,
+            "direction": 1
+          },
+          "samples": 14,
+          "lambda_range": 0.65,
+          "clock_range": 0.02818349092769324,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 13,
+            "end_index": 46,
+            "start_lambda": 0.65,
+            "end_lambda": 2.3000000000000003,
+            "direction": -1
+          },
+          "samples": 34,
+          "lambda_range": 1.6500000000000004,
+          "clock_range": 0.9460406887079168,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 46,
+            "end_index": 71,
+            "start_lambda": 2.3000000000000003,
+            "end_lambda": 3.5500000000000003,
+            "direction": 1
+          },
+          "samples": 26,
+          "lambda_range": 1.25,
+          "clock_range": 0.05639956301204696,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 71,
+            "end_index": 105,
+            "start_lambda": 3.5500000000000003,
+            "end_lambda": 5.25,
+            "direction": -1
+          },
+          "samples": 35,
+          "lambda_range": 1.6999999999999997,
+          "clock_range": 0.9456570611246216,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 105,
+            "end_index": 130,
+            "start_lambda": 5.25,
+            "end_lambda": 6.5,
+            "direction": 1
+          },
+          "samples": 26,
+          "lambda_range": 1.25,
+          "clock_range": 0.056399649507501426,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 130,
+            "end_index": 163,
+            "start_lambda": 6.5,
+            "end_lambda": 8.15,
+            "direction": -1
+          },
+          "samples": 34,
+          "lambda_range": 1.6500000000000004,
+          "clock_range": 0.9457211103004373,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 163,
+            "end_index": 189,
+            "start_lambda": 8.15,
+            "end_lambda": 9.450000000000001,
+            "direction": 1
+          },
+          "samples": 27,
+          "lambda_range": 1.3000000000000007,
+          "clock_range": 0.05636687164493104,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 189,
+            "end_index": 200,
+            "start_lambda": 9.450000000000001,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 12,
+          "lambda_range": 0.5499999999999989,
+          "clock_range": 0.07951636971985421,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2,
+      "omega2": -2,
+      "step_size": 0.025,
+      "steps": 400,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 25,
+            "start_lambda": 0,
+            "end_lambda": 0.625,
+            "direction": 1
+          },
+          "samples": 26,
+          "lambda_range": 0.625,
+          "clock_range": 0.028207603849608447,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 25,
+            "end_index": 92,
+            "start_lambda": 0.625,
+            "end_lambda": 2.3000000000000003,
+            "direction": -1
+          },
+          "samples": 68,
+          "lambda_range": 1.6750000000000003,
+          "clock_range": 0.9459645881625944,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 92,
+            "end_index": 143,
+            "start_lambda": 2.3000000000000003,
+            "end_lambda": 3.575,
+            "direction": 1
+          },
+          "samples": 52,
+          "lambda_range": 1.275,
+          "clock_range": 0.05642529191074752,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 143,
+            "end_index": 209,
+            "start_lambda": 3.575,
+            "end_lambda": 5.2250000000000005,
+            "direction": -1
+          },
+          "samples": 67,
+          "lambda_range": 1.6500000000000004,
+          "clock_range": 0.9459567589402367,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 209,
+            "end_index": 260,
+            "start_lambda": 5.2250000000000005,
+            "end_lambda": 6.5,
+            "direction": 1
+          },
+          "samples": 52,
+          "lambda_range": 1.2749999999999995,
+          "clock_range": 0.05642544156756735,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 260,
+            "end_index": 327,
+            "start_lambda": 6.5,
+            "end_lambda": 8.175,
+            "direction": -1
+          },
+          "samples": 68,
+          "lambda_range": 1.6750000000000007,
+          "clock_range": 0.9459687624813693,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 327,
+            "end_index": 377,
+            "start_lambda": 8.175,
+            "end_lambda": 9.425,
+            "direction": 1
+          },
+          "samples": 51,
+          "lambda_range": 1.25,
+          "clock_range": 0.05641520612167694,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 377,
+            "end_index": 400,
+            "start_lambda": 9.425,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 24,
+          "lambda_range": 0.5749999999999993,
+          "clock_range": 0.07985784343914926,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2,
+      "omega2": -2,
+      "step_size": 0.0125,
+      "steps": 800,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 51,
+            "start_lambda": 0,
+            "end_lambda": 0.6375000000000001,
+            "direction": 1
+          },
+          "samples": 52,
+          "lambda_range": 0.6375000000000001,
+          "clock_range": 0.028214812107878202,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 51,
+            "end_index": 184,
+            "start_lambda": 0.6375000000000001,
+            "end_lambda": 2.3000000000000003,
+            "direction": -1
+          },
+          "samples": 134,
+          "lambda_range": 1.6625,
+          "clock_range": 0.9459853991808574,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 184,
+            "end_index": 285,
+            "start_lambda": 2.3000000000000003,
+            "end_lambda": 3.5625,
+            "direction": 1
+          },
+          "samples": 102,
+          "lambda_range": 1.2624999999999997,
+          "clock_range": 0.056430878723374045,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 285,
+            "end_index": 419,
+            "start_lambda": 3.5625,
+            "end_lambda": 5.237500000000001,
+            "direction": -1
+          },
+          "samples": 135,
+          "lambda_range": 1.6750000000000007,
+          "clock_range": 0.9459823152695458,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 419,
+            "end_index": 520,
+            "start_lambda": 5.237500000000001,
+            "end_lambda": 6.5,
+            "direction": 1
+          },
+          "samples": 102,
+          "lambda_range": 1.2624999999999993,
+          "clock_range": 0.056430718409931746,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 520,
+            "end_index": 653,
+            "start_lambda": 6.5,
+            "end_lambda": 8.1625,
+            "direction": -1
+          },
+          "samples": 134,
+          "lambda_range": 1.6624999999999996,
+          "clock_range": 0.9459855539126212,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 653,
+            "end_index": 755,
+            "start_lambda": 8.1625,
+            "end_lambda": 9.4375,
+            "direction": 1
+          },
+          "samples": 103,
+          "lambda_range": 1.2750000000000004,
+          "clock_range": 0.05642961823110193,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 755,
+            "end_index": 800,
+            "start_lambda": 9.4375,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 46,
+          "lambda_range": 0.5625,
+          "clock_range": 0.07989736587483698,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.05,
+      "steps": 200,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 14,
+            "start_lambda": 0,
+            "end_lambda": 0.7000000000000001,
+            "direction": 1
+          },
+          "samples": 15,
+          "lambda_range": 0.7000000000000001,
+          "clock_range": 0.04974106769731682,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 14,
+            "end_index": 42,
+            "start_lambda": 0.7000000000000001,
+            "end_lambda": 2.1,
+            "direction": -1
+          },
+          "samples": 29,
+          "lambda_range": 1.4,
+          "clock_range": 0.8813981700034571,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 42,
+            "end_index": 70,
+            "start_lambda": 2.1,
+            "end_lambda": 3.5,
+            "direction": 1
+          },
+          "samples": 29,
+          "lambda_range": 1.4,
+          "clock_range": 0.09947051945163532,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 70,
+            "end_index": 98,
+            "start_lambda": 3.5,
+            "end_lambda": 4.9,
+            "direction": -1
+          },
+          "samples": 29,
+          "lambda_range": 1.4000000000000004,
+          "clock_range": 0.8813418582496767,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 98,
+            "end_index": 126,
+            "start_lambda": 4.9,
+            "end_lambda": 6.300000000000001,
+            "direction": 1
+          },
+          "samples": 29,
+          "lambda_range": 1.4000000000000004,
+          "clock_range": 0.0994361658186187,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 126,
+            "end_index": 153,
+            "start_lambda": 6.300000000000001,
+            "end_lambda": 7.65,
+            "direction": -1
+          },
+          "samples": 28,
+          "lambda_range": 1.3499999999999996,
+          "clock_range": 0.8814021047432106,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 153,
+            "end_index": 182,
+            "start_lambda": 7.65,
+            "end_lambda": 9.1,
+            "direction": 1
+          },
+          "samples": 30,
+          "lambda_range": 1.4499999999999993,
+          "clock_range": 0.09941592841268854,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 182,
+            "end_index": 200,
+            "start_lambda": 9.1,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 19,
+          "lambda_range": 0.9000000000000004,
+          "clock_range": 0.8036103649529802,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.025,
+      "steps": 400,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 28,
+            "start_lambda": 0,
+            "end_lambda": 0.7000000000000001,
+            "direction": 1
+          },
+          "samples": 29,
+          "lambda_range": 0.7000000000000001,
+          "clock_range": 0.049741069751754796,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 28,
+            "end_index": 83,
+            "start_lambda": 0.7000000000000001,
+            "end_lambda": 2.075,
+            "direction": -1
+          },
+          "samples": 56,
+          "lambda_range": 1.375,
+          "clock_range": 0.8817812658704558,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 83,
+            "end_index": 140,
+            "start_lambda": 2.075,
+            "end_lambda": 3.5,
+            "direction": 1
+          },
+          "samples": 58,
+          "lambda_range": 1.4249999999999998,
+          "clock_range": 0.09950447574840504,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 140,
+            "end_index": 195,
+            "start_lambda": 3.5,
+            "end_lambda": 4.875,
+            "direction": -1
+          },
+          "samples": 56,
+          "lambda_range": 1.375,
+          "clock_range": 0.8818146886556033,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 195,
+            "end_index": 252,
+            "start_lambda": 4.875,
+            "end_lambda": 6.300000000000001,
+            "direction": 1
+          },
+          "samples": 58,
+          "lambda_range": 1.4250000000000007,
+          "clock_range": 0.09951834617679212,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 252,
+            "end_index": 307,
+            "start_lambda": 6.300000000000001,
+            "end_lambda": 7.675000000000001,
+            "direction": -1
+          },
+          "samples": 56,
+          "lambda_range": 1.375,
+          "clock_range": 0.8818188887861933,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 307,
+            "end_index": 364,
+            "start_lambda": 7.675000000000001,
+            "end_lambda": 9.1,
+            "direction": 1
+          },
+          "samples": 58,
+          "lambda_range": 1.424999999999999,
+          "clock_range": 0.09950226262013429,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 364,
+            "end_index": 400,
+            "start_lambda": 9.1,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 37,
+          "lambda_range": 0.9000000000000004,
+          "clock_range": 0.8048615368494381,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    },
+    {
+      "c2_real": 0.55,
+      "k2": 2.1,
+      "omega2": -2.1,
+      "step_size": 0.0125,
+      "steps": 800,
+      "num_segments": 8,
+      "num_turning_points": 7,
+      "trajectory_valid": true,
+      "branches": [
+        {
+          "segment": {
+            "start_index": 0,
+            "end_index": 57,
+            "start_lambda": 0,
+            "end_lambda": 0.7125,
+            "direction": 1
+          },
+          "samples": 58,
+          "lambda_range": 0.7125,
+          "clock_range": 0.04975918308016734,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 57,
+            "end_index": 167,
+            "start_lambda": 0.7125,
+            "end_lambda": 2.0875,
+            "direction": -1
+          },
+          "samples": 111,
+          "lambda_range": 1.375,
+          "clock_range": 0.881829967853272,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 167,
+            "end_index": 280,
+            "start_lambda": 2.0875,
+            "end_lambda": 3.5,
+            "direction": 1
+          },
+          "samples": 114,
+          "lambda_range": 1.4125,
+          "clock_range": 0.09951436328553132,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 280,
+            "end_index": 390,
+            "start_lambda": 3.5,
+            "end_lambda": 4.875,
+            "direction": -1
+          },
+          "samples": 111,
+          "lambda_range": 1.375,
+          "clock_range": 0.8818306335449773,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 390,
+            "end_index": 504,
+            "start_lambda": 4.875,
+            "end_lambda": 6.300000000000001,
+            "direction": 1
+          },
+          "samples": 115,
+          "lambda_range": 1.4250000000000007,
+          "clock_range": 0.09951833357470607,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 504,
+            "end_index": 614,
+            "start_lambda": 6.300000000000001,
+            "end_lambda": 7.675000000000001,
+            "direction": -1
+          },
+          "samples": 111,
+          "lambda_range": 1.375,
+          "clock_range": 0.8818292420317908,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 614,
+            "end_index": 727,
+            "start_lambda": 7.675000000000001,
+            "end_lambda": 9.0875,
+            "direction": 1
+          },
+          "samples": 114,
+          "lambda_range": 1.4124999999999996,
+          "clock_range": 0.09951429951593393,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        },
+        {
+          "segment": {
+            "start_index": 727,
+            "end_index": 800,
+            "start_lambda": 9.0875,
+            "end_lambda": 10,
+            "direction": -1
+          },
+          "samples": 74,
+          "lambda_range": 0.9124999999999996,
+          "clock_range": 0.8049471590053074,
+          "single_valued": true,
+          "max_abs_noise": 0,
+          "validation_passed": true,
+          "reason": "local relational branch satisfies all validation rules"
+        }
+      ]
+    }
+  ],
+  "technical_gate": {
+    "name": "bmc0a_clock_readiness_gate",
+    "status": "pass",
+    "reason": "Local clock segmentation and clock-independent diagnostics completed successfully."
+  },
+  "promotion_gate": {
+    "name": "full_bmc_gate",
+    "status": "blocked",
+    "reason": "Sprint 5 clock-readiness promotion status is planned_candidate_only. Full BMC promotion remains blocked."
+  },
+  "ebp_debt": {
+    "needMap": "partial",
+    "needInvariant": "partial",
+    "needToyCheck": "active",
+    "needNullModel": "partial/deferred",
+    "needObstruction": "active",
+    "needFaithfulnessReview": "contested",
+    "clock_choice_debt": "active",
+    "containsFinalTruthClaim": "absent",
+    "LeanVerification": "planned",
+    "promotion_status": "planned_candidate_only",
+    "sprint5_clock_readiness": "planned_candidate_only"
+  },
+  "warnings": [
+    "Sprint 5 plan approved with revisions. Implement only local clock segmentation, local alpha(phi) branch checks, and clock-independent diagnostics.",
+    "Do not implement Friedmann residual recovery, massive scalar, LQC/Page-Wootters comparison, full BMC promotion, or any full quantum-gravity claim.",
+    "local_only_candidate is not Friedmann recovery readiness"
+  ]
+}
