@@ -83,8 +83,12 @@
     "wdw_residual": {
       "status": "pass",
       "pass": true,
-      "reason": "All component residuals satisfy tolerance; therefore by linearity the analytic superposition residual is zero.",
-      "max_abs_residual": 0
+      "reason": "All component residuals satisfy tolerance; therefore by linearity the analytic superposition residual is zero. BMC-POST-0002 integrates numerical WdW residual authority for plane-wave report path only. Superposition numerical residual sampling remains follow-up remediation.",
+      "max_abs_residual": 0,
+      "analytic_residual_magnitude": 0,
+      "numerical_residual_tolerance": 0.000001,
+      "numerical_residual_status": "numerical_residual_not_computed",
+      "numerical_residual_authority": "not_authoritative"
     }
   },
   "technical_gate": {

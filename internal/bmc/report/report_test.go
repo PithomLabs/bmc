@@ -350,5 +350,81 @@ func TestAnalyticResidualRemainsOracleControlOnly(t *testing.T) {
 	}
 }
 
+func TestReportValidationRejectsNumericalResidualErrorClaimedAsPass(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+	rep, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error generating report: %v", err)
+	}
+
+	// Mutate report: claim pass while numerical residual status is error
+	wdwCheck := rep.Checks["wdw_residual"]
+	wdwCheck.Status = model.StatusPass
+	wdwCheck.Pass = true
+	numStatus := wdw.NumericalResidualError
+	wdwCheck.NumericalResidualStatus = &numStatus
+	rep.Checks["wdw_residual"] = wdwCheck
+
+	errors := report.Validate(rep)
+	foundMismatch := false
+	for _, valErr := range errors {
+		if valErr.Field == "checks.wdw_residual" {
+			foundMismatch = true
+		}
+	}
+
+	if !foundMismatch {
+		t.Error("Expected report validation to reject report when pass is claimed with a numerical residual error")
+	}
+}
+
+func TestReportValidationRejectsForgedPlaneWaveWdWPass(t *testing.T) {
+	params := model.DefaultPlaneWaveParams()
+
+	// 1. Test invalid status: numerical_residual_not_computed
+	rep1, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+	wdwCheck1 := rep1.Checks["wdw_residual"]
+	badStatus := wdw.NumericalResidualNotComputed
+	wdwCheck1.NumericalResidualStatus = &badStatus
+	rep1.Checks["wdw_residual"] = wdwCheck1
+
+	errors1 := report.Validate(rep1)
+	foundMismatch1 := false
+	for _, valErr := range errors1 {
+		if valErr.Field == "checks.wdw_residual.numerical_residual_status" {
+			foundMismatch1 = true
+		}
+	}
+	if !foundMismatch1 {
+		t.Error("Expected validation error on checks.wdw_residual.numerical_residual_status when status is not_computed for a passing plane-wave report")
+	}
+
+	// 2. Test invalid authority: not_authoritative (NumericalAuthorityNone)
+	rep2, err := report.Generate(params, false)
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+	wdwCheck2 := rep2.Checks["wdw_residual"]
+	badAuth := wdw.NumericalAuthorityNone
+	wdwCheck2.NumericalResidualAuthority = &badAuth
+	rep2.Checks["wdw_residual"] = wdwCheck2
+
+	errors2 := report.Validate(rep2)
+	foundMismatch2 := false
+	for _, valErr := range errors2 {
+		if valErr.Field == "checks.wdw_residual.numerical_residual_authority" {
+			foundMismatch2 = true
+		}
+	}
+	if !foundMismatch2 {
+		t.Error("Expected validation error on checks.wdw_residual.numerical_residual_authority when authority is not_authoritative for a passing plane-wave report")
+	}
+}
+
+
+
 
 

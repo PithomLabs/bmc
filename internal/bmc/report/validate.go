@@ -123,7 +123,26 @@ func Validate(r *Report) []ValidationError {
 				})
 			}
 		}
+
+		// Require plane-wave passing WdW check to have correct numerical status and authority
+		if r.ModelID == "bmc0a_plane" && checkName == "wdw_residual" && check.Status == model.StatusPass {
+			if check.NumericalResidualStatus == nil || *check.NumericalResidualStatus != wdw.NumericalResidualPass {
+				errors = append(errors, ValidationError{
+					Field:    fmt.Sprintf("checks.%s.numerical_residual_status", checkName),
+					Message:  fmt.Sprintf("plane-wave passing WdW check requires numerical_residual_status to be '%s'", wdw.NumericalResidualPass),
+					Severity: ValidationFail,
+				})
+			}
+			if check.NumericalResidualAuthority == nil || *check.NumericalResidualAuthority != wdw.NumericalAuthorityDiagnostic {
+				errors = append(errors, ValidationError{
+					Field:    fmt.Sprintf("checks.%s.numerical_residual_authority", checkName),
+					Message:  fmt.Sprintf("plane-wave passing WdW check requires numerical_residual_authority to be '%s'", wdw.NumericalAuthorityDiagnostic),
+					Severity: ValidationFail,
+				})
+			}
+		}
 	}
+
 
 	// 5. Technical Gate Status Consistency
 	if r.TechnicalGate.Name == "bmc0a_plane_control_gate" {

@@ -12,6 +12,11 @@ BMC-POST-0002 moves the toy numerical WdW residual evaluator into the actual rep
 
 ---
 
+## Semantic Clarifications
+Analytic/numerical disagreement is treated as an oracle-control audit error for the plane-wave control path. This does not restore analytic residual as primary authority. Numerical residual remains the diagnostic authority for WdW pass/fail, while analytic residual is retained as a consistency oracle/control.
+
+---
+
 ## EBP status expected after implementation
 
 ```text

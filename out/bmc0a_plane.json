@@ -6,13 +6,15 @@
   "final_truth_claim": false,
   "promotion_recommendation": "blocked_or_candidate",
   "parameters": {
-    "k": 1,
-    "omega": 1,
-    "alpha0": 0,
-    "phi0": 0,
-    "lambda_step": 0.1,
-    "steps": 100,
-    "tolerance": 1e-9
+    "plane_wave": {
+      "k": 1,
+      "omega": 1,
+      "alpha0": 0,
+      "phi0": 0,
+      "lambda_step": 0.1,
+      "steps": 100,
+      "tolerance": 1e-9
+    }
   },
   "equations": {
     "guidance": "dalpha/dlambda=k, dphi/dlambda=-omega",
@@ -53,8 +55,13 @@
     "wdw_residual": {
       "status": "pass",
       "pass": true,
-      "reason": "Analytic Wheeler-DeWitt residual satisfies tolerance.",
-      "max_abs_residual": 0
+      "reason": "Numerical Wheeler-DeWitt residual 0.000000e+00 satisfies tolerance 1.000000e-06 (analytic oracle: 0.000000e+00).",
+      "max_abs_residual": 0,
+      "analytic_residual_magnitude": 0,
+      "numerical_residual_magnitude": 0,
+      "numerical_residual_tolerance": 0.000001,
+      "numerical_residual_status": "numerical_residual_pass",
+      "numerical_residual_authority": "diagnostic_authority"
     }
   },
   "technical_gate": {
@@ -125,7 +132,7 @@
       "name": "node_obstruction",
       "applies": false,
       "severity": "info",
-      "evidence": "Node detection deferred to Sprint 2 (packet superposition states).",
+      "evidence": "Node detection deferred to Sprint 2.",
       "consequence": "Deferred to a future sprint.",
       "status": "deferred"
     },
@@ -141,7 +148,7 @@
       "name": "classical_limit_failure",
       "applies": false,
       "severity": "info",
-      "evidence": "Classical limit comparison is active but requires massive scalar comparison (Sprint 3).",
+      "evidence": "Classical limit comparison requires massive scalar comparison (Sprint 3).",
       "consequence": "Deferred to a future sprint.",
       "status": "deferred"
     },

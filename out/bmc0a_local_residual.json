@@ -104,11 +104,11 @@
       "residual_status": "candidate_residual_diagnostics_generated",
       "residual_provenance": "computed_from_bmc0a_local_branch",
       "metrics": {
-        "num_evaluation_points": 201,
-        "num_finite_residual_points": 201,
-        "mean_abs_residual": 1.9423824383277974,
+        "num_evaluation_points": 200,
+        "num_finite_residual_points": 200,
+        "mean_abs_residual": 1.943468774875042,
         "max_abs_residual": 14.161142192549551,
-        "rms_residual": 2.7603683828436147,
+        "rms_residual": 2.7645707923669183,
         "residual_finite": true,
         "diagnostic_warnings": []
       },
@@ -117,6 +117,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 0,
+          "lambda": 0,
           "alpha": 0,
           "phi": 0,
           "candidate_left_hand_side": 1.7776313508859969,
@@ -126,6 +127,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 1,
+          "lambda": 0.05,
           "alpha": 0.06666392110591,
           "phi": -0.000008236682360864726,
           "candidate_left_hand_side": 1.7767502077943764,
@@ -135,6 +137,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 2,
+          "lambda": 0.1,
           "alpha": 0.13331131805047147,
           "phi": -0.00006604584855084462,
           "candidate_left_hand_side": 1.774974964229711,
@@ -144,6 +147,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 3,
+          "lambda": 0.15000000000000002,
           "alpha": 0.1999254112333279,
           "phi": -0.0002237662990325749,
           "candidate_left_hand_side": 1.7722791946125065,
@@ -153,6 +157,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 4,
+          "lambda": 0.2,
           "alpha": 0.2664888996224686,
           "phi": -0.0005333011301188823,
           "candidate_left_hand_side": 1.7686219445033637,
@@ -162,6 +167,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 5,
+          "lambda": 0.25,
           "alpha": 0.33298367280997865,
           "phi": -0.0010489815636453086,
           "candidate_left_hand_side": 1.7639460371473896,
@@ -171,6 +177,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 6,
+          "lambda": 0.30000000000000004,
           "alpha": 0.3993904879185839,
           "phi": -0.0018285362308223738,
           "candidate_left_hand_side": 1.758175609958237,
@@ -180,6 +187,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 7,
+          "lambda": 0.35000000000000003,
           "alpha": 0.4656885951683055,
           "phi": -0.002934214476216796,
           "candidate_left_hand_side": 1.7512126691663683,
@@ -189,6 +197,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 8,
+          "lambda": 0.4,
           "alpha": 0.5318552912692589,
           "phi": -0.004434126169987122,
           "candidate_left_hand_side": 1.7429323494024178,
@@ -198,6 +207,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 9,
+          "lambda": 0.45,
           "alpha": 0.5978653728743141,
           "phi": -0.006403881358353345,
           "candidate_left_hand_side": 1.7331764083905352,
@@ -207,6 +217,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 10,
+          "lambda": 0.5,
           "alpha": 0.6636904518410448,
           "phi": -0.008928644465195703,
           "candidate_left_hand_side": 1.7217442587848983,
@@ -216,6 +227,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 11,
+          "lambda": 0.55,
           "alpha": 0.7292980782800668,
           "phi": -0.012105765152035711,
           "candidate_left_hand_side": 1.7083804709053245,
@@ -225,6 +237,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 12,
+          "lambda": 0.6000000000000001,
           "alpha": 0.7946505929773859,
           "phi": -0.01604822106790179,
           "candidate_left_hand_side": 1.6927570987995229,
@@ -234,6 +247,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 13,
+          "lambda": 0.65,
           "alpha": 0.8597035925008422,
           "phi": -0.020889222500022057,
           "candidate_left_hand_side": 1.6744482145647142,
@@ -243,6 +257,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 14,
+          "lambda": 0.7000000000000001,
           "alpha": 0.924403828485047,
           "phi": -0.026788514549873587,
           "candidate_left_hand_side": 1.6528923798310255,
@@ -252,6 +267,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 15,
+          "lambda": 0.75,
           "alpha": 0.9886862595963355,
           "phi": -0.033941221224304534,
           "candidate_left_hand_side": 1.6273358629251862,
@@ -261,6 +277,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 16,
+          "lambda": 0.8,
           "alpha": 1.052469797106519,
           "phi": -0.042590608679895024,
           "candidate_left_hand_side": 1.5967440277314622,
@@ -270,6 +287,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 17,
+          "lambda": 0.8500000000000001,
           "alpha": 1.115650965735539,
           "phi": -0.053047102776499135,
           "candidate_left_hand_side": 1.5596579496890013,
@@ -279,6 +297,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 18,
+          "lambda": 0.9,
           "alpha": 1.1780940988585853,
           "phi": -0.0657177033927685,
           "candidate_left_hand_side": 1.5139523227347147,
@@ -288,6 +307,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 19,
+          "lambda": 0.9500000000000001,
           "alpha": 1.2396154838140363,
           "phi": -0.08115354850974245,
           "candidate_left_hand_side": 1.4564055575754409,
@@ -297,6 +317,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 20,
+          "lambda": 1,
           "alpha": 1.2999562983091904,
           "phi": -0.1001311050091295,
           "candidate_left_hand_side": 1.3818892199059951,
@@ -306,6 +327,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 21,
+          "lambda": 1.05,
           "alpha": 1.3587331904502775,
           "phi": -0.12380042857187747,
           "candidate_left_hand_side": 1.2817278442020008,
@@ -315,6 +337,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 22,
+          "lambda": 1.1,
           "alpha": 1.4153399003926952,
           "phi": -0.15398029873058483,
           "candidate_left_hand_side": 1.1401087892192494,
@@ -324,6 +347,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 23,
+          "lambda": 1.1500000000000001,
           "alpha": 1.468727838853064,
           "phi": -0.19381648333362592,
           "candidate_left_hand_side": 0.9257531864542983,
@@ -333,6 +357,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 24,
+          "lambda": 1.2000000000000002,
           "alpha": 1.516835873173079,
           "phi": -0.24949238036350052,
           "candidate_left_hand_side": 0.5766912738731638,
@@ -342,6 +367,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 25,
+          "lambda": 1.25,
           "alpha": 1.5548059690997804,
           "phi": -0.33558209256950683,
           "candidate_left_hand_side": 0.1032467068510659,
@@ -351,6 +377,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 26,
+          "lambda": 1.3,
           "alpha": 1.5708719818947356,
           "phi": -0.48738405418190844,
           "candidate_left_hand_side": 0.019173518132347887,
@@ -360,6 +387,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 27,
+          "lambda": 1.35,
           "alpha": 1.5777954055659311,
           "phi": -0.6666137831645711,
           "candidate_left_hand_side": 0.4038613896775544,
@@ -369,6 +397,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 28,
+          "lambda": 1.4000000000000001,
           "alpha": 1.6095704503997923,
           "phi": -0.771288648652486,
           "candidate_left_hand_side": 0.8193364646408332,
@@ -378,6 +407,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 29,
+          "lambda": 1.4500000000000002,
           "alpha": 1.6548290535775538,
           "phi": -0.8355128391091522,
           "candidate_left_hand_side": 1.0733732684108315,
@@ -387,6 +417,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 30,
+          "lambda": 1.5,
           "alpha": 1.7066309181291996,
           "phi": -0.8801072454446588,
           "candidate_left_hand_side": 1.236464073803156,
@@ -396,6 +427,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 31,
+          "lambda": 1.55,
           "alpha": 1.7622291211982548,
           "phi": -0.9133126362293075,
           "candidate_left_hand_side": 1.349240112245247,
@@ -405,6 +437,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 32,
+          "lambda": 1.6,
           "alpha": 1.8203075189087041,
           "phi": -0.9390774430938649,
           "candidate_left_hand_side": 1.4317652221377062,
@@ -414,6 +447,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 33,
+          "lambda": 1.6500000000000001,
           "alpha": 1.8801357150652345,
           "phi": -0.9595928546120239,
           "candidate_left_hand_side": 1.4947201659630696,
@@ -423,6 +457,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 34,
+          "lambda": 1.7000000000000002,
           "alpha": 1.9412650894682797,
           "phi": -0.9762047313896942,
           "candidate_left_hand_side": 1.5442601012896808,
@@ -432,6 +467,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 35,
+          "lambda": 1.75,
           "alpha": 2.0033992206139244,
           "phi": -0.9898023379356673,
           "candidate_left_hand_side": 1.5841731048712504,
@@ -441,6 +477,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 36,
+          "lambda": 1.8,
           "alpha": 2.0663311899314194,
           "phi": -1.0010064300124752,
           "candidate_left_hand_side": 1.616917217710359,
@@ -450,6 +487,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 37,
+          "lambda": 1.85,
           "alpha": 2.129910219841256,
           "phi": -1.0102693403036254,
           "candidate_left_hand_side": 1.644157215559124,
@@ -459,6 +497,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 38,
+          "lambda": 1.9000000000000001,
           "alpha": 2.19402256684944,
           "phi": -1.0179322993108433,
           "candidate_left_hand_side": 1.6670607348174655,
@@ -468,6 +507,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 39,
+          "lambda": 1.9500000000000002,
           "alpha": 2.2585799199321346,
           "phi": -1.0242602400871277,
           "candidate_left_hand_side": 1.686470656171852,
@@ -477,6 +517,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 40,
+          "lambda": 2,
           "alpha": 2.323512012462944,
           "phi": -1.0294639625179811,
           "candidate_left_hand_side": 1.7030100955774359,
@@ -486,6 +527,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 41,
+          "lambda": 2.0500000000000003,
           "alpha": 2.388761726936983,
           "phi": -1.0337148191240075,
           "candidate_left_hand_side": 1.7171488502736203,
@@ -495,6 +537,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 42,
+          "lambda": 2.1,
           "alpha": 2.454281740106121,
           "phi": -1.0371547796474898,
           "candidate_left_hand_side": 1.729246849527795,
@@ -504,6 +547,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 43,
+          "lambda": 2.15,
           "alpha": 2.520032155495071,
           "phi": -1.0399035335023088,
           "candidate_left_hand_side": 1.7395833734105846,
@@ -513,6 +557,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 44,
+          "lambda": 2.2,
           "alpha": 2.5859787887186596,
           "phi": -1.0420636338604339,
           "candidate_left_hand_side": 1.7483771756279785,
@@ -522,6 +567,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 45,
+          "lambda": 2.25,
           "alpha": 2.652091895884107,
           "phi": -1.0437243123925628,
           "candidate_left_hand_side": 1.7558006222865035,
@@ -531,6 +577,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 46,
+          "lambda": 2.3000000000000003,
           "alpha": 2.7183452094292897,
           "phi": -1.044964371784805,
           "candidate_left_hand_side": 1.7619897894511205,
@@ -540,6 +587,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 47,
+          "lambda": 2.35,
           "alpha": 2.7847151911501533,
           "phi": -1.0458544266545662,
           "candidate_left_hand_side": 1.7670517628752842,
@@ -549,6 +597,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 48,
+          "lambda": 2.4000000000000004,
           "alpha": 2.8511804407712016,
           "phi": -1.046458677824717,
           "candidate_left_hand_side": 1.771069952692462,
@@ -558,6 +607,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 49,
+          "lambda": 2.45,
           "alpha": 2.9177212168542255,
           "phi": -1.0468363496056734,
           "candidate_left_hand_side": 1.7741079641278596,
@@ -567,6 +617,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 50,
+          "lambda": 2.5,
           "alpha": 2.9843190389681626,
           "phi": -1.0470428832933842,
           "candidate_left_hand_side": 1.776212387156272,
@@ -576,6 +627,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 51,
+          "lambda": 2.5500000000000003,
           "alpha": 3.0509563480966886,
           "phi": -1.0471309559348778,
           "candidate_left_hand_side": 1.777414749269904,
@@ -585,6 +637,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 52,
+          "lambda": 2.6,
           "alpha": 3.1176162076313045,
           "phi": -1.0471513773635042,
           "candidate_left_hand_side": 1.7777327928137086,
@@ -594,6 +647,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 53,
+          "lambda": 2.6500000000000004,
           "alpha": 3.1842820308245594,
           "phi": -1.0471539078120156,
           "candidate_left_hand_side": 1.7771711781394262,
@@ -603,6 +657,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 54,
+          "lambda": 2.7,
           "alpha": 3.250937322777626,
           "phi": -1.0471880319814442,
           "candidate_left_hand_side": 1.7757216665075202,
@@ -612,6 +667,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 55,
+          "lambda": 2.75,
           "alpha": 3.317565426204549,
           "phi": -1.047303721729666,
           "candidate_left_hand_side": 1.7733627963864147,
@@ -621,6 +677,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 56,
+          "lambda": 2.8000000000000003,
           "alpha": 3.384149260511129,
           "phi": -1.0475522188337782,
           "candidate_left_hand_side": 1.7700590284880122,
@@ -630,6 +687,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 57,
+          "lambda": 2.85,
           "alpha": 3.450671043193345,
           "phi": -1.0479868708153057,
           "candidate_left_hand_side": 1.7657592940923708,
@@ -639,6 +697,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 58,
+          "lambda": 2.9000000000000004,
           "alpha": 3.517111981139998,
           "phi": -1.0486640570015695,
           "candidate_left_hand_side": 1.7603948301056698,
@@ -648,6 +707,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 59,
+          "lambda": 2.95,
           "alpha": 3.5834519168896213,
           "phi": -1.049644249778308,
           "candidate_left_hand_side": 1.7538761191708636,
@@ -657,6 +717,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 60,
+          "lambda": 3,
           "alpha": 3.6496689109162843,
           "phi": -1.0509932677227305,
           "candidate_left_hand_side": 1.746088661556999,
@@ -666,6 +727,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 61,
+          "lambda": 3.0500000000000003,
           "alpha": 3.7157387349957576,
           "phi": -1.0527837955110981,
           "candidate_left_hand_side": 1.736887175821362,
@@ -675,6 +737,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 62,
+          "lambda": 3.1,
           "alpha": 3.7816342427299983,
           "phi": -1.055097272334801,
           "candidate_left_hand_side": 1.7260876207846376,
@@ -684,6 +747,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 63,
+          "lambda": 3.1500000000000004,
           "alpha": 3.84732456965841,
           "phi": -1.0580262915758645,
           "candidate_left_hand_side": 1.713456128470611,
@@ -693,6 +757,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 64,
+          "lambda": 3.2,
           "alpha": 3.9127740946465757,
           "phi": -1.0616777166387512,
           "candidate_left_hand_side": 1.6986934434025889,
@@ -702,6 +767,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 65,
+          "lambda": 3.25,
           "alpha": 3.977941061804074,
           "phi": -1.0661768151949509,
           "candidate_left_hand_side": 1.6814126616004772,
@@ -711,6 +777,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 66,
+          "lambda": 3.3000000000000003,
           "alpha": 4.0427757103648645,
           "phi": -1.071672869541723,
           "candidate_left_hand_side": 1.661106705501082,
@@ -720,6 +787,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 67,
+          "lambda": 3.35,
           "alpha": 4.107217674671927,
           "phi": -1.0783469766458267,
           "candidate_left_hand_side": 1.6370996030721903,
@@ -729,6 +797,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 68,
+          "lambda": 3.4000000000000004,
           "alpha": 4.171192271252761,
           "phi": -1.086423186930451,
           "candidate_left_hand_side": 1.608471342730477,
@@ -738,6 +807,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 69,
+          "lambda": 3.45,
           "alpha": 4.234605033034804,
           "phi": -1.0961849016139327,
           "candidate_left_hand_side": 1.5739379452714928,
@@ -747,6 +817,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 70,
+          "lambda": 3.5,
           "alpha": 4.297333374820465,
           "phi": -1.1079998762827132,
           "candidate_left_hand_side": 1.5316522293790076,
@@ -756,6 +827,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 71,
+          "lambda": 3.5500000000000003,
           "alpha": 4.35921334390132,
           "phi": -1.1223599690626564,
           "candidate_left_hand_side": 1.4788567614168138,
@@ -765,6 +837,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 72,
+          "lambda": 3.6,
           "alpha": 4.420017471257463,
           "phi": -1.1399475870177727,
           "candidate_left_hand_side": 1.4112443113613835,
@@ -774,6 +847,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 73,
+          "lambda": 3.6500000000000004,
           "alpha": 4.479415373395531,
           "phi": -1.1617538806316436,
           "candidate_left_hand_side": 1.3216979377619602,
@@ -783,6 +857,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 74,
+          "lambda": 3.7,
           "alpha": 4.536897934615477,
           "phi": -1.1893061969955183,
           "candidate_left_hand_side": 1.1976110770173645,
@@ -792,6 +867,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 75,
+          "lambda": 3.75,
           "alpha": 4.591615643746465,
           "phi": -1.2251530696238375,
           "candidate_left_hand_side": 1.0147541080181934,
@@ -801,6 +877,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 76,
+          "lambda": 3.8000000000000003,
           "alpha": 4.641983145868821,
           "phi": -1.2740505632721804,
           "candidate_left_hand_side": 0.7237984066958959,
@@ -810,6 +887,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 77,
+          "lambda": 3.85,
           "alpha": 4.6845213171593185,
           "phi": -1.3464360494144663,
           "candidate_left_hand_side": 0.2636260730573437,
@@ -819,6 +897,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 78,
+          "lambda": 3.9000000000000004,
           "alpha": 4.710193582011555,
           "phi": -1.4694192548484084,
           "candidate_left_hand_side": 0.006190972445549672,
@@ -828,6 +907,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 79,
+          "lambda": 3.95,
           "alpha": 4.71412771865304,
           "phi": -1.657616844929917,
           "candidate_left_hand_side": 0.22099020005035502,
@@ -837,6 +917,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 80,
+          "lambda": 4,
           "alpha": 4.73763251603838,
           "phi": -1.7871024527817376,
           "candidate_left_hand_side": 0.6913570234579652,
@@ -846,6 +927,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 81,
+          "lambda": 4.05,
           "alpha": 4.7792064568985495,
           "phi": -1.8623806302036279,
           "candidate_left_hand_side": 0.9951486685814299,
@@ -855,6 +937,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 82,
+          "lambda": 4.1000000000000005,
           "alpha": 4.8290850261588405,
           "phi": -1.9127449224304913,
           "candidate_left_hand_side": 1.184811194214451,
@@ -864,6 +947,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 83,
+          "lambda": 4.15,
           "alpha": 4.883509542560331,
           "phi": -1.949471373241684,
           "candidate_left_hand_side": 1.3127231789669582,
@@ -873,6 +957,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 84,
+          "lambda": 4.2,
           "alpha": 4.940796608704596,
           "phi": -1.977610174829445,
           "candidate_left_hand_side": 1.4046102806115939,
@@ -882,6 +967,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 85,
+          "lambda": 4.25,
           "alpha": 5.000054736430073,
           "phi": -1.999835791678099,
           "candidate_left_hand_side": 1.4737584532746237,
@@ -891,6 +977,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 86,
+          "lambda": 4.3,
           "alpha": 5.0607539632224015,
           "phi": -2.017738111330095,
           "candidate_left_hand_side": 1.5276181790848502,
@@ -900,6 +987,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 87,
+          "lambda": 4.3500000000000005,
           "alpha": 5.12255238915472,
           "phi": -2.032342833558217,
           "candidate_left_hand_side": 1.5706742241640224,
@@ -909,6 +997,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 88,
+          "lambda": 4.4,
           "alpha": 5.185215660378061,
           "phi": -2.0443530199107416,
           "candidate_left_hand_side": 1.605785252034928,
@@ -918,6 +1007,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 89,
+          "lambda": 4.45,
           "alpha": 5.248575451492673,
           "phi": -2.054273646595621,
           "candidate_left_hand_side": 1.6348595498455518,
@@ -927,6 +1017,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 90,
+          "lambda": 4.5,
           "alpha": 5.3125062646786,
           "phi": -2.0624812070672056,
           "candidate_left_hand_side": 1.659219772474005,
@@ -936,6 +1027,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 91,
+          "lambda": 4.55,
           "alpha": 5.376911617182759,
           "phi": -2.0692651495832672,
           "candidate_left_hand_side": 1.6798114055075875,
@@ -945,6 +1037,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 92,
+          "lambda": 4.6000000000000005,
           "alpha": 5.441715386469499,
           "phi": -2.0748538417514855,
           "candidate_left_hand_side": 1.697327780262164,
@@ -954,6 +1047,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 93,
+          "lambda": 4.65,
           "alpha": 5.50685615289618,
           "phi": -2.0794315424997643,
           "candidate_left_hand_side": 1.7122881579575917,
@@ -963,6 +1057,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 94,
+          "lambda": 4.7,
           "alpha": 5.572283367378335,
           "phi": -2.0831498990816972,
           "candidate_left_hand_side": 1.7250882197674569,
@@ -972,6 +1067,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 95,
+          "lambda": 4.75,
           "alpha": 5.637954674274259,
           "phi": -2.0861359784206144,
           "candidate_left_hand_side": 1.7360336948763906,
@@ -981,6 +1077,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 96,
+          "lambda": 4.800000000000001,
           "alpha": 5.703833989974949,
           "phi": -2.088498031346027,
           "candidate_left_hand_side": 1.7453633309810734,
@@ -990,6 +1087,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 97,
+          "lambda": 4.8500000000000005,
           "alpha": 5.769890089825399,
           "phi": -2.090329731824435,
           "candidate_left_hand_side": 1.753264924666528,
@@ -999,6 +1097,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 98,
+          "lambda": 4.9,
           "alpha": 5.8360955451268035,
           "phi": -2.091713365948139,
           "candidate_left_hand_side": 1.7598867078087246,
@@ -1008,6 +1107,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 99,
+          "lambda": 4.95,
           "alpha": 5.902425905969496,
           "phi": -2.092722283447092,
           "candidate_left_hand_side": 1.7653455460136027,
@@ -1017,6 +1117,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 100,
+          "lambda": 5,
           "alpha": 5.968859059327093,
           "phi": -2.0934228233829217,
           "candidate_left_hand_side": 1.7697329003371636,
@@ -1026,6 +1127,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 101,
+          "lambda": 5.050000000000001,
           "alpha": 6.035374713505963,
           "phi": -2.093875860894384,
           "candidate_left_hand_side": 1.7731191629853669,
@@ -1035,6 +1137,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 102,
+          "lambda": 5.1000000000000005,
           "alpha": 6.101953973846277,
           "phi": -2.0941380799083094,
           "candidate_left_hand_side": 1.7755568140226152,
@@ -1044,6 +1147,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 103,
+          "lambda": 5.15,
           "alpha": 6.168578984428314,
           "phi": -2.094263048206177,
           "candidate_left_hand_side": 1.7770826474799482,
@@ -1053,6 +1157,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 104,
+          "lambda": 5.2,
           "alpha": 6.235232616127568,
           "phi": -2.0943021531548096,
           "candidate_left_hand_side": 1.777719280947175,
@@ -1062,6 +1167,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 105,
+          "lambda": 5.25,
           "alpha": 6.301898185969638,
           "phi": -2.0943054436611996,
           "candidate_left_hand_side": 1.7774760579175712,
@@ -1071,6 +1177,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 106,
+          "lambda": 5.300000000000001,
           "alpha": 6.368559195148873,
           "phi": -2.0943224161245166,
           "candidate_left_hand_side": 1.7763494172613128,
@@ -1080,6 +1187,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 107,
+          "lambda": 5.3500000000000005,
           "alpha": 6.435199074674224,
           "phi": -2.094402777567841,
           "candidate_left_hand_side": 1.7743227470418543,
@@ -1089,6 +1197,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 108,
+          "lambda": 5.4,
           "alpha": 6.501800928008832,
           "phi": -2.094597217580587,
           "candidate_left_hand_side": 1.7713657337832611,
@@ -1098,6 +1207,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 109,
+          "lambda": 5.45,
           "alpha": 6.568347260247792,
           "phi": -2.094958220870554,
           "candidate_left_hand_side": 1.767433135572884,
@@ -1107,6 +1217,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 110,
+          "lambda": 5.5,
           "alpha": 6.6348196818896445,
           "phi": -2.095540955982651,
           "candidate_left_hand_side": 1.762462888009757,
@@ -1116,6 +1227,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 111,
+          "lambda": 5.550000000000001,
           "alpha": 6.701198573263518,
           "phi": -2.096404281899155,
           "candidate_left_hand_side": 1.7563733993832866,
@@ -1125,6 +1237,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 112,
+          "lambda": 5.6000000000000005,
           "alpha": 6.767462692502049,
           "phi": -2.0976119242122304,
           "candidate_left_hand_side": 1.7490597817316147,
@@ -1134,6 +1247,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 113,
+          "lambda": 5.65,
           "alpha": 6.833588704436302,
           "phi": -2.0992338884391293,
           "candidate_left_hand_side": 1.740388676642592,
@@ -1143,6 +1257,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 114,
+          "lambda": 5.7,
           "alpha": 6.8995506001914,
           "phi": -2.1013482012225158,
           "candidate_left_hand_side": 1.7301911497030718,
@@ -1152,6 +1267,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 115,
+          "lambda": 5.75,
           "alpha": 6.965318965491578,
           "phi": -2.1040431053422144,
           "candidate_left_hand_side": 1.7182528778581807,
@@ -1161,6 +1277,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 116,
+          "lambda": 5.800000000000001,
           "alpha": 7.030860038069356,
           "phi": -2.1074198876395633,
           "candidate_left_hand_side": 1.7043004093105312,
@@ -1170,6 +1287,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 117,
+          "lambda": 5.8500000000000005,
           "alpha": 7.09613446662508,
           "phi": -2.1115966019711467,
           "candidate_left_hand_side": 1.687981659068881,
@@ -1179,6 +1297,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 118,
+          "lambda": 5.9,
           "alpha": 7.1610956407806645,
           "phi": -2.1167130795299003,
           "candidate_left_hand_side": 1.6688376176306121,
@@ -1188,6 +1307,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 119,
+          "lambda": 5.95,
           "alpha": 7.225687389820898,
           "phi": -2.1229378324281534,
           "candidate_left_hand_side": 1.6462603954057449,
@@ -1197,6 +1317,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 120,
+          "lambda": 6,
           "alpha": 7.289840729472972,
           "phi": -2.130477813522208,
           "candidate_left_hand_side": 1.619429202548662,
@@ -1206,6 +1327,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 121,
+          "lambda": 6.050000000000001,
           "alpha": 7.353469127271217,
           "phi": -2.139592620139585,
           "candidate_left_hand_side": 1.5872095197610088,
@@ -1215,6 +1337,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 122,
+          "lambda": 6.1000000000000005,
           "alpha": 7.416461379170975,
           "phi": -2.1506158644857285,
           "candidate_left_hand_side": 1.547988098832081,
@@ -1224,6 +1347,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 123,
+          "lambda": 6.15,
           "alpha": 7.478670464094964,
           "phi": -2.1639886097354437,
           "candidate_left_hand_side": 1.4993907317102801,
@@ -1233,6 +1357,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 124,
+          "lambda": 6.2,
           "alpha": 7.539895269764527,
           "phi": -2.180314192755813,
           "candidate_left_hand_side": 1.4377731854771865,
@@ -1242,6 +1367,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 125,
+          "lambda": 6.25,
           "alpha": 7.599848859846297,
           "phi": -2.200453422546958,
           "candidate_left_hand_side": 1.3572435153203488,
@@ -1251,6 +1377,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 126,
+          "lambda": 6.300000000000001,
           "alpha": 7.658099257169414,
           "phi": -2.2257022306080483,
           "candidate_left_hand_side": 1.24764107116556,
@@ -1260,6 +1387,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 127,
+          "lambda": 6.3500000000000005,
           "alpha": 7.713948184445718,
           "phi": -2.258155448805587,
           "candidate_left_hand_side": 1.0900191420405274,
@@ -1269,6 +1397,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 128,
+          "lambda": 6.4,
           "alpha": 7.766150175356997,
           "phi": -2.301549476098196,
           "candidate_left_hand_side": 0.8462107719109419,
@@ -1278,6 +1407,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 129,
+          "lambda": 6.45,
           "alpha": 7.812145033001927,
           "phi": -2.3635649031837898,
           "candidate_left_hand_side": 0.4468328134739846,
@@ -1287,6 +1417,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 130,
+          "lambda": 6.5,
           "alpha": 7.845567810170872,
           "phi": -2.463296571713953,
           "candidate_left_hand_side": 0.032458009929103235,
@@ -1296,6 +1427,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 131,
+          "lambda": 6.550000000000001,
           "alpha": 7.85457586350235,
           "phi": -2.6362724117244603,
           "candidate_left_hand_side": 0.07339936813156946,
@@ -1305,6 +1437,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 132,
+          "lambda": 6.6000000000000005,
           "alpha": 7.868122022379645,
           "phi": -2.7956339350760064,
           "candidate_left_hand_side": 0.5362348334586937,
@@ -1314,6 +1447,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 133,
+          "lambda": 6.65,
           "alpha": 7.904736050888493,
           "phi": -2.885791849562604,
           "candidate_left_hand_side": 0.9013840839466902,
@@ -1323,6 +1457,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 134,
+          "lambda": 6.7,
           "alpha": 7.952206675593322,
           "phi": -2.9433799754773187,
           "candidate_left_hand_side": 1.1246689488319106,
@@ -1332,6 +1467,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 135,
+          "lambda": 6.75,
           "alpha": 8.005231880657327,
           "phi": -2.984304360295077,
           "candidate_left_hand_side": 1.271154872043523,
@@ -1341,6 +1477,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 136,
+          "lambda": 6.800000000000001,
           "alpha": 8.061604632764253,
           "phi": -3.0151861038469288,
           "candidate_left_hand_side": 1.3742080078528918,
@@ -1350,6 +1487,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 137,
+          "lambda": 6.8500000000000005,
           "alpha": 8.12021794200057,
           "phi": -3.039346176009804,
           "candidate_left_hand_side": 1.4505777107439195,
@@ -1359,6 +1497,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 138,
+          "lambda": 6.9,
           "alpha": 8.180437907766583,
           "phi": -3.058686278580653,
           "candidate_left_hand_side": 1.5093854371921371,
@@ -1368,6 +1507,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 139,
+          "lambda": 6.95,
           "alpha": 8.241866432028365,
           "phi": -3.074400705654012,
           "candidate_left_hand_side": 1.5559904268701916,
@@ -1377,6 +1517,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 140,
+          "lambda": 7,
           "alpha": 8.304236104684035,
           "phi": -3.087291687548771,
           "candidate_left_hand_side": 1.5937428120675576,
@@ -1386,6 +1527,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 141,
+          "lambda": 7.050000000000001,
           "alpha": 8.367357868206366,
           "phi": -3.097926396834604,
           "candidate_left_hand_side": 1.6248439950419806,
@@ -1395,6 +1537,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 142,
+          "lambda": 7.1000000000000005,
           "alpha": 8.431092552543898,
           "phi": -3.1067223436864877,
           "candidate_left_hand_side": 1.6508002874899426,
@@ -1404,6 +1547,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 143,
+          "lambda": 7.15,
           "alpha": 8.495334289123203,
           "phi": -3.113997133805084,
           "candidate_left_hand_side": 1.6726771125534987,
@@ -1413,6 +1557,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 144,
+          "lambda": 7.2,
           "alpha": 8.560000298597917,
           "phi": -3.1199991052325418,
           "candidate_left_hand_side": 1.6912489349631405,
@@ -1422,6 +1567,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 145,
+          "lambda": 7.25,
           "alpha": 8.625024312142205,
           "phi": -3.1249270644541456,
           "candidate_left_hand_side": 1.707091596431139,
@@ -1431,6 +1577,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 146,
+          "lambda": 7.300000000000001,
           "alpha": 8.690352169837663,
           "phi": -3.1289434912272425,
           "candidate_left_hand_side": 1.7206413066986885,
@@ -1440,6 +1587,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 147,
+          "lambda": 7.3500000000000005,
           "alpha": 8.75593877873572,
           "phi": -3.1321836643838927,
           "candidate_left_hand_side": 1.7322335322847655,
@@ -1449,6 +1597,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 148,
+          "lambda": 7.4,
           "alpha": 8.821745950310799,
           "phi": -3.1347621495145197,
           "candidate_left_hand_side": 1.7421293280229853,
@@ -1458,6 +1607,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 149,
+          "lambda": 7.45,
           "alpha": 8.887740823748494,
           "phi": -3.136777529050962,
           "candidate_left_hand_side": 1.7505335781204576,
@@ -1467,6 +1617,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 150,
+          "lambda": 7.5,
           "alpha": 8.953894689435248,
           "phi": -3.138315931853311,
           "candidate_left_hand_side": 1.7576078749655435,
@@ -1476,6 +1627,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 151,
+          "lambda": 7.550000000000001,
           "alpha": 9.02018209161254,
           "phi": -3.1394537251863905,
           "candidate_left_hand_side": 1.763479751037415,
@@ -1485,6 +1637,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 152,
+          "lambda": 7.6000000000000005,
           "alpha": 9.086580129065416,
           "phi": -3.1402596126806754,
           "candidate_left_hand_side": 1.7682493696992154,
@@ -1494,6 +1647,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 153,
+          "lambda": 7.65,
           "alpha": 9.153067898047748,
           "phi": -3.1407963055924157,
           "candidate_left_hand_side": 1.7719944008241002,
@@ -1503,6 +1657,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 154,
+          "lambda": 7.7,
           "alpha": 9.219626038061275,
           "phi": -3.1411218853923777,
           "candidate_left_hand_side": 1.7747735662010558,
@@ -1512,6 +1667,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 155,
+          "lambda": 7.75,
           "alpha": 9.286236351943606,
           "phi": -3.14129094359274,
           "candidate_left_hand_side": 1.776629180422934,
@@ -1521,6 +1677,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 156,
+          "lambda": 7.800000000000001,
           "alpha": 9.352881478930186,
           "phi": -3.1413555624934473,
           "candidate_left_hand_side": 1.7775889062861867,
@@ -1530,6 +1687,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 157,
+          "lambda": 7.8500000000000005,
           "alpha": 9.419544604162322,
           "phi": -3.1413661866372755,
           "candidate_left_hand_side": 1.7776668673436966,
@@ -1539,6 +1697,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 158,
+          "lambda": 7.9,
           "alpha": 9.486209191225914,
           "phi": -3.1413724253068502,
           "candidate_left_hand_side": 1.7768642053803572,
@@ -1548,6 +1707,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 159,
+          "lambda": 7.95,
           "alpha": 9.55285872620892,
           "phi": -3.1414238202129576,
           "candidate_left_hand_side": 1.775169125295016,
@@ -1557,6 +1717,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 160,
+          "lambda": 8,
           "alpha": 9.619476462685308,
           "phi": -3.1415706106297505,
           "candidate_left_hand_side": 1.772556430341456,
@@ -1566,6 +1727,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 161,
+          "lambda": 8.05,
           "alpha": 9.686045157098325,
           "phi": -3.1418645272428547,
           "candidate_left_hand_side": 1.7689865130581197,
@@ -1575,6 +1737,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 162,
+          "lambda": 8.1,
           "alpha": 9.752546783263744,
           "phi": -3.142359648607613,
           "candidate_left_hand_side": 1.764403722476198,
@@ -1584,6 +1747,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 163,
+          "lambda": 8.15,
           "alpha": 9.818962212993519,
           "phi": -3.143113359274058,
           "candidate_left_hand_side": 1.7587339762558347,
@@ -1593,6 +1757,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 164,
+          "lambda": 8.200000000000001,
           "alpha": 9.885270846976129,
           "phi": -3.1441874571788273,
           "candidate_left_hand_side": 1.7518814132189922,
@@ -1602,6 +1767,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 165,
+          "lambda": 8.25,
           "alpha": 9.951450175569333,
           "phi": -3.1456494712605156,
           "candidate_left_hand_side": 1.7437237842819082,
@@ -1611,6 +1777,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 166,
+          "lambda": 8.3,
           "alpha": 10.017475242481112,
           "phi": -3.147574270379301,
           "candidate_left_hand_side": 1.7341061276081533,
@@ -1620,6 +1787,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 167,
+          "lambda": 8.35,
           "alpha": 10.083317974190999,
           "phi": -3.1500460751072024,
           "candidate_left_hand_side": 1.7228320554187522,
@@ -1629,6 +1797,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 168,
+          "lambda": 8.4,
           "alpha": 10.14894632278021,
           "phi": -3.153161029184179,
           "candidate_left_hand_side": 1.7096516254795942,
@@ -1638,6 +1807,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 169,
+          "lambda": 8.450000000000001,
           "alpha": 10.214323146377714,
           "phi": -3.15703055824491,
           "candidate_left_hand_side": 1.694244214575097,
@@ -1647,6 +1817,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 170,
+          "lambda": 8.5,
           "alpha": 10.279404714708829,
           "phi": -3.1617858530974923,
           "candidate_left_hand_side": 1.67619388524751,
@@ -1656,6 +1827,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 171,
+          "lambda": 8.55,
           "alpha": 10.344138668034104,
           "phi": -3.1675839929775704,
           "candidate_left_hand_side": 1.6549531623720202,
@@ -1665,6 +1837,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 172,
+          "lambda": 8.6,
           "alpha": 10.408461159480952,
           "phi": -3.1746165184908,
           "candidate_left_hand_side": 1.6297883636830854,
@@ -1674,6 +1847,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 173,
+          "lambda": 8.65,
           "alpha": 10.472292741861525,
           "phi": -3.1831217712110216,
           "candidate_left_hand_side": 1.5996945329531507,
@@ -1683,6 +1857,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 174,
+          "lambda": 8.700000000000001,
           "alpha": 10.535532257454095,
           "phi": -3.1934032242856865,
           "candidate_left_hand_side": 1.5632582716850048,
@@ -1692,6 +1867,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 175,
+          "lambda": 8.75,
           "alpha": 10.598047421048317,
           "phi": -3.2058577333647733,
           "candidate_left_hand_side": 1.518427076204252,
@@ -1701,6 +1877,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 176,
+          "lambda": 8.8,
           "alpha": 10.659659657580606,
           "phi": -3.2210210236352776,
           "candidate_left_hand_side": 1.4621017086380856,
@@ -1710,6 +1887,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 177,
+          "lambda": 8.85,
           "alpha": 10.720118356471627,
           "phi": -3.2396449268361316,
           "candidate_left_hand_side": 1.389372030803659,
@@ -1719,6 +1897,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 178,
+          "lambda": 8.9,
           "alpha": 10.779054169667079,
           "phi": -3.262837487122152,
           "candidate_left_hand_side": 1.2919810108716046,
@@ -1728,6 +1907,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 179,
+          "lambda": 8.950000000000001,
           "alpha": 10.835886840967829,
           "phi": -3.2923394730881888,
           "candidate_left_hand_side": 1.1549859538683627,
@@ -1737,6 +1917,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 180,
+          "lambda": 9,
           "alpha": 10.889621977374754,
           "phi": -3.331134063752593,
           "candidate_left_hand_side": 0.9490270208778518,
@@ -1746,6 +1927,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 181,
+          "lambda": 9.05,
           "alpha": 10.938330986317604,
           "phi": -3.3850070368247454,
           "candidate_left_hand_side": 0.6151991788789677,
@@ -1755,6 +1937,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 182,
+          "lambda": 9.1,
           "alpha": 10.977548303247723,
           "phi": -3.4673550859737046,
           "candidate_left_hand_side": 0.13698620622461427,
@@ -1764,6 +1947,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 183,
+          "lambda": 9.15,
           "alpha": 10.996054127075954,
           "phi": -3.6118376144658937,
           "candidate_left_hand_side": 0.011805992447954713,
@@ -1773,6 +1957,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 184,
+          "lambda": 9.200000000000001,
           "alpha": 11.001486896270379,
           "phi": -3.795539306897341,
           "candidate_left_hand_side": 0.3593964880930532,
@@ -1782,6 +1967,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 185,
+          "lambda": 9.25,
           "alpha": 11.031461739393114,
           "phi": -3.905614777474191,
           "candidate_left_hand_side": 0.7905245510240055,
@@ -1791,6 +1977,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 186,
+          "lambda": 9.3,
           "alpha": 11.075917463181622,
           "phi": -3.9722476060181053,
           "candidate_left_hand_side": 1.055602843479166,
@@ -1800,6 +1987,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 187,
+          "lambda": 9.35,
           "alpha": 11.127288730527267,
           "phi": -4.018133803874875,
           "candidate_left_hand_side": 1.2246016692840502,
@@ -1809,6 +1997,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 188,
+          "lambda": 9.4,
           "alpha": 11.182619591474936,
           "phi": -4.05214122091509,
           "candidate_left_hand_side": 1.3407849378960612,
@@ -1818,6 +2007,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 189,
+          "lambda": 9.450000000000001,
           "alpha": 11.240515725583702,
           "phi": -4.07845281846393,
           "candidate_left_hand_side": 1.4254399900878612,
@@ -1827,6 +2017,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 190,
+          "lambda": 9.5,
           "alpha": 11.300211621382488,
           "phi": -4.099365130931834,
           "candidate_left_hand_side": 1.4898157397205098,
@@ -1836,6 +2027,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 191,
+          "lambda": 9.55,
           "alpha": 11.361240625546912,
           "phi": -4.116278118308778,
           "candidate_left_hand_side": 1.540353219142348,
@@ -1845,6 +2037,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 192,
+          "lambda": 9.600000000000001,
           "alpha": 11.423296109171295,
           "phi": -4.130111667297934,
           "candidate_left_hand_side": 1.5809958696651538,
@@ -1854,6 +2047,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 193,
+          "lambda": 9.65,
           "alpha": 11.486164938285274,
           "phi": -4.141505179810963,
           "candidate_left_hand_side": 1.614291848362687,
@@ -1863,6 +2057,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 194,
+          "lambda": 9.700000000000001,
           "alpha": 11.549692330966753,
           "phi": -4.150923001615077,
           "candidate_left_hand_side": 1.641961096527966,
@@ -1872,6 +2067,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 195,
+          "lambda": 9.75,
           "alpha": 11.613761845880788,
           "phi": -4.158714456716387,
           "candidate_left_hand_side": 1.6652065790979402,
@@ -1881,6 +2077,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 196,
+          "lambda": 9.8,
           "alpha": 11.678283287648195,
           "phi": -4.165150131276409,
           "candidate_left_hand_side": 1.6848946786174257,
@@ -1890,6 +2087,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 197,
+          "lambda": 9.850000000000001,
           "alpha": 11.743185034131196,
           "phi": -4.170444891680262,
           "candidate_left_hand_side": 1.701664663844708,
@@ -1899,6 +2097,7 @@
         {
           "branch_id": "branch_0",
           "point_index": 198,
+          "lambda": 9.9,
           "alpha": 11.808408968845468,
           "phi": -4.174773087391669,
           "candidate_left_hand_side": 1.7159977535172033,
@@ -1908,17 +2107,9 @@
         {
           "branch_id": "branch_0",
           "point_index": 199,
+          "lambda": 9.950000000000001,
           "alpha": 11.873907017547648,
           "phi": -4.17827894107382,
-          "candidate_left_hand_side": 1.728262164042587,
-          "candidate_right_hand_side": 0.0031470351637088944,
-          "input_provenance": "derived_from_file_read"
-        },
-        {
-          "branch_id": "branch_0",
-          "point_index": 200,
-          "alpha": 11.93963871013278,
-          "phi": -4.1810838631599525,
           "candidate_left_hand_side": 1.728262164042587,
           "candidate_right_hand_side": 0.0031470351637088944,
           "input_provenance": "derived_from_file_read"
@@ -2027,7 +2218,7 @@
       "calculation_id": "calc_branch_0",
       "branch_id": "branch_0",
       "formula_id": "candidate_local_branch_velocity_constraint_residual_v0.1",
-      "formula_description": "LHS = (dalpha/dlambda)^2, RHS = (dphi/dlambda)^2, residual = LHS - RHS. Derives velocity balance diagnostics.",
+      "formula_description": "Candidate toy diagnostic computed from adjacent local-branch trajectory point differences: residual = ((delta alpha/delta lambda)^2 - (delta phi/delta lambda)^2). This is not a recovery claim.",
       "formula_source": "relational_derivative_residual_spec_v0.1",
       "convention_profile": "toy_minisuperspace_limit_v0.1",
       "input_provenance": "derived_from_file_read",
@@ -2036,7 +2227,7 @@
         "phi",
         "lambda"
       ],
-      "num_input_points": 201,
+      "num_input_points": 200,
       "calculation_status": "computed_from_local_branch",
       "notes": "Honestly computed from clock readiness branch data (samples=201, clock_range=4.181084)"
     }
