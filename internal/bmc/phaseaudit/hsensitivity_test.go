@@ -278,3 +278,43 @@ func TestHSensitivityValidationErrorsAndStatusesArePhraseSafe(t *testing.T) {
 	assertPhraseSafe(audit.EBP.FriedmannRecoveryImpact)
 	assertPhraseSafe(audit.EBP.PromotionRecommendation)
 }
+
+// branchCutWaveFunction returns Psi(alpha, phi) = exp(i * (Pi - 0.5 * alpha))
+type branchCutWaveFunction struct{}
+
+func (bc branchCutWaveFunction) Psi(alpha, phi float64) complex128 {
+	phase := math.Pi - 0.5*alpha
+	return cmplx.Exp(complex(0, phase))
+}
+
+func TestHSensitivityBranchCutSafeGradientDoesNotArgWrap(t *testing.T) {
+	wf := branchCutWaveFunction{}
+	// Near alpha = 0, phase is Pi. Shift +h will cross Pi.
+	points := []phaseaudit.SamplePoint{
+		{Label: "branch_cut_point", Alpha: 0.0, Phi: 0.0},
+	}
+	hLadder := []float64{1e-2, 5e-3, 2.5e-3, 1.25e-3}
+
+	audit, err := phaseaudit.RunHSensitivityAudit("bc_fixture", "superposition", wf, points, hLadder)
+	if err != nil {
+		t.Fatalf("Expected no error, got: %v", err)
+	}
+
+	pt := audit.Points[0]
+	if !pt.Authoritative {
+		t.Error("Expected branch-cut point to be authoritative (no phase wrap jump)")
+	}
+
+	const BranchCutGradientTolerance = 1e-3
+	for _, g := range pt.GradientsByH {
+		// observed_dS_dalpha should be close to -0.5
+		if math.Abs(g.DSdAlpha-(-0.5)) > BranchCutGradientTolerance {
+			t.Errorf("Expected dS/dalpha close to -0.5, got %f at h=%f", g.DSdAlpha, g.H)
+		}
+		// observed_dS_dphi should be close to 0.0
+		if math.Abs(g.DSdPhi-0.0) > BranchCutGradientTolerance {
+			t.Errorf("Expected dS/dphi close to 0.0, got %f at h=%f", g.DSdPhi, g.H)
+		}
+	}
+}
+

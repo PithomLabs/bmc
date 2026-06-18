@@ -141,7 +141,7 @@ func TestQPotentialRejectsNonfinitePoint(t *testing.T) {
 	}
 }
 
-func TestQPotentialRejectsInvalidDerivativeStep(t *testing.T) {
+func TestQPotentialRunAuditRejectsInvalidDerivativeStep(t *testing.T) {
 	pw := wave.NewPlaneWave(1.0, 1.0)
 	points := []qpotential.SamplePoint{{Label: "pt", Alpha: 0.1, Phi: 0.1}}
 
@@ -158,6 +158,11 @@ func TestQPotentialRejectsInvalidDerivativeStep(t *testing.T) {
 	_, err3 := qpotential.RunAudit("fixture", "plane_wave", pw, points, math.NaN())
 	if err3 == nil {
 		t.Error("Expected error for NaN derivative step, got nil")
+	}
+
+	_, err4 := qpotential.RunAudit("fixture", "plane_wave", pw, points, math.Inf(1))
+	if err4 == nil {
+		t.Error("Expected error for Inf derivative step, got nil")
 	}
 }
 
@@ -277,3 +282,32 @@ func TestQPotentialForbiddenInferenceAudit(t *testing.T) {
 	assertPhraseSafe(audit.EBP.FriedmannRecoveryImpact)
 	assertPhraseSafe(audit.EBP.PromotionRecommendation)
 }
+
+// stencilBlockedWaveFunction returns amplitude > NearNodeAmplitudeFloor except at (0.5 + H, 0.5) where it is below it.
+type stencilBlockedWaveFunction struct {
+	H float64
+}
+
+func (sb stencilBlockedWaveFunction) Psi(alpha, phi float64) complex128 {
+	// Center is at (0.5, 0.5). Shift alpha + h is (0.5 + h, 0.5)
+	if math.Abs(alpha-(0.5+sb.H)) < 1e-9 && math.Abs(phi-0.5) < 1e-9 {
+		return complex(0.0, 0.0) // Amplitude 0 < NearNodeAmplitudeFloor
+	}
+	return complex(1.0, 0.0) // Amplitude 1 > NearNodeAmplitudeFloor
+}
+
+func TestQPotentialBlocksStencilPointBelowAmplitudeFloor(t *testing.T) {
+	h := qpotential.QPotentialDerivativeStep
+	wf := stencilBlockedWaveFunction{H: h}
+
+	// Stencil point check
+	res := qpotential.AuditPoint(wf, 0.5, 0.5, h, "plane_wave")
+
+	if res.Authoritative {
+		t.Error("Expected stencil point below floor to mark result non-authoritative")
+	}
+	if res.Status != qpotential.StatusQPotentialBlockedByDomainBoundary {
+		t.Errorf("Expected status '%s', got '%s'", qpotential.StatusQPotentialBlockedByDomainBoundary, res.Status)
+	}
+}
+
